@@ -16,12 +16,15 @@ class User implements JsonSerializable
 
     private string $lastName;
 
-    public function __construct(?int $id, string $username, string $firstName, string $lastName)
+    private string $emailAddress;
+
+    public function __construct(?int $id, string $username, string $firstName, string $lastName, string $emailAddress)
     {
         $this->id = $id;
         $this->username = strtolower($username);
         $this->firstName = ucfirst($firstName);
         $this->lastName = ucfirst($lastName);
+        $this->emailAddress = $emailAddress;
     }
 
     public function getId(): ?int
@@ -44,6 +47,11 @@ class User implements JsonSerializable
         return $this->lastName;
     }
 
+    public function emailAddress(): string
+    {
+        return $this->emailAddress;
+    }
+
     #[\ReturnTypeWillChange]
     public function jsonSerialize(): array
     {
@@ -52,6 +60,7 @@ class User implements JsonSerializable
             'username' => $this->username,
             'firstName' => $this->firstName,
             'lastName' => $this->lastName,
+            'emailAddress' => $this->emailAddress,
         ];
     }
 }

@@ -1,18 +1,11 @@
 {% extends "base.html.twig" %}
-{% block title %}Dashboard{% endblock %}
+
 {% block head %}
-
-
-
-    {% block stylesheets %}
-    {% endblock %}
-
-    {% block top_javascript %}
-    {% endblock %}
-
+    {{ parent() }}
 {% endblock %}
 
 {% block content %}
+    {% include 'partials/inner_navbar.html.twig' %}
 
 {% endblock %}
 

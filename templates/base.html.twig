@@ -1,13 +1,21 @@
+
 <!DOCTYPE html>
 <html lang="en">
-{% include 'partials/head.html.twig' %}
-<body>
-{% include 'partials/navbar.html.twig' %}
-<div id="content">{% block content %}{% endblock %}</div>
+    {% include 'partials/head.html.twig' %}
+<body class="bg-white dark:bg-gray-900">
+
+
+<div id="content" class="bg-white pt-0 dark:bg-gray-900 h-lvh">
+    {% include 'partials/navbar.html.twig' %}
+    {% block content %}
+
+    {% endblock %}
+</div>
 
 <script src="{{ '/assets/js/flowbite.min.js' }}"></script>
 <script src="//unpkg.com/alpinejs" defer></script>
 <script src="{{ '/assets/js/dark-mode.js' }}"></script>
-{% block javascript %} {% endblock %}
+    {% block javascript %}
+    {% endblock %}
 </body>
 </html>

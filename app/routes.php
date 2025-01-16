@@ -22,11 +22,9 @@ return function (App $app) {
     })->setName('home');
 
     // Define named route
-    $app->get('/hello/{name}', function ($request, $response, $args) {
+    $app->get('/dashboard', function ($request, $response, $args) {
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'profile.html.twig', [
-            'name' => $args['name']
-        ]);
+        return $view->render($response, 'profile.html.twig', []);
     })->setName('profile');
 
     $app->group('/users', function (Group $group) {
