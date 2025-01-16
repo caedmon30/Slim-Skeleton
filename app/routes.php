@@ -8,6 +8,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
+use Slim\Views\Twig;
 
 return function (App $app) {
     $app->options('/{routes:.*}', function (Request $request, Response $response) {
@@ -19,6 +20,14 @@ return function (App $app) {
         $response->getBody()->write('Hello world!');
         return $response;
     });
+
+    // Define named route
+    $app->get('/hello/{name}', function ($request, $response, $args) {
+        $view = Twig::fromRequest($request);
+        return $view->render($response, 'profile.html.twig', [
+            'name' => $args['name']
+        ]);
+    })->setName('profile');
 
     $app->group('/users', function (Group $group) {
         $group->get('', ListUsersAction::class);

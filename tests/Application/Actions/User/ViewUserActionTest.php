@@ -20,7 +20,7 @@ class ViewUserActionTest extends TestCase
     {
         $app = $this->getAppInstance();
 
-        /** @var Container $container */
+        /** @tmp Container $container */
         $container = $app->getContainer();
 
         $user = new User(1, 'bill.gates', 'Bill', 'Gates');
@@ -56,7 +56,7 @@ class ViewUserActionTest extends TestCase
 
         $app->add($errorMiddleware);
 
-        /** @var Container $container */
+        /** @tmp Container $container */
         $container = $app->getContainer();
 
         $userRepositoryProphecy = $this->prophesize(UserRepository::class);

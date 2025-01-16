@@ -11,7 +11,7 @@ use App\Domain\User\UserRepository;
 class InMemoryUserRepository implements UserRepository
 {
     /**
-     * @var User[]
+     * @tmp User[]
      */
     private array $users;
 

@@ -10,7 +10,7 @@ nbproject/
 /logs/*
 !/logs/README.md
 # Cache
-/var/cache/*
+/tmp/cache/*
 .phpunit.result.cache
 cache.properties
 .php_cs.cache
