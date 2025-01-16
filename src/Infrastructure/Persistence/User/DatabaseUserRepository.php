@@ -7,6 +7,7 @@ namespace App\Infrastructure\Persistence\User;
 use App\Domain\User\User;
 use App\Domain\User\UserNotFoundException;
 use App\Domain\User\UserRepository;
+use Selective\Database\Connection;
 
 class DatabaseUserRepository implements UserRepository
 {
@@ -14,19 +15,19 @@ class DatabaseUserRepository implements UserRepository
      * @tmp User[]
      */
     private array $users;
+    private Connection $connection;
 
     /**
      * @param User[]|null $users
      */
-    public function __construct(array $users = null)
+    public function __construct(Connection $connection, array $users = null)
     {
-        $this->users = $users ?? [
-            1 => new User(1, 'bill.gates', 'Bill', 'Gates'),
-            2 => new User(2, 'steve.jobs', 'Steve', 'Jobs'),
-            3 => new User(3, 'mark.zuckerberg', 'Mark', 'Zuckerberg'),
-            4 => new User(4, 'evan.spiegel', 'Evan', 'Spiegel'),
-            5 => new User(5, 'jack.dorsey', 'Jack', 'Dorsey'),
-        ];
+        $this->users = $users;
+        $this->connection = $connection;
+        $query = $this->connection->select()->from('users');
+        $query->columns(['id', 'username', 'firstName', 'lastName', 'emailAddress']);
+
+        $this->users =  $query->execute()->fetch() ?: [];
     }
 
     /**
@@ -47,5 +48,17 @@ class DatabaseUserRepository implements UserRepository
         }
 
         return $this->users[$id];
+    }
+
+    /**
+     * @throws UserNotFoundException
+     */
+    public function deleteUserOfId(int $id): array
+    {
+        if (!isset($this->users[$id])) {
+            throw new UserNotFoundException();
+        }
+        $this->connection->delete()->from('users')->where('id', '==', $id)->execute();
+        return array_values($this->users);
     }
 }
