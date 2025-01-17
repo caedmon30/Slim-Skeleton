@@ -7,12 +7,19 @@ namespace Tests\Application\Actions;
 use App\Application\Actions\Action;
 use App\Application\Actions\ActionPayload;
 use DateTimeImmutable;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Log\LoggerInterface;
 use Tests\TestCase;
 
 class ActionTest extends TestCase
 {
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     * @throws \Exception
+     */
     public function testActionSetsHttpCodeInRespond()
     {
         $app = $this->getAppInstance();
@@ -46,6 +53,11 @@ class ActionTest extends TestCase
         $this->assertEquals(202, $response->getStatusCode());
     }
 
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     * @throws \Exception
+     */
     public function testActionSetsHttpCodeRespondData()
     {
         $app = $this->getAppInstance();

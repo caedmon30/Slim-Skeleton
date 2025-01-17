@@ -24,8 +24,8 @@ return function (App $app) {
     // Define named route
     $app->get('/dashboard', function ($request, $response, $args) {
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'profile.html.twig', []);
-    })->setName('profile');
+        return $view->render($response, 'dashboard.html.twig', []);
+    })->setName('dashboard');
 
     $app->group('/users', function (Group $group) {
         $group->get('', ListUsersAction::class);
