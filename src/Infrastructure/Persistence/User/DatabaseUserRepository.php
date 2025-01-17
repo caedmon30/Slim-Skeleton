@@ -7,7 +7,7 @@ namespace App\Infrastructure\Persistence\User;
 use App\Domain\User\User;
 use App\Domain\User\UserNotFoundException;
 use App\Domain\User\UserRepository;
-use Selective\Database\Connection;
+use MeekroDB as Connection;
 
 class DatabaseUserRepository implements UserRepository
 {
@@ -24,10 +24,7 @@ class DatabaseUserRepository implements UserRepository
     {
         $this->users = $users;
         $this->connection = $connection;
-        $query = $this->connection->select()->from('users');
-        $query->columns(['id', 'username', 'firstName', 'lastName', 'emailAddress']);
-
-        $this->users =  $query->execute()->fetch() ?: [];
+        $this->users = $this->connection->query("SELECT id, username, firstName, lastName, emailAddress FROM users");
     }
 
     /**
@@ -51,6 +48,7 @@ class DatabaseUserRepository implements UserRepository
     }
 
     /**
+     * @throws \MeekroDBException
      * @throws UserNotFoundException
      */
     public function deleteUserOfId(int $id): array
@@ -58,7 +56,38 @@ class DatabaseUserRepository implements UserRepository
         if (!isset($this->users[$id])) {
             throw new UserNotFoundException();
         }
-        $this->connection->delete()->from('users')->where('id', '==', $id)->execute();
+        $this->users = $this->connection->delete('users', ['id' => $id]);
+        return array_values($this->users);
+    }
+
+    /**
+     * @throws \MeekroDBException
+     * @throws UserNotFoundException
+     */
+
+    public function updateUserOfId(int $id, array $data): array
+    {
+
+        if (!isset($this->users[$id])) {
+            throw new UserNotFoundException();
+        }
+        $this->users = $this->connection->update(
+            'users',
+            ['username' => $data['username'], 'firstName' => $data['firstName'], 'lastName' => $data['lastName'],
+                'emailAddress' => $data['emailAddress']],
+            ['id' => $id]
+        );
+        return array_values($this->users);
+    }
+
+    public function createUser(array $data): array
+    {
+
+        $this->users = $this->connection->insert(
+            'users',
+            ['username' => $data['username'], 'firstName' => $data['firstName'], 'lastName' => $data['lastName'],
+                'emailAddress' => $data['emailAddress']]
+        );
         return array_values($this->users);
     }
 }

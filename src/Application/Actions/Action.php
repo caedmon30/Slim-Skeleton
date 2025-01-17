@@ -52,7 +52,7 @@ abstract class Action
     /**
      * @return array|object
      */
-    protected function getFormData()
+    protected function getFormData(): object|array
     {
         return $this->request->getParsedBody();
     }
