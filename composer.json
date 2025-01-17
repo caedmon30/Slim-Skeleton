@@ -24,14 +24,15 @@
     "require": {
         "php": "^8.2",
         "ext-json": "*",
+        "ext-pdo": "*",
         "monolog/monolog": "^2.9",
         "php-di/php-di": "^6.4",
         "selective/database": "^3.2",
+        "sergeytsalkov/meekrodb": "^3.1",
         "slim/psr7": "^1.6",
         "slim/slim": "^4.12",
         "slim/twig-view": "^3.4",
-        "twig/twig": "^3.18",
-      "ext-pdo": "*"
+        "twig/twig": "^3.18"
     },
     "require-dev": {
         "jangregor/phpstan-prophecy": "^1.0.0",

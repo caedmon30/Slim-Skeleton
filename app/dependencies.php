@@ -38,18 +38,32 @@ return function (ContainerBuilder $containerBuilder) {
         },
 
         PDO::class => function (ContainerInterface $c) {
-            $settings = $c->get('settings')['db'];
+            $settings = $c->get(SettingsInterface::class);
+            $dbSettings = $settings->get('db');
 
-            $driver = $settings['driver'];
-            $host = $settings['host'];
-            $dbname = $settings['database'];
-            $username = $settings['username'];
-            $password = $settings['password'];
-            $charset = $settings['charset'];
-            $flags = $settings['flags'];
+            $driver = $dbSettings['driver'];
+            $host = $dbSettings['host'];
+            $dbname = $dbSettings['database'];
+            $username = $dbSettings['username'];
+            $password = $dbSettings['password'];
+            $charset = $dbSettings['charset'];
+            $flags = $dbSettings['flags'];
             $dsn = "$driver:host=$host;dbname=$dbname;charset=$charset";
 
             return new PDO($dsn, $username, $password, $flags);
+        },
+        MeekroDB::class => function (ContainerInterface $c) {
+            $settings = $c->get(SettingsInterface::class);
+            $mdbSettings = $settings->get('db');
+            try {
+                $dsn = 'mysql:host=' . $mdbSettings['host'] . '; dbname=' . $mdbSettings['database'];
+                $user = $mdbSettings['username'];
+                $pass = $mdbSettings['password'];
+                return new MeekroDB($dsn, $user, $pass);
+            } catch (MeekroDBException $e) {
+                echo "Connection error " . $e->getMessage();
+                exit;
+            }
         },
     ]);
 };
