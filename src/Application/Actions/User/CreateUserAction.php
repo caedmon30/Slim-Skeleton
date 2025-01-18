@@ -13,7 +13,6 @@ class CreateUserAction extends UserAction
      */
     protected function action(): Response
     {
-
         $data = $this->request->getParsedBody();
         $user = $this->userRepository->createUser($data);
         $this->logger->info("New user created!");

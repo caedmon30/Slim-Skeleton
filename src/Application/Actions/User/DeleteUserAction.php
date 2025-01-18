@@ -15,7 +15,6 @@ class DeleteUserAction extends UserAction
     {
         $userId = (int) $this->resolveArg('id');
         $user = $this->userRepository->deleteUserOfId($userId);
-
         $this->logger->info("User of id `{$userId}` was deleted.");
 
         return $this->respondWithData($user);

@@ -14,10 +14,8 @@ class UpdateUserAction extends UserAction
     protected function action(): Response
     {
         $userId = (int) $this->resolveArg('id');
-
         $data = $this->request->getParsedBody();
         $user = $this->userRepository->updateUserOfId($userId, $data);
-
         $this->logger->info("User of id `{$userId}` was updated.");
 
         return $this->respondWithData($user);

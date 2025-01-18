@@ -21,11 +21,10 @@ class DatabaseUserRepository implements UserRepository
     {
 
         $this->connection = $connection;
-        //$this->users = $this->connection->query("SELECT id, username, firstName, lastName, emailAddress FROM users");
         $results = $this->connection->query("SELECT id, username, firstName, lastName, emailAddress FROM users");
 
         foreach ($results as $row) {
-            $users[] = new User(
+            $users[(int)$row['id']] = new User(
                 (int)$row['id'],
                 $row['username'],
                 $row['firstName'],
@@ -66,8 +65,8 @@ class DatabaseUserRepository implements UserRepository
         if (!isset($this->users[$id])) {
             throw new UserNotFoundException();
         }
-        $this->users = $this->connection->delete('users', ['id' => $id]);
-        return array_values($this->users);
+        $this->connection->delete('users', ['id' => $id]);
+        return array_values($this->findAll());
     }
 
     /**
@@ -87,7 +86,7 @@ class DatabaseUserRepository implements UserRepository
                 'emailAddress' => $data['emailAddress']],
             ['id' => $id]
         );
-        return array_values($this->users);
+        return array_values($this->findAll());
     }
 
     public function createUser(array $data): array
@@ -98,6 +97,6 @@ class DatabaseUserRepository implements UserRepository
             ['username' => $data['username'], 'firstName' => $data['firstName'], 'lastName' => $data['lastName'],
                 'emailAddress' => $data['emailAddress']]
         );
-        return array_values($this->users);
+        return array_values($this->findAll());
     }
 }
