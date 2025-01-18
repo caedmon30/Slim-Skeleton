@@ -26,6 +26,7 @@
         "ext-json": "*",
         "ext-pdo": "*",
         "monolog/monolog": "^2.9",
+        "nette/database": "^3.2",
         "php-di/php-di": "^6.4",
         "selective/database": "^3.2",
         "sergeytsalkov/meekrodb": "^3.1",

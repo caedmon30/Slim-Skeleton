@@ -23,7 +23,7 @@ return function (ContainerBuilder $containerBuilder) {
                 ],
                 'db' => [
                     'driver' => 'mysql',
-                    'host' => 'www3.chem.umd.edu',
+                    'host' => '192.168.0.102',
                     'database' => 'keys_db',
                     'username' => 'adminer',
                     'password' => 'Mehcserv1ce@',

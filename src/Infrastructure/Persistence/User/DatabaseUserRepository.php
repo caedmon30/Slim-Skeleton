@@ -17,14 +17,24 @@ class DatabaseUserRepository implements UserRepository
     private array $users;
     private Connection $connection;
 
-    /**
-     * @param User[]|null $users
-     */
     public function __construct(Connection $connection, array $users = null)
     {
-        $this->users = $users;
+
         $this->connection = $connection;
-        $this->users = $this->connection->query("SELECT id, username, firstName, lastName, emailAddress FROM users");
+        //$this->users = $this->connection->query("SELECT id, username, firstName, lastName, emailAddress FROM users");
+        $results = $this->connection->query("SELECT id, username, firstName, lastName, emailAddress FROM users");
+
+        foreach ($results as $row) {
+            $users[] = new User(
+                (int)$row['id'],
+                $row['username'],
+                $row['firstName'],
+                $row['lastName'],
+                $row['emailAddress']
+            );
+        }
+
+        $this->users = $users;
     }
 
     /**
