@@ -24,12 +24,13 @@ return function (App $app) {
         return $view->render($response, 'home.html.twig', []);
     })->setName('home');
 
-    // Define named route
+    // web routes
     $app->get('/dashboard', function ($request, $response, $args) {
         $view = Twig::fromRequest($request);
         return $view->render($response, 'dashboard.html.twig', []);
     })->setName('dashboard');
 
+    // api routes
     $app->group('/users', function (Group $group) {
         $group->get('', ListUsersAction::class);
         $group->post('/create', CreateUserAction::class);
