@@ -9,7 +9,6 @@ use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
-use Selective\Database\Connection;
 use Slim\Views\Twig;
 
 return function (ContainerBuilder $containerBuilder) {
@@ -29,29 +28,12 @@ return function (ContainerBuilder $containerBuilder) {
             return $logger;
         },
         Twig::class => function (ContainerInterface $c) {
-            //return Twig::create(__DIR__ . '/../templates', ['cache' => __DIR__ . '/../tmp/cache']); //PRODUCTION
-            return Twig::create(__DIR__ . '/../templates', ['cache' => false]); //DEVELOPMENT
+            // remove comment in production
+            //return Twig::create(__DIR__ . '/../templates', ['cache' => __DIR__ . '/../tmp/cache']);
+            // comment out in production
+            return Twig::create(__DIR__ . '/../templates', ['cache' => false]);
         },
         // Database connection
-        Connection::class => function (ContainerInterface $c) {
-            return new Connection($c->get(PDO::class));
-        },
-
-        PDO::class => function (ContainerInterface $c) {
-            $settings = $c->get(SettingsInterface::class);
-            $dbSettings = $settings->get('db');
-
-            $driver = $dbSettings['driver'];
-            $host = $dbSettings['host'];
-            $dbname = $dbSettings['database'];
-            $username = $dbSettings['username'];
-            $password = $dbSettings['password'];
-            $charset = $dbSettings['charset'];
-            $flags = $dbSettings['flags'];
-            $dsn = "$driver:host=$host;dbname=$dbname;charset=$charset";
-
-            return new PDO($dsn, $username, $password, $flags);
-        },
         MeekroDB::class => function (ContainerInterface $c) {
             $settings = $c->get(SettingsInterface::class);
             $mdbSettings = $settings->get('db');

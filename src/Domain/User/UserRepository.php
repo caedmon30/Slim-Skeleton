@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Domain\User;
 
-use Psr\Http\Message\ServerRequestInterface as Request;
-
 interface UserRepository
 {
     /**
@@ -25,5 +23,4 @@ interface UserRepository
     public function updateUserOfId(int $id, array $data): array;
 
     public function createUser(array $data): array;
-
 }

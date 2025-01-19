@@ -14,7 +14,8 @@ class DeleteUserAction extends UserAction
     protected function action(): Response
     {
         $userId = (int) $this->resolveArg('id');
-        $user = $this->userRepository->deleteUserOfId($userId);
+        $this->userRepository->deleteUserOfId($userId);
+        $user = $this->userRepository->findAll();
         $this->logger->info("User of id `{$userId}` was deleted.");
 
         return $this->respondWithData($user);

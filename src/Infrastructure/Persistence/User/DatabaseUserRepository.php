@@ -66,7 +66,7 @@ class DatabaseUserRepository implements UserRepository
             throw new UserNotFoundException();
         }
         $this->connection->delete('users', ['id' => $id]);
-        return array_values($this->findAll());
+        return array_values($this->users);
     }
 
     /**
@@ -80,23 +80,23 @@ class DatabaseUserRepository implements UserRepository
         if (!isset($this->users[$id])) {
             throw new UserNotFoundException();
         }
-        $this->users = $this->connection->update(
+        $this->connection->update(
             'users',
             ['username' => $data['username'], 'firstName' => $data['firstName'], 'lastName' => $data['lastName'],
                 'emailAddress' => $data['emailAddress']],
             ['id' => $id]
         );
-        return array_values($this->findAll());
+        return array_values($this->users);
     }
 
     public function createUser(array $data): array
     {
 
-        $this->users = $this->connection->insert(
+        $this->connection->insert(
             'users',
             ['username' => $data['username'], 'firstName' => $data['firstName'], 'lastName' => $data['lastName'],
                 'emailAddress' => $data['emailAddress']]
         );
-        return array_values($this->findAll());
+        return array_values($this->users);
     }
 }
