@@ -41,6 +41,6 @@ return function (App $app) {
         $group->post('', CreateUserAction::class);
         $group->get('/{id}', ViewUserAction::class);
         $group->delete('/{id}', DeleteUserAction::class);
-        $group->patch('/{id}', UpdateUserAction::class);
+        $group->put('/{id}', UpdateUserAction::class);
     });
 };

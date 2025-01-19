@@ -20,16 +20,14 @@ $(document).ready(
                         url: SERVICE_URL,
                         method: "POST",
                         data: values,
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "jsonp"
                     });
                 },
 
                 update: (key, values) => {
                     return $.ajax({
                         url: SERVICE_URL + "/" + encodeURIComponent(key),
-                        method: "PATCH",
-                        data: values
+                        method: "PUT",
+                        values: values,
                     });
                 },
 
@@ -53,11 +51,14 @@ $(document).ready(
                 allowExportSelectedData: true
             },
             editing: {
-                refreshMode: 'reshape',
+                refreshMode: 'reload',
                 mode: 'form',
                 allowAdding: true,
                 allowUpdating: true,
                 allowDeleting: true,
+            },
+            onBeforeSend(method, ajaxOptions) {
+                ajaxOptions.xhrFields = { withCredentials: true };
             },
             searchPanel: {
                 visible: true,
@@ -85,15 +86,19 @@ $(document).ready(
                 e.cancel = true;
             },
             columns: [
-                {
-                    dataField: 'lastName',
+                {dataField: 'lastName', validationRules: [{ type: 'required' }],
             }, {
                 dataField: 'firstName',
+                validationRules: [{ type: 'required' }],
             },
-                {
-                    dataField: 'username',
+                {dataField: 'username', validationRules: [{ type: 'required' }],
             }, {
-                dataField: 'emailAddress',
+                dataField: 'emailAddress', validationRules: [{
+                    type: 'required'
+                },{
+                    type: 'email',
+                },
+                ],
             },
             ],
             }).dxDataGrid('instance');
