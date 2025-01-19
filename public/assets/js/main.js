@@ -27,7 +27,7 @@ $(document).ready(
                     return $.ajax({
                         url: SERVICE_URL + "/" + encodeURIComponent(key),
                         method: "PUT",
-                        values: values,
+                        data: values,
                     });
                 },
 
@@ -86,19 +86,8 @@ $(document).ready(
                 e.cancel = true;
             },
             columns: [
-                {dataField: 'lastName', validationRules: [{ type: 'required' }],
-            }, {
-                dataField: 'firstName',
-                validationRules: [{ type: 'required' }],
-            },
-                {dataField: 'username', validationRules: [{ type: 'required' }],
-            }, {
-                dataField: 'emailAddress', validationRules: [{
-                    type: 'required'
-                },{
-                    type: 'email',
-                },
-                ],
+                {dataField: 'lastName', validationRules: [{ type: 'required' }],},  {dataField: 'firstName', validationRules: [{ type: 'required' }],},  {dataField: 'username', validationRules: [{ type: 'required' }],},  {dataField: 'emailAddress', validationRules: [{type: 'required'},{type: 'email', message: 'Email is not valid'},
+                    ],
             },
             ],
             }).dxDataGrid('instance');
