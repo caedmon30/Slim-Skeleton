@@ -30,12 +30,17 @@ return function (App $app) {
         return $view->render($response, 'dashboard.html.twig', []);
     })->setName('dashboard');
 
+    $app->get('/users', function ($request, $response, $args) {
+        $view = Twig::fromRequest($request);
+        return $view->render($response, 'users.html.twig', []);
+    })->setName('users');
+
     // api routes
-    $app->group('/users', function (Group $group) {
+    $app->group('/api/users', function (Group $group) {
         $group->get('', ListUsersAction::class);
-        $group->post('/create', CreateUserAction::class);
+        $group->post('', CreateUserAction::class);
         $group->get('/{id}', ViewUserAction::class);
-        $group->delete('/delete/{id}', DeleteUserAction::class);
-        $group->patch('/update/{id}', UpdateUserAction::class);
+        $group->delete('/{id}', DeleteUserAction::class);
+        $group->patch('/{id}', UpdateUserAction::class);
     });
 };
