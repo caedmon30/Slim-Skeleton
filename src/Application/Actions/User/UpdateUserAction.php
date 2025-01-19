@@ -15,8 +15,7 @@ class UpdateUserAction extends UserAction
     {
         $userId = (int) $this->resolveArg('id');
         $data = $this->getFormData();
-        $this->userRepository->updateUserOfId($userId, $data);
-        $user = $this->userRepository->findAll();
+        $user = $this->userRepository->updateUserOfId($userId, $data);
         $this->logger->info("User of id `{$userId}` was updated.");
 
         return $this->respondWithData($user);
