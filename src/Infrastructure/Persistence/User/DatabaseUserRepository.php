@@ -21,6 +21,7 @@ class DatabaseUserRepository implements UserRepository
     {
 
         $this->connection = $connection;
+
         $results = $this->connection->query("SELECT id, username, firstName, lastName, emailAddress FROM users");
 
         foreach ($results as $row) {
@@ -32,7 +33,6 @@ class DatabaseUserRepository implements UserRepository
                 $row['emailAddress']
             );
         }
-
         $this->users = $users;
     }
 
@@ -41,6 +41,7 @@ class DatabaseUserRepository implements UserRepository
      */
     public function findAll(): array
     {
+
         return array_values($this->users);
     }
 
