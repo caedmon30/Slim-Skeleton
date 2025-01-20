@@ -8,7 +8,8 @@
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
         <link rel="stylesheet" href="{{ '/../assets/css/dx.fluent.custom-scheme.css' }}">
         <link rel="stylesheet" href="{{ '/../assets/css/styles.css' }}">
-        <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/devextreme/23.2.5-build-24056-0112/css/dx.carmine.compact.min.css" integrity="sha512-3b7o2bNbTi+R9MYDipOtG41G74Lgdpsp+1LEPXYeiXj/gKUQUtIx8W3mOaLIHuJNj6j0xQiRQ7AOA21VWc8W6w==" crossorigin="anonymous" referrerpolicy="no-referrer" />--!>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn3.devexpress.com/jslib/23.1.12/js/dx.web.js"></script>
         <script src="https://kit.fontawesome.com/4d3dd9bdf2.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.0/polyfill.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
@@ -22,16 +23,21 @@
                 }
         </script>
         <style>
-        @media (prefers-color-scheme: light) {
-            /* Light theme styles go here */
-            #inner_menu a {
-                color: #4B5563}
-        }
 
+        .dx-theme-fluent-typography a {
+                        color: #E2383F;
+                }
+        .dx-theme-fluent-typography .top_menu a {
+                color: white;
+        }
         .dx-theme-fluent-typography h3{
-            font-weight: bold; font-size: 1.2rem;}
+            font-weight: bold; font-size: 14px !important;}
         .dx-theme-fluent-typography h2{
             font-size: 1.5rem;
+        }
+        .dx-dialog-button:hover{
+            background-color: #8C2410 !important;
+                color: #ebebeb !important;
         }
         </style>
         {% block styles %}

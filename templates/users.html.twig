@@ -11,13 +11,12 @@
     {% endblock %}
 {% block content %}
     {% include 'partials/inner_navbar.html.twig' %}
-    <section class="container mx-auto px-4 sm:px-6 lg:px-4 mb-12">
-    <h3 class="text-xl font-bold dark:text-white text-slate-800 mt-10"><i class="fa-regular fa-users"></i> Manage Users</h3>
 
-</section>
+        {% set page_title = 'Users' %}
+        {% include 'partials/breadcrumb.html.twig' %}
 
-    <div id="gridContainer" class="container mx-auto">
-        <div id="dataGridUsers"></div>
+    <div id="gridContainer" class="container mx-auto darK:bg-slate-100 pb-2.5">
+        <div id="dataGridUsers" class="dark:!bg-gray-100 pt-12 px-6 mb-12"></div>
     </div>
 {% endblock %}
 

@@ -6,10 +6,10 @@
 
 {% block content %}
     {% include 'partials/inner_navbar.html.twig' %}
-<section class="container mx-auto px-4 sm:px-6 lg:px-4 mb-12">
-    <h3 class="text-xl font-bold dark:text-white text-slate-800 mt-10"><i class="fa-regular fa-chart-network"></i> Dashboard</h3>
 
-</section>
+    {% set page_title = 'Dashboard' %}
+    {% include 'partials/breadcrumb.html.twig' %}
+
 {% endblock %}
 
 {% block javascript %} {% endblock %}

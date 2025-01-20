@@ -2,17 +2,15 @@
 <!DOCTYPE html>
 <html lang="en">
     {% include 'partials/head.html.twig' %}
-<body class="bg-white dark:bg-gray-900 dx-viewport">
+<body class="dx-viewport">
 
 
-<div id="content" class="bg-white pt-0 dark:bg-gray-900 h-lvh">
+<div id="content" class="bg-white pt-0 dark:bg-gray-300 h-lvh">
     {% include 'partials/navbar.html.twig' %}
     {% block content %}
 
     {% endblock %}
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdn3.devexpress.com/jslib/23.1.12/js/dx.web.js"></script>
 <script src="{{ '/assets/js/flowbite.min.js' }}"></script>
 <script src="//unpkg.com/alpinejs" defer></script>
 <script src="{{ '/assets/js/dark-mode.js' }}"></script>
