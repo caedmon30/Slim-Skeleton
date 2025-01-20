@@ -35,20 +35,6 @@ return function (ContainerBuilder $containerBuilder) {
             return Twig::create(__DIR__ . '/../templates', ['cache' => false]);
         },
         // Database connection
-        MeekroDB::class => function (ContainerInterface $c) {
-            $settings = $c->get(SettingsInterface::class);
-            $mdbSettings = $settings->get('db');
-            try {
-                $dsn = 'mysql:host=' . $mdbSettings['host'] . '; dbname=' . $mdbSettings['database'];
-                $user = $mdbSettings['username'];
-                $pass = $mdbSettings['password'];
-                return new MeekroDB($dsn, $user, $pass);
-            } catch (MeekroDBException $e) {
-                echo "Connection error " . $e->getMessage();
-                exit;
-            }
-        },
-
         Connection::class => function (ContainerInterface $c) {
             $settings = $c->get(SettingsInterface::class);
             $mdbSettings = $settings->get('db');

@@ -28,7 +28,6 @@
         "monolog/monolog": "^2.9",
         "nette/database": "^3.2",
         "php-di/php-di": "^6.4",
-        "sergeytsalkov/meekrodb": "^3.1",
         "slim/psr7": "^1.6",
         "slim/slim": "^4.12",
         "slim/twig-view": "^3.4",

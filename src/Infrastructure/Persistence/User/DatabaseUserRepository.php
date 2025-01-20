@@ -9,8 +9,6 @@ use App\Domain\User\UserNotFoundException;
 use App\Domain\User\UserRepository;
 use Nette\Database\Connection;
 
-//use MeekroDB as Connection;
-
 class DatabaseUserRepository implements UserRepository
 {
     /**
