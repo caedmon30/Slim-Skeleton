@@ -56,6 +56,7 @@ $(document).ready(
                 allowAdding: true,
                 allowUpdating: true,
                 allowDeleting: true,
+                useIcons: true,
             },
             onBeforeSend(method, ajaxOptions) {
                 ajaxOptions.xhrFields = { withCredentials: true };
