@@ -1088,6 +1088,9 @@ input:checked + .toggle-bg {
 .mb-4 {
   margin-bottom: 1rem;
 }
+.mb-8 {
+  margin-bottom: 2rem;
+}
 .me-2\.5 {
   margin-inline-end: 0.625rem;
 }
@@ -1177,6 +1180,9 @@ input:checked + .toggle-bg {
 }
 .h-screen {
   height: 100vh;
+}
+.min-h-full {
+  min-height: 100%;
 }
 .w-1\/2 {
   width: 50%;
@@ -1492,10 +1498,6 @@ input:checked + .toggle-bg {
   font-size: 1.5rem;
   line-height: 2rem;
 }
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-}
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -1782,6 +1784,10 @@ input:checked + .toggle-bg {
 .dark\:bg-gray-900\/80:is(.dark *) {
   background-color: rgb(17 24 39 / 0.8);
 }
+.dark\:bg-slate-100:is(.dark *) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 245 249 / var(--tw-bg-opacity, 1));
+}
 .dark\:text-blue-500:is(.dark *) {
   --tw-text-opacity: 1;
   color: rgb(63 131 248 / var(--tw-text-opacity, 1));
@@ -1905,6 +1911,11 @@ input:checked + .toggle-bg {
 
   .lg\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .lg\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
   }
 
   .lg\:px-4 {

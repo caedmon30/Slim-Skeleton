@@ -1,15 +1,33 @@
-{% extends "../base.html.twig" %}
+{% extends "./base.html.twig" %}
 
 {% block head %}
     {{ parent() }}
-{% endblock %}
 
+{% endblock %}
+    {% block styles %}
+    {% endblock %}
+    {% block top_javascript %}
+
+    {% endblock %}
 {% block content %}
-    {% include '../partials/inner_navbar.html.twig' %}
-<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 mb-12">
-    <h2 class="text-2xl font-extrabold dark:text-white text-slate-800 mt-10"><i class="fa-duotone fa-solid fa-cabinet-filing"></i> Dashboard</h2>
+    {% include './partials/inner_navbar.html.twig' %}
 
-</section>
+    {% set page_title = 'System Administration' %}
+    {% include './partials/breadcrumb.html.twig' %}
+
+    <div id="gridContainer" class="container mx-auto p-2.5 min-h-full">
+        <p class="text-md mb-4 font-bold dx-theme-text-color"><i class="fa-duotone fa-light fa-users-medical"></i> Manage Employee Types</p>
+        <p>To add an employee type to the database, click the plus button below to access the employee type (status) management tool, navigate to the entry form and provide employee type in clearly understandable language</p>
+        <div id="dataGridEmployees" class="dark:!bg-gray-100 pt-4 px-6 pb-12 mt-8 mb-8 rounded-md"></div>
+
+        <p class="text-md mb-4 font-bold dx-theme-text-color"><i class="fa-duotone fa-light fa-users-medical"></i> Manage Users</p>
+        <p>To add an administrative user to the database, click the plus button below to access the user management tool, navigate to the entry form, provide a valid username (UMD directory ID), firstname, last name and email address</p>
+        <div id="dataGridUsers" class="dark:!bg-gray-100 pt-4 px-6 pb-12 mt-8 rounded-md"></div>
+    </div>
+
 {% endblock %}
 
-{% block javascript %} {% endblock %}
+{% block javascript %}
+<script src="{{ '../assets/js/users.js' }}"></script>
+<script src="{{ '../assets/js/employees.js' }}"></script>
+{% endblock %}
