@@ -15,8 +15,10 @@
         {% set page_title = 'Users' %}
         {% include './partials/breadcrumb.html.twig' %}
 
-    <div id="gridContainer" class="container mx-auto darK:bg-slate-100 pb-2.5">
-        <div id="dataGridUsers" class="dark:!bg-gray-100 pt-12 px-6 mb-12"></div>
+    <div id="gridContainer" class="container mx-auto darK:bg-slate-100 p-2.5 h-screen">
+        <p class="text-md mb-4 font-bold dx-theme-text-color"><i class="fa-duotone fa-light fa-users-medical"></i> Manage Users</p>
+        <p>To add an administrative user to the database, click the plus button below to access the user management tool, navigate to the entry management form, provide a valid username (UMD directory ID), firstname, last name and email address</p>
+        <div id="dataGridUsers" class="dark:!bg-gray-100 pt-4 px-6 pb-12 mt-8 rounded-md"></div>
     </div>
 {% endblock %}
 
