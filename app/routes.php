@@ -21,18 +21,18 @@ return function (App $app) {
 
     $app->get('/', function ($request, $response, $args) {
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'home.html.twig', []);
+        return $view->render($response, 'pages/home.html.twig', []);
     })->setName('home');
 
     // web routes
     $app->get('/dashboard', function ($request, $response, $args) {
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'dashboard.html.twig', []);
+        return $view->render($response, 'pages/dashboard.html.twig', []);
     })->setName('dashboard');
 
     $app->get('/users', function ($request, $response, $args) {
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'users.html.twig', []);
+        return $view->render($response, 'pages/users.html.twig', []);
     })->setName('users');
 
     // api routes

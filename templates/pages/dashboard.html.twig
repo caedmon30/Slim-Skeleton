@@ -1,14 +1,14 @@
-{% extends "base.html.twig" %}
+{% extends "./base.html.twig" %}
 
 {% block head %}
     {{ parent() }}
 {% endblock %}
 
 {% block content %}
-    {% include 'partials/inner_navbar.html.twig' %}
+    {% include './partials/inner_navbar.html.twig' %}
 
     {% set page_title = 'Dashboard' %}
-    {% include 'partials/breadcrumb.html.twig' %}
+    {% include './partials/breadcrumb.html.twig' %}
 
 {% endblock %}
 
