@@ -10,6 +10,7 @@ use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Slim\Views\Twig;
+use Nette\Database\Connection;
 
 return function (ContainerBuilder $containerBuilder) {
     $containerBuilder->addDefinitions([
@@ -46,6 +47,15 @@ return function (ContainerBuilder $containerBuilder) {
                 echo "Connection error " . $e->getMessage();
                 exit;
             }
+        },
+
+        Connection::class => function (ContainerInterface $c) {
+            $settings = $c->get(SettingsInterface::class);
+            $mdbSettings = $settings->get('db');
+            $dsn = 'mysql:host=' . $mdbSettings['host'] . '; dbname=' . $mdbSettings['database'];
+            $user = $mdbSettings['username'];
+            $pass = $mdbSettings['password'];
+            return new Connection($dsn, $user, $pass);
         },
     ]);
 };
