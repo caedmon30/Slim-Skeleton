@@ -7,7 +7,7 @@ namespace App\Infrastructure\Persistence\User;
 use App\Domain\User\User;
 use App\Domain\User\UserNotFoundException;
 use App\Domain\User\UserRepository;
-use MeekroDB as Connection;
+use Nette\Database\Connection;
 
 class DatabaseUserRepository implements UserRepository
 {
