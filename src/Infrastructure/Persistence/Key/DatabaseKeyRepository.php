@@ -41,7 +41,7 @@ class DatabaseKeyRepository implements KeyRepository
                 $row->addNotes
             );
         }
-        $this->keys= $keys;
+        $this->keys = $keys;
     }
 
     /**

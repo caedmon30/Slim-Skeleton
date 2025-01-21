@@ -11,9 +11,9 @@ class Key implements JsonSerializable
     private string $firstName;
     private string $campusUid;
     private int $empStatus;
-    private string $keyNumber;
-    private string $keyCore;
-    private string $hookNumber;
+    private int $keyNumber;
+    private int $keyCore;
+    private int $hookNumber;
     private string $roomNumber;
     private string $wingBldg;
     private string $dateCheckedIn;
@@ -27,17 +27,30 @@ class Key implements JsonSerializable
      * @param string $firstName
      * @param string $campusUid
      * @param int $empStatus
-     * @param string $keyNumber
-     * @param string $keyCore
-     * @param string $hookNumber
+     * @param int $keyNumber
+     * @param int $keyCore
+     * @param int $hookNumber
      * @param string $roomNumber
      * @param string $wingBldg
      * @param string $dateCheckedIn
      * @param string $dateCheckedOut
      * @param string $addNotes
      */
-    public function __construct(?int $id, string $lastName, string $firstName, string $campusUid, int $empStatus, string $keyNumber, string $keyCore, string $hookNumber, string $roomNumber, string $wingBldg, string $dateCheckedIn, string $dateCheckedOut, string $addNotes)
-    {
+    public function __construct(
+        ?int $id,
+        string $lastName,
+        string $firstName,
+        string $campusUid,
+        int $empStatus,
+        int $keyNumber,
+        int $keyCore,
+        int $hookNumber,
+        string $roomNumber,
+        string $wingBldg,
+        string $dateCheckedIn,
+        string $dateCheckedOut,
+        string $addNotes
+    ) {
         $this->id = $id;
         $this->lastName = $lastName;
         $this->firstName = $firstName;
@@ -100,7 +113,7 @@ class Key implements JsonSerializable
     }
 
     /**
-     * @return string
+     * @return int
      */
     public function getEmpStatus(): int
     {
@@ -108,19 +121,19 @@ class Key implements JsonSerializable
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getHookNumber(): string
+    public function getHookNumber(): int
     {
         return $this->hookNumber;
     }
 
-    public function getKeyCore(): string
+    public function getKeyCore(): int
     {
         return $this->keyCore;
     }
 
-    public function getKeyNumber(): string
+    public function getKeyNumber(): int
     {
         return $this->keyNumber;
     }

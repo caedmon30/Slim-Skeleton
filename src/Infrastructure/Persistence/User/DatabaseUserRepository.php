@@ -7,7 +7,7 @@ namespace App\Infrastructure\Persistence\User;
 use App\Domain\User\User;
 use App\Domain\User\UserNotFoundException;
 use App\Domain\User\UserRepository;
-use Nette\Database\Connection;
+use MeekroDB as Connection;
 
 class DatabaseUserRepository implements UserRepository
 {
@@ -17,7 +17,7 @@ class DatabaseUserRepository implements UserRepository
     private array $users;
     private Connection $connection;
 
-    public function __construct(Connection $connection, array|null $users = null)
+    public function __construct(Connection $connection, array $users = null)
     {
 
         $this->connection = $connection;
@@ -26,11 +26,11 @@ class DatabaseUserRepository implements UserRepository
 
         foreach ($results as $row) {
             $users[(int)$row['id']] = new User(
-                (int)$row->id,
-                $row->username,
-                $row->firstName,
-                $row->lastName,
-                $row->emailAddress
+                (int)$row['id'],
+                $row['username'],
+                $row['firstName'],
+                $row['lastName'],
+                $row['emailAddress']
             );
         }
         $this->users = $users;
@@ -58,6 +58,7 @@ class DatabaseUserRepository implements UserRepository
     }
 
     /**
+     * @throws \MeekroDBException
      * @throws UserNotFoundException
      */
     public function deleteUserOfId(int $id): array
@@ -65,12 +66,12 @@ class DatabaseUserRepository implements UserRepository
         if (!isset($this->users[$id])) {
             throw new UserNotFoundException();
         }
-        //$this->connection->delete('users', ['id' => $id]);
-        $this->connection->query('DELETE FROM users WHERE id = ?', $id);
+        $this->connection->delete('users', ['id' => $id]);
         return array_values($this->users);
     }
 
     /**
+     * @throws \MeekroDBException
      * @throws UserNotFoundException
      */
 
@@ -80,13 +81,23 @@ class DatabaseUserRepository implements UserRepository
         if (!isset($this->users[$id])) {
             throw new UserNotFoundException();
         }
-        $this->connection->query('UPDATE users SET ? WHERE id = ?', $data, $id);
+        $this->connection->update(
+            'users',
+            ['username' => $data['username'], 'firstName' => $data['firstName'], 'lastName' => $data['lastName'],
+                'emailAddress' => $data['emailAddress']],
+            ['id' => $id]
+        );
         return array_values($this->users);
     }
 
     public function createUser(array $data): array
     {
-        $this->connection->query('INSERT INTO users ?', $data);
+
+        $this->connection->insert(
+            'users',
+            ['username' => $data['username'], 'firstName' => $data['firstName'], 'lastName' => $data['lastName'],
+                'emailAddress' => $data['emailAddress']]
+        );
         return array_values($this->users);
     }
 }

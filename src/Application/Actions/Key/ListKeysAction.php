@@ -13,7 +13,7 @@ class ListKeysAction extends KeyAction
      */
     protected function action(): Response
     {
-       $keys = $this->keyRepository->findAll();
+        $keys = $this->keyRepository->findAll();
 
         $this->logger->info("Keys list was viewed.");
 
