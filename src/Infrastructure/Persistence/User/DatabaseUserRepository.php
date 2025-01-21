@@ -58,7 +58,6 @@ class DatabaseUserRepository implements UserRepository
     }
 
     /**
-     * @throws \MeekroDBException
      * @throws UserNotFoundException
      */
     public function deleteUserOfId(int $id): array
@@ -72,7 +71,6 @@ class DatabaseUserRepository implements UserRepository
     }
 
     /**
-     * @throws \MeekroDBException
      * @throws UserNotFoundException
      */
 

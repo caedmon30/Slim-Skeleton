@@ -7,6 +7,7 @@ use App\Application\Actions\Employee\DeleteEmployeeAction;
 use App\Application\Actions\Employee\ListEmployeesAction;
 use App\Application\Actions\Employee\UpdateEmployeeAction;
 use App\Application\Actions\Employee\ViewEmployeeAction;
+use App\Application\Actions\Key\ListKeysAction;
 use App\Application\Actions\User\CreateUserAction;
 use App\Application\Actions\User\DeleteUserAction;
 use App\Application\Actions\User\ListUsersAction;
@@ -51,6 +52,14 @@ return function (App $app) {
 
     $app->group('/api/status', function (Group $group) {
         $group->get('', ListEmployeesAction::class);
+        $group->post('', CreateEmployeeAction::class);
+        $group->get('/{id}', ViewEmployeeAction::class);
+        $group->delete('/{id}', DeleteEmployeeAction::class);
+        $group->put('/{id}', UpdateEmployeeAction::class);
+    });
+
+    $app->group('/api/keys', function (Group $group) {
+        $group->get('', ListKeysAction::class);
         $group->post('', CreateEmployeeAction::class);
         $group->get('/{id}', ViewEmployeeAction::class);
         $group->delete('/{id}', DeleteEmployeeAction::class);
