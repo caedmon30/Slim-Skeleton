@@ -7,7 +7,10 @@ use App\Application\Actions\Employee\DeleteEmployeeAction;
 use App\Application\Actions\Employee\ListEmployeesAction;
 use App\Application\Actions\Employee\UpdateEmployeeAction;
 use App\Application\Actions\Employee\ViewEmployeeAction;
+use App\Application\Actions\Key\CreateKeyAction;
+use App\Application\Actions\Key\DeleteKeyAction;
 use App\Application\Actions\Key\ListKeysAction;
+use App\Application\Actions\Key\UpdateKeyAction;
 use App\Application\Actions\User\CreateUserAction;
 use App\Application\Actions\User\DeleteUserAction;
 use App\Application\Actions\User\ListUsersAction;
@@ -66,11 +69,11 @@ return function (App $app) {
         $group->put('/{id}', UpdateEmployeeAction::class);
     });
 
-    $app->group('/api/keys', function (Group $group) {
+    $app->group('/api/keys', callable: function (Group $group) {
         $group->get('', ListKeysAction::class);
-        $group->post('', CreateEmployeeAction::class);
+        $group->post('', CreateKeyAction::class);
         $group->get('/{id}', ViewEmployeeAction::class);
-        $group->delete('/{id}', DeleteEmployeeAction::class);
-        $group->put('/{id}', UpdateEmployeeAction::class);
+        $group->delete('/{id}', DeleteKeyAction::class);
+        $group->put('/{id}', UpdateKeyAction::class);
     });
 };

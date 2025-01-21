@@ -1573,8 +1573,8 @@ input:checked + .toggle-bg {
 .tracking-tight {
   letter-spacing: -0.025em;
 }
-.text-\[\#21933\] {
-  color: #21933;
+.text-\[-\#21933\] {
+  color: -#21933;
 }
 .text-black {
   --tw-text-opacity: 1;

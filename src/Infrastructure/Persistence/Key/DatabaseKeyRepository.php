@@ -86,11 +86,11 @@ class DatabaseKeyRepository implements KeyRepository
     public function updateKeyOfId(int $id, array $data): array
     {
 
-        if (!isset($this->users[$id])) {
+        if (!isset($this->keys[$id])) {
             throw new KeyNotFoundException();
         }
         $this->connection->query('UPDATE tblkeys SET ? WHERE id = ?', $data, $id);
-        return array_values($this->users);
+        return array_values($this->keys);
     }
 
     public function createKey(array $data): array

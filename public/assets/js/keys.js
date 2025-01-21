@@ -43,9 +43,14 @@ $(document).ready(
                 dataSource: keySource,
                 repaintChangesOnly: true,
                 showBorders: true,
-                showColumnLines: false,
+                showColumnLines: true,
                 showRowLines: true,
                 rowAlternationEnabled: true,
+                filterRow: { visible: true },
+                scrolling: {
+                    rowRenderingMode: 'virtual',
+                },
+                columnAutoWidth: false,
                 export: {
                     enabled: true,
                     allowExportSelectedData: true
@@ -58,6 +63,9 @@ $(document).ready(
                     allowDeleting: true,
                     useIcons: true,
                 },
+                columnChooser: {
+                    enabled: true
+                },
                 onBeforeSend(method, ajaxOptions) {
                     ajaxOptions.xhrFields = {withCredentials: true};
                 },
@@ -68,9 +76,20 @@ $(document).ready(
                 },
                 headerFilter: {
                     visible: true,
+                    allowSearch: true,
                 },
                 selection: {
                     mode: 'multiple',
+                },
+                pager: {
+                    showPageSizeSelector: true,
+                    allowedPageSizes: [10, 20, 50],
+                    showInfo: true,
+                    showNavigationButtons: true
+                },loadPanel: {
+                    height: 100,
+                    width: 250,
+                    indicatorSrc: "https://js.devexpress.com/Content/data/loadingIcons/rolling.svg"
                 },
                 onExporting(e) {
                     const workbook = new ExcelJS.Workbook();
@@ -87,22 +106,22 @@ $(document).ready(
                     e.cancel = true;
                 },
                 columns: [
-                    {dataField: 'firstName', validationRules: [{type: 'required'}],}, {
-                        dataField: 'lastName',
+                    {dataField: 'firstName', allowHeaderFiltering: false, validationRules: [{type: 'required'}],}, {
+                        dataField: 'lastName',allowHeaderFiltering: false,
                         validationRules: [{type: 'required'}],
-                }, {dataField: 'campusUid', caption: 'Campus UID', validationRules: [{type: 'required'}],},
+                }, {dataField: 'campusUid', allowHeaderFiltering: false, caption: 'Campus UID', allowFiltering: false,validationRules: [{type: 'required'}],},
                     {
                     dataField: 'empStatus',caption: 'Status',
                     validationRules: [{type: 'required'},],
                 },
-                    {dataField: 'keyNumber', caption: 'Key #', validationRules: [{type: 'required'}],},
-                    {dataField: 'keyCore', validationRules: [{type: 'required'}],},
-                    {dataField: 'hookNumber', caption: 'Hook #', validationRules: [{type: 'required'}],},
-                    {dataField: 'roomNumber', caption: 'Room #', validationRules: [{type: 'required'}],},
-                    {dataField: 'wingBldg', caption: 'Location', validationRules: [{type: 'required'}],},
-                    {dataField: 'dateCheckedIn', caption: 'In', validationRules: [{type: 'date'}],},
-                    {dataField: 'dateCheckedOut', caption: 'Out', validationRules: [{type: 'date'}],},
-                    {dataField: 'addNotes', caption: 'Notes', validationRules: [{type: 'required'}],},
+                    {dataField: 'keyNumber', caption: 'Key #',allowHeaderFiltering: false, allowFiltering: false, validationRules: [{type: 'required'}],},
+                    {dataField: 'keyCore', allowHeaderFiltering: false, validationRules: [{type: 'required'}],},
+                    {dataField: 'hookNumber', caption: 'Hook #', allowHeaderFiltering: false, validationRules: [{type: 'required'}],},
+                    {dataField: 'roomNumber', caption: 'Room #', allowHeaderFiltering: false, validationRules: [{type: 'required'}],},
+                    {dataField: 'wingBldg', caption: 'Location', allowHeaderFiltering: false, validationRules: [{type: 'required'}],},
+                    {dataField: 'dateCheckedIn', caption: 'In', allowHeaderFiltering: false, dataType: 'date'},
+                    {dataField: 'dateCheckedOut', caption: 'Out', allowHeaderFiltering: false, dataType: 'date',},
+                    {dataField: 'addNotes', allowFiltering: false, allowHeaderFiltering: false, caption: 'Notes',},
                 ],
             }).dxDataGrid('instance');
 
