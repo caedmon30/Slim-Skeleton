@@ -74,14 +74,14 @@ $(document).ready(
                 },
                 onExporting(e) {
                     const workbook = new ExcelJS.Workbook();
-                    const worksheet = workbook.addWorksheet('Users');
+                    const worksheet = workbook.addWorksheet('Keys');
                     DevExpress.excelExporter.exportDataGrid({
                         component: e.component,
                         worksheet,
                         autoFilterEnabled: true,
                     }).then(() => {
                         workbook.xlsx.writeBuffer().then((buffer) => {
-                            saveAs(new Blob([buffer], {type: 'application/octet-stream'}), 'Users.xlsx');
+                            saveAs(new Blob([buffer], {type: 'application/octet-stream'}), 'Keys.xlsx');
                         });
                     });
                     e.cancel = true;
@@ -92,10 +92,10 @@ $(document).ready(
                         validationRules: [{type: 'required'}],
                 }, {dataField: 'campusUid', caption: 'Campus UID', validationRules: [{type: 'required'}],},
                     {
-                    dataField: 'empStatus',caption: 'Employee Type',
+                    dataField: 'empStatus',caption: 'Status',
                     validationRules: [{type: 'required'},],
                 },
-                    {dataField: 'keyNumber', validationRules: [{type: 'required'}],},
+                    {dataField: 'keyNumber', caption: 'Key #', validationRules: [{type: 'required'}],},
                     {dataField: 'keyCore', validationRules: [{type: 'required'}],},
                     {dataField: 'hookNumber', caption: 'Hook #', validationRules: [{type: 'required'}],},
                     {dataField: 'roomNumber', caption: 'Room #', validationRules: [{type: 'required'}],},
