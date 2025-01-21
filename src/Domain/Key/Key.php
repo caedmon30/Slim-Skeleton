@@ -12,13 +12,13 @@ class Key implements JsonSerializable
     private string $campusUid;
     private int $empStatus;
     private int $keyNumber;
-    private int $keyCore;
+    private string $keyCore;
     private int $hookNumber;
     private string $roomNumber;
-    private string $wingBldg;
-    private string $dateCheckedIn;
-    private string $dateCheckedOut;
-    private string $addNotes;
+    private null|string $wingBldg;
+    private null|string $dateCheckedIn;
+    private null|string $dateCheckedOut;
+    private null|string $addNotes;
 
 
     /**
@@ -28,13 +28,13 @@ class Key implements JsonSerializable
      * @param string $campusUid
      * @param int $empStatus
      * @param int $keyNumber
-     * @param int $keyCore
+     * @param string $keyCore
      * @param int $hookNumber
      * @param string $roomNumber
-     * @param string $wingBldg
-     * @param string $dateCheckedIn
-     * @param string $dateCheckedOut
-     * @param string $addNotes
+     * @param null|string $wingBldg
+     * @param null|string $dateCheckedIn
+     * @param null|string $dateCheckedOut
+     * @param null|string $addNotes
      */
     public function __construct(
         ?int $id,
@@ -43,13 +43,13 @@ class Key implements JsonSerializable
         string $campusUid,
         int $empStatus,
         int $keyNumber,
-        int $keyCore,
+        string $keyCore,
         int $hookNumber,
         string $roomNumber,
-        string $wingBldg,
-        string $dateCheckedIn,
-        string $dateCheckedOut,
-        string $addNotes
+        null|string $wingBldg,
+        null|string $dateCheckedIn,
+        null|string $dateCheckedOut,
+        null|string $addNotes
     ) {
         $this->id = $id;
         $this->lastName = $lastName;
@@ -91,7 +91,7 @@ class Key implements JsonSerializable
     /**
      * @return string
      */
-    public function getAddNotes(): string
+    public function getAddNotes(): null|string
     {
         return $this->addNotes;
     }
@@ -99,7 +99,7 @@ class Key implements JsonSerializable
     /**
      * @return string
      */
-    public function getDateCheckedIn(): string
+    public function getDateCheckedIn(): null|string
     {
         return $this->dateCheckedIn;
     }
@@ -107,7 +107,7 @@ class Key implements JsonSerializable
     /**
      * @return string
      */
-    public function getDateCheckedOut(): string
+    public function getDateCheckedOut(): null|string
     {
         return $this->dateCheckedOut;
     }
@@ -128,7 +128,7 @@ class Key implements JsonSerializable
         return $this->hookNumber;
     }
 
-    public function getKeyCore(): int
+    public function getKeyCore(): string
     {
         return $this->keyCore;
     }
@@ -143,7 +143,7 @@ class Key implements JsonSerializable
         return $this->roomNumber;
     }
 
-    public function getWingBldg(): string
+    public function getWingBldg(): null|string
     {
         return $this->wingBldg;
     }
