@@ -28,24 +28,31 @@ return function (App $app) {
         return $response;
     });
 
-   // homepage
-
     $app->get('/', function ($request, $response, $args) {
         $view = Twig::fromRequest($request);
         return $view->render($response, 'pages/home.html.twig', []);
     })->setName('home');
 
     // web routes
+    $app->get('/dashboard', function ($request, $response, $args) {
+        $view = Twig::fromRequest($request);
+        return $view->render($response, 'pages/dashboard.html.twig', []);
+    })->setName('dashboard');
 
     $app->get('/keys', function ($request, $response, $args) {
         $view = Twig::fromRequest($request);
         return $view->render($response, 'pages/keys.html.twig', []);
     })->setName('keys');
 
-    $app->get('/dashboard', function ($request, $response, $args) {
+    $app->get('/request', function ($request, $response, $args) {
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'pages/dashboard.html.twig', []);
-    })->setName('dashboard');
+        return $view->render($response, 'pages/request.html.twig', []);
+    })->setName('request');
+
+    $app->get('/reports', function ($request, $response, $args) {
+        $view = Twig::fromRequest($request);
+        return $view->render($response, 'pages/reports.html.twig', []);
+    })->setName('reports');
 
     $app->get('/admin', function ($request, $response, $args) {
         $view = Twig::fromRequest($request);
