@@ -80,7 +80,8 @@ $(document).ready(
                 scrolling: {
                     rowRenderingMode: 'virtual',
                 },
-                columnAutoWidth: false,
+                columnMinWidth: 50,
+                columnAutoWidth: true,
                 export: {
                     enabled: true,
                     allowExportSelectedData: true
@@ -193,7 +194,7 @@ $(document).ready(
                     {dataField: 'wingBldg', caption: 'Location', allowHeaderFiltering: false, validationRules: [{type: 'required'}],},
                     {dataField: 'dateCheckedIn', caption: 'In', allowHeaderFiltering: false, dataType: 'date'},
                     {dataField: 'dateCheckedOut', caption: 'Out', allowHeaderFiltering: false, dataType: 'date',},
-                    {dataField: 'addNotes', allowFiltering: false, allowHeaderFiltering: false, caption: 'Notes',},
+                    {dataField: 'addNotes', visible: false, allowFiltering: false, allowHeaderFiltering: false, caption: 'Notes',},
                 ],
             }).dxDataGrid('instance');
 
