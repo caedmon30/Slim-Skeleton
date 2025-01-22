@@ -73,13 +73,10 @@ $(document).ready(
                 dataSource: keySource,
                 repaintChangesOnly: true,
                 showBorders: true,
-                showColumnLines: true,
+                showColumnLines: false,
                 showRowLines: true,
                 rowAlternationEnabled: true,
                 filterRow: { visible: true },
-                scrolling: {
-                    rowRenderingMode: 'virtual',
-                },
                 columnMinWidth: 50,
                 columnAutoWidth: true,
                 export: {
@@ -87,12 +84,13 @@ $(document).ready(
                     allowExportSelectedData: true
                 },
                 editing: {
-                    refreshMode: 'repaint',
+                    refreshMode: 'reload',
                     mode: 'form',
                     allowAdding: true,
                     allowUpdating: true,
                     allowDeleting: true,
                     useIcons: true,
+                    newRowPosition: 'viewportTop',
                 },
                 columnChooser: {
                     enabled: true
