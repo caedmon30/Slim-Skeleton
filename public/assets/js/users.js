@@ -51,7 +51,7 @@ $(document).ready(
                     allowExportSelectedData: true
                 },
                 editing: {
-                    refreshMode: 'reload',
+                    refreshMode: 'repaint',
                     mode: 'form',
                     allowAdding: true,
                     allowUpdating: true,

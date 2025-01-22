@@ -66,7 +66,7 @@ class DatabaseUserRepository implements UserRepository
         if (!isset($this->users[$id])) {
             throw new UserNotFoundException();
         }
-        $this->connection->delete('users', ['id' => $id]);
+        $this->connection->query('DELETE FROM users WHERE id = ?', $id);
         return array_values($this->users);
     }
 
@@ -81,23 +81,15 @@ class DatabaseUserRepository implements UserRepository
         if (!isset($this->users[$id])) {
             throw new UserNotFoundException();
         }
-        $this->connection->update(
-            'users',
-            ['username' => $data['username'], 'firstName' => $data['firstName'], 'lastName' => $data['lastName'],
-                'emailAddress' => $data['emailAddress']],
-            ['id' => $id]
-        );
+
+        $this->connection->query('UPDATE users SET ? WHERE id = ?', $data, $id);
         return array_values($this->users);
     }
 
     public function createUser(array $data): array
     {
 
-        $this->connection->insert(
-            'users',
-            ['username' => $data['username'], 'firstName' => $data['firstName'], 'lastName' => $data['lastName'],
-                'emailAddress' => $data['emailAddress']]
-        );
+        $this->connection->query('INSERT INTO users ?', $data);
         return array_values($this->users);
     }
 }
