@@ -11,9 +11,10 @@
     {% endblock %}
 {% block content %}
     {% include './partials/inner_navbar.html.twig' %}
-
-    {% set page_title = 'Manage Keys' %}
+    {% set page_title = 'Dashboard' %}
+<div id="GridContainer" class="container mx-auto p-2.5">
     {% include './partials/breadcrumb.html.twig' %}
+
 
     <div id="keyGridContainer" class="container mx-auto p-2.5 min-h-full">
 
@@ -23,6 +24,7 @@
 
         <div id="dataGridKeys" class="dark:!bg-gray-100 pt-4 px-6 pb-12 mt-8 mb-8 rounded-md"></div>
     </div>
+</div>
     {% endblock %}
 
     {% block javascript %}

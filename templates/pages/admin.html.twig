@@ -11,12 +11,9 @@
     {% endblock %}
 {% block content %}
     {% include './partials/inner_navbar.html.twig' %}
-
-    {% set page_title = 'System Administration' %}
-    {% include './partials/breadcrumb.html.twig' %}
-
-    <div id="gridContainer" class="container mx-auto p-2.5 min-h-full">
-
+    {% set page_title = 'Dashboard' %}
+    <div id="GridContainer" class="container mx-auto p-2.5">
+        {% include './partials/breadcrumb.html.twig' %}
 
         <h1 class="mb-4 font-extrabold leading-none tracking-tight text-gray-900 md:text-xl lg:text-3xl dark:text-slate-700">System <span class="text-red-600 dark:text-red-500">Administration</span></h1>
         <p class="text-lg font-medium text-gray-600 lg:text-lg dark:text-gray-900 mb-4">Manage Employee Types</p>
