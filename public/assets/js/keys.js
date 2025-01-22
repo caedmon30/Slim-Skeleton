@@ -140,7 +140,7 @@ $(document).ready(
                         validationRules: [{type: 'required'}],
                 }, {dataField: 'campusUid', allowHeaderFiltering: false, caption: 'Campus UID', allowFiltering: false,validationRules: [{type: 'required'}],},
                     {
-                        dataField: 'empStatus', allowHeaderFiltering: false, allowFiltering: false, caption: 'Status',
+                        dataField: 'empStatus', visible: false, allowHeaderFiltering: false, allowFiltering: false, caption: 'Employee Type',
                         editorType: 'dxSelectBox',
                         editorOptions: {
                             dataSource: new DevExpress.data.ArrayStore({
@@ -149,39 +149,6 @@ $(document).ready(
                             }),
                         displayExpr: 'Name',
                         valueExpr: 'ID',
-                        value: '',
-                        },
-                        calculateCellValue: function (rowData) {
-                            let status = rowData.empStatus;
-
-                            switch (status) {
-                                case 1:
-                                    status = 'Full Time Staff'
-                                    break;
-                                case 2:
-                                    status = 'Part Time Staff'
-                                    break;
-                                case 3:
-                                    status = 'Faculty'
-                                    break;
-                                case 4:
-                                    status = 'Student (Non-Employee)'
-                                    break;
-
-                                case 5:
-                                    status = 'Student (Employee)'
-                                    break;
-                                case 6:
-                                    status = 'Other'
-                                    break;
-
-                                case 7:
-                                    status = 'Post-Doc'
-                                    break;
-                                default:
-                                    status = 'Other'
-                            }
-                            return status;
                         },
                         validationRules: [{type: 'required'},],
                 },
@@ -190,8 +157,8 @@ $(document).ready(
                     {dataField: 'hookNumber', caption: 'Hook #', cssClass: "cell-left",  allowHeaderFiltering: false, validationRules: [{type: 'required'}],},
                     {dataField: 'roomNumber', caption: 'Room #', cssClass: "cell-left", allowHeaderFiltering: false, validationRules: [{type: 'required'}],},
                     {dataField: 'wingBldg', visible: false, caption: 'Location', allowHeaderFiltering: false, validationRules: [{type: 'required'}],},
-                    {dataField: 'dateCheckedIn', caption: 'In', allowHeaderFiltering: false, dataType: 'date'},
-                    {dataField: 'dateCheckedOut', caption: 'Out', allowHeaderFiltering: false, dataType: 'date',},
+                    {dataField: 'dateCheckedIn', caption: 'Check In', allowHeaderFiltering: false, dataType: 'date'},
+                    {dataField: 'dateCheckedOut', caption: 'Check Out', allowHeaderFiltering: false, dataType: 'date',},
                     {dataField: 'addNotes', visible: false, allowFiltering: false, allowHeaderFiltering: false, caption: 'Notes',},
                 ],
             }).dxDataGrid('instance');

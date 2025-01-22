@@ -7,7 +7,8 @@ module.exports = {
     content: [
         './templates/**/*.twig',
         './public/assets/js/**/*.js',
-        './node_modules/flowbite/**/*.js'
+        './node_modules/flowbite/**/*.js',
+        "./node_modules/tw-elements/js/**/*.js"
     ],
     darkMode: 'class',
     theme: {
@@ -17,5 +18,8 @@ module.exports = {
             },
         },
     },
-    plugins: [require('flowbite/plugin')],
+    plugins: [
+        require('flowbite/plugin'),
+        require("tw-elements/plugin.cjs")
+    ],
 }
