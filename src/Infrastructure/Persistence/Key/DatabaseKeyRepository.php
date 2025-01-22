@@ -22,7 +22,7 @@ class DatabaseKeyRepository implements KeyRepository
 
         $this->connection = $connection;
 
-        $results = $this->connection->query("SELECT * FROM tblkeys");
+        $results = $this->connection->query("SELECT * FROM tblkeys ORDER BY", ['id' => false,]);
 
         foreach ($results as $row) {
             $keys[(int)$row['id']] = new Key(
