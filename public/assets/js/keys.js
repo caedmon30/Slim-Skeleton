@@ -140,7 +140,7 @@ $(document).ready(
                         validationRules: [{type: 'required'}],
                 }, {dataField: 'campusUid', allowHeaderFiltering: false, caption: 'Campus UID', allowFiltering: false,validationRules: [{type: 'required'}],},
                     {
-                        dataField: 'empStatus',caption: 'Status',
+                        dataField: 'empStatus', allowHeaderFiltering: false, allowFiltering: false, caption: 'Status',
                         editorType: 'dxSelectBox',
                         editorOptions: {
                             dataSource: new DevExpress.data.ArrayStore({
@@ -185,11 +185,11 @@ $(document).ready(
                         },
                         validationRules: [{type: 'required'},],
                 },
-                    {dataField: 'keyNumber', caption: 'Key #',allowHeaderFiltering: false, allowFiltering: false, validationRules: [{type: 'required'}],},
+                    {dataField: 'keyNumber', caption: 'Key Number', cssClass: "cell-left", allowHeaderFiltering: false, allowFiltering: false, validationRules: [{type: 'required'}],},
                     {dataField: 'keyCore', allowHeaderFiltering: false, validationRules: [{type: 'required'}],},
-                    {dataField: 'hookNumber', caption: 'Hook #', allowHeaderFiltering: false, validationRules: [{type: 'required'}],},
-                    {dataField: 'roomNumber', caption: 'Room #', allowHeaderFiltering: false, validationRules: [{type: 'required'}],},
-                    {dataField: 'wingBldg', caption: 'Location', allowHeaderFiltering: false, validationRules: [{type: 'required'}],},
+                    {dataField: 'hookNumber', caption: 'Hook #', cssClass: "cell-left",  allowHeaderFiltering: false, validationRules: [{type: 'required'}],},
+                    {dataField: 'roomNumber', caption: 'Room #', cssClass: "cell-left", allowHeaderFiltering: false, validationRules: [{type: 'required'}],},
+                    {dataField: 'wingBldg', visible: false, caption: 'Location', allowHeaderFiltering: false, validationRules: [{type: 'required'}],},
                     {dataField: 'dateCheckedIn', caption: 'In', allowHeaderFiltering: false, dataType: 'date'},
                     {dataField: 'dateCheckedOut', caption: 'Out', allowHeaderFiltering: false, dataType: 'date',},
                     {dataField: 'addNotes', visible: false, allowFiltering: false, allowHeaderFiltering: false, caption: 'Notes',},

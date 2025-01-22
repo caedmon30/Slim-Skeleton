@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Domain\Key;
@@ -9,7 +10,6 @@ interface KeyRepository
      * @return Key[]
      */
     public function findAll(): array;
-
 
     public function findKeyOfId(int $id): Key;
 
