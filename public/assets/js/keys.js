@@ -2,6 +2,7 @@ $(document).ready(
     function () {
 
         $(() => {
+
             const SERVICE_URL = '/api/keys';
             const keySource = new DevExpress.data.CustomStore({
                 key: 'id',
@@ -37,7 +38,37 @@ $(document).ready(
                     });
                 },
             });
+            const positions = [
+                {
+                    ID: 1,
+                    Name: 'Full Time Staff',
+            },
+                {
+                    ID: 2,
+                    Name: 'Part Time Staff',
+            },
 
+                {
+                    ID: 3,
+                    Name: 'Faculty',
+            },
+                {
+                    ID: 4,
+                    Name: 'Student (Non-Employee)',
+            },
+                {
+                    ID: 5,
+                    Name: 'Student (Employee)',
+            },
+                {
+                    ID: 6,
+                    Name: 'Other',
+            },
+                {
+                    ID: 7,
+                    Name: 'Post-doc',
+            },
+            ];
             const dataGrid = $('#dataGridKeys').dxDataGrid({
                 dataSource: keySource,
                 repaintChangesOnly: true,
@@ -111,6 +142,16 @@ $(document).ready(
                 }, {dataField: 'campusUid', allowHeaderFiltering: false, caption: 'Campus UID', allowFiltering: false,validationRules: [{type: 'required'}],},
                     {
                         dataField: 'empStatus',caption: 'Status',
+                        editorType: 'dxSelectBox',
+                        editorOptions: {
+                            dataSource: new DevExpress.data.ArrayStore({
+                                data: positions,
+                                key: 'ID',
+                            }),
+                        displayExpr: 'Name',
+                        valueExpr: 'ID',
+                        value: '',
+                        },
                         calculateCellValue: function (rowData) {
                             let status = rowData.empStatus;
 
