@@ -2,9 +2,8 @@ $(document).ready(
     function () {
 
         $(() => {
-            const SERVICE_URL = 'http://localhost:8080/api/keys';
-
-            var keySource = new DevExpress.data.CustomStore({
+            const SERVICE_URL = '/api/keys';
+            const keySource = new DevExpress.data.CustomStore({
                 key: 'id',
 
                 load: (loadOptions) => {
@@ -111,8 +110,40 @@ $(document).ready(
                         validationRules: [{type: 'required'}],
                 }, {dataField: 'campusUid', allowHeaderFiltering: false, caption: 'Campus UID', allowFiltering: false,validationRules: [{type: 'required'}],},
                     {
-                    dataField: 'empStatus',caption: 'Status',
-                    validationRules: [{type: 'required'},],
+                        dataField: 'empStatus',caption: 'Status',
+                        calculateCellValue: function (rowData) {
+                            let status = rowData.empStatus;
+
+                            switch (status) {
+                                case 1:
+                                    status = 'Full Time Staff'
+                                    break;
+                                case 2:
+                                    status = 'Part Time Staff'
+                                    break;
+                                case 3:
+                                    status = 'Faculty'
+                                    break;
+                                case 4:
+                                    status = 'Student (Non-Employee)'
+                                    break;
+
+                                case 5:
+                                    status = 'Student (Employee)'
+                                    break;
+                                case 6:
+                                    status = 'Other'
+                                    break;
+
+                                case 7:
+                                    status = 'Post-Doc'
+                                    break;
+                                default:
+                                    status = 'Other'
+                            }
+                            return status;
+                        },
+                        validationRules: [{type: 'required'},],
                 },
                     {dataField: 'keyNumber', caption: 'Key #',allowHeaderFiltering: false, allowFiltering: false, validationRules: [{type: 'required'}],},
                     {dataField: 'keyCore', allowHeaderFiltering: false, validationRules: [{type: 'required'}],},
