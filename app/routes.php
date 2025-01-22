@@ -54,10 +54,23 @@ return function (App $app) {
         return $view->render($response, 'pages/reports.html.twig', []);
     })->setName('reports');
 
-    $app->get('/admin', function ($request, $response, $args) {
-        $view = Twig::fromRequest($request);
-        return $view->render($response, 'pages/admin.html.twig', []);
-    })->setName('admin');
+    $app->group('/admin', function (Group $group) {
+        $group->get('', function ($request, $response, $args) {
+            $view = Twig::fromRequest($request);
+            return $view->render($response, 'pages/admin.html.twig', []);
+        })->setName('admin');
+
+        $group->get('/users', function ($request, $response, $args) {
+            $view = Twig::fromRequest($request);
+            return $view->render($response, 'pages/users.html.twig', []);
+        })->setName('users');
+
+        $group->get('/employee-status', function ($request, $response, $args) {
+            $view = Twig::fromRequest($request);
+            return $view->render($response, 'pages/employee-types.html.twig', []);
+        })->setName('employee-status');
+
+    });
 
     // api routes
     $app->group('/api/users', function (Group $group) {
