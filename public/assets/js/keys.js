@@ -138,7 +138,7 @@ $(document).ready(
                     {dataField: 'firstName', allowHeaderFiltering: false, validationRules: [{type: 'required'}],}, {
                         dataField: 'lastName',allowHeaderFiltering: false,
                         validationRules: [{type: 'required'}],
-                }, {dataField: 'campusUid', allowHeaderFiltering: false, caption: 'Campus UID', allowFiltering: false,validationRules: [{type: 'required'}],},
+                }, {dataField: 'campusUid', visible: false, allowHeaderFiltering: false, caption: 'Campus UID', allowFiltering: false,validationRules: [{type: 'required'}],},
                     {
                         dataField: 'empStatus', visible: false, allowHeaderFiltering: false, allowFiltering: false, caption: 'Employee Type',
                         editorType: 'dxSelectBox',
