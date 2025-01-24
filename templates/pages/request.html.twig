@@ -18,53 +18,15 @@
     {% include './partials/breadcrumb.html.twig' %}
     <div id="container" class="container mx-auto p-2.5">
         <h1 class="mb-6 font-extrabold leading-none tracking-tight text-gray-900 md:text-xl lg:text-3xl dark:text-slate-700">Create <span class="text-red-600 dark:text-red-500">Request</span></h1>
-        <!-- component -->
-        <!--Code Block for progress bar Starts-->
 
-            <div class="w-full mx-auto mt-8 mb-10">
-                <div class="bg-gray-200 h-1 flex items-center justify-between">
-                    <div class="w-1/3 bg-indigo-700 h-1 flex items-center">
-                        <div class="bg-indigo-700 h-6 w-6 rounded-full shadow flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="#FFFFFF" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" />
-                                <path d="M5 12l5 5l10 -10" />
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="w-1/3 flex justify-between bg-indigo-700 h-1 items-center relative">
-                        <div class="absolute right-0 -mr-2">
-                            <div class="relative bg-white shadow-lg px-2 py-1 rounded mt-16 -mr-12">
-                                <svg class="absolute top-0 -mt-1 w-full right-0 left-0" width="16px" height="8px" viewBox="0 0 16 8" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                        <g id="Progress-Bars" transform="translate(-322.000000, -198.000000)" fill="#FFFFFF">
-                                            <g id="Group-4" transform="translate(310.000000, 198.000000)">
-                                                <polygon id="Triangle" points="20 0 28 8 12 8"></polygon>
-                                            </g>
-                                        </g>
-                                    </g>
-                                </svg>
-                                <p tabindex="0" class="focus:outline-none text-indigo-700 text-xs font-bold">Step 3: Analyzing</p>
-                            </div>
-                        </div>
-                        <div class="bg-indigo-700 h-6 w-6 rounded-full shadow flex items-center justify-center -ml-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="#FFFFFF" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" />
-                                <path d="M5 12l5 5l10 -10" />
-                            </svg>
-                        </div>
-                        <div class="bg-white h-6 w-6 rounded-full shadow flex items-center justify-center -mr-3 relative">
-                            <div class="h-3 w-3 bg-indigo-700 rounded-full"></div>
-                        </div>
-                    </div>
-                    <div class="w-1/3 flex justify-end">
-                        <div class="bg-white h-6 w-6 rounded-full shadow"></div>
-                    </div>
-                </div>
+        <!-- component -->
+        {% include './includes/step_three.html.twig' %}
+        <!-- component -->
             </div>
 
-        <!--Code Block for progress bar Starts-->
-        <!-- component -->
-        <form class="w-full">
+        </div>
+
+        <form class="p-5 w-full border border-gray-200 block rounded-lg bg-white text-left text-surface dark:bg-gray-400 dark:!text-white">
             <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="first-name">
@@ -240,7 +202,7 @@
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="first-name">
                        Id card activation needed (select one or more spaces from the list)
                     </label>
-                    <select id="js-multiple" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-1 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="card-access[]" multiple="multiple">
+                    <select id="js-multiple" class="block appearance-none w-full dark:!text-gray-800 bg-gray-200 border border-gray-200 text-gray-700 py-1 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="card-access[]" multiple="multiple">
                         <option value="BMS-Building">Biomolecular Sciences Building</option>
                         <option value="CHEM-Building">Chemistry Building</option>
                         <option value="ESJ-Building">Edward St.John Building</option>
@@ -257,18 +219,19 @@
 
 
 
-                    <p class="rounded-md p-4 mx-auto mt-6 mb-2 text-sm/6 text-gray-600 text-center bg-white dark: bg-gray-100"><span class="font-bold">MD Code, Criminal Law, § 7-204: </span>states in part that "a person may not use, distribute, manufacture, duplicate, or possess keys capable of being used in locks in or on real property that the State owns or leases..."[ unless authorized to do so].
+                    <p class="rounded-md p-4 mx-auto mt-6 mb-2 text-sm/6 text-gray-600 text-center bg-white dark:bg-gray-400 dark:text-white"><span class="font-bold">MD Code, Criminal Law, § 7-204: </span>states in part that "a person may not use, distribute, manufacture, duplicate, or possess keys capable of being used in locks in or on real property that the State owns or leases..."[ unless authorized to do so].
                     This relates to any University key marked "U of M", "Unlawful to duplicate", or "Do Not Duplicate". Any violation of the subsection shall be a misdemeanor and punishable upon conviction by a fine not to exceed $500 for each office.</p>
-                <p class="font-bold rounded-md p-4 mx-auto my-2 text-sm/6 text-red-600 text-center bg-white dark:text-red-700">
+                <p class="font-bold rounded-md p-4 mx-auto my-2 text-sm/6 text-red-600 text-center bg-white dark:bg-gray-400 dark:text-orange-500">
                     All keys are to be RETURNED to the Key Monitor. A fee of $10 per key will be charged for replacing lost keys.
                 </p>
+                <div id="surveyElement" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; min-height: 100%; height:100%"></div>
 
                 </div>
 
         </form>
 
         <!-- component -->
-    </div>
+
 
     {% endblock %}
     {% block javascript %}
