@@ -1953,6 +1953,10 @@ input[type="range"]:active::-webkit-slider-thumb {
   font-size: 0.875rem;
   line-height: 1.5rem;
 }
+.text-sm\/7 {
+  font-size: 0.875rem;
+  line-height: 1.75rem;
+}
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
