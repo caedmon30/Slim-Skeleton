@@ -1,5 +1,6 @@
 {% extends "./base.html.twig" %}
-
+{% set lead = 'Register, assign, and reassign keys' %}
+{% set paragraph = 'To add a key to the database, click the plus button below to access the key management tool, navigate to the entry form, and provide the requested in formation. Required fields are marked with an asterisk (*).' %}
 {% block head %}
     {{ parent() }}
 
@@ -17,8 +18,7 @@
 
     <div id="keyGridContainer" class="container mx-auto p-2.5">
         <h1 class="mb-6 font-extrabold leading-none tracking-tight text-gray-900 md:text-xl lg:text-3xl dark:text-slate-700">Manage <span class="text-red-600 dark:text-red-500">Keys</span></h1>
-        <p class="text-lg font-medium text-gray-600 lg:text-lg dark:text-gray-900 mb-4">Register, assign, and reassign keys</p>
-        <p>To add a key to the database, click the plus button below to access the key management tool, navigate to the entry form, and provide the requested in formation. Required fields are marked with an asterisk (*).</p>
+        {% include './partials/title-panel.html.twig' %}
         <div id="dataGridKeys" class="dark:!bg-gray-100 p-4 mb-4 mt-8 rounded-md"></div>
     </div>
 
