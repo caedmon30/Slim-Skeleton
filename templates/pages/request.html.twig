@@ -20,11 +20,10 @@
         <h1 class="mb-6 font-extrabold leading-none tracking-tight text-gray-900 md:text-xl lg:text-3xl dark:text-slate-700">Create <span class="text-red-600 dark:text-red-500">Request</span></h1>
 
         <!-- component -->
-        {% include './includes/step_three.html.twig' %}
-        <!-- component -->
-            </div>
 
-        </div>
+        <!-- component -->
+
+        <!-- form -->
 
         <form class="p-5 w-full border border-gray-200 block rounded-lg bg-white text-left text-surface dark:bg-gray-400 dark:!text-white">
             <div class="flex flex-wrap -mx-3 mb-6">
@@ -131,39 +130,39 @@
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="request-reason">
                         Reason for key request (choose one)
                     </label>
-            <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
-                    <div class="flex items-center ps-3">
-                        <input id="request-reason" name="request-reason" type="radio" value="New Staff" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                        <label for="request-reason" class="w-full py-1 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">New Employee</label>
-                    </div>
-                </li>
-                <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
-                    <div class="flex items-center ps-3">
-                        <input id="request-reason" name="request-reason" type="radio" value="Transfer" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                        <label for="request-reason" class="w-full py-1 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Transfer</label>
-                    </div>
-                </li>
-                <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
-                    <div class="flex items-center ps-3">
-                        <input id="request-reason" name="request-reason" type="radio" value="Replace Lost Key" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                        <label for="request-reason" class="w-full py-1 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Replace Lost Key</label>
-                    </div>
-                </li>
-                <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
-                    <div class="flex items-center ps-3">
-                        <input id="request-reason" name="request-reason" type="radio" value="New Space Assignment" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                        <label for="request-reason" class="w-full py-1 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">New Space Assignment</label>
-                    </div>
-                </li>
+                    <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                        <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                            <div class="flex items-center ps-3">
+                                <input id="request-reason" name="request-reason" type="radio" value="New Staff" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <label for="request-reason" class="w-full py-1 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">New Employee</label>
+                            </div>
+                        </li>
+                        <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                            <div class="flex items-center ps-3">
+                                <input id="request-reason" name="request-reason" type="radio" value="Transfer" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <label for="request-reason" class="w-full py-1 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Transfer</label>
+                            </div>
+                        </li>
+                        <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                            <div class="flex items-center ps-3">
+                                <input id="request-reason" name="request-reason" type="radio" value="Replace Lost Key" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <label for="request-reason" class="w-full py-1 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Replace Lost Key</label>
+                            </div>
+                        </li>
+                        <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                            <div class="flex items-center ps-3">
+                                <input id="request-reason" name="request-reason" type="radio" value="New Space Assignment" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <label for="request-reason" class="w-full py-1 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">New Space Assignment</label>
+                            </div>
+                        </li>
 
-                <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
-                    <div class="flex items-center ps-3">
-                        <input id="request-reason" name="request-reason" type="radio" value="Other" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                        <label for="request-reason" class="w-full py-1 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Other</label>
-                    </div>
-                </li>
-            </ul>
+                        <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                            <div class="flex items-center ps-3">
+                                <input id="request-reason" name="request-reason" type="radio" value="Other" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <label for="request-reason" class="w-full py-1 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Other</label>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
@@ -173,7 +172,7 @@
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
                         Keys Needed (enter rooms below)
                     </label>
-                    </div>
+                </div>
 
             </div>
             <div class="flex flex-wrap -mx-3 mb-8">
@@ -200,7 +199,7 @@
             <div class="flex flex-wrap -mx-3 mb-2">
                 <div class="w-full px-3 mb-8 md:mb-0">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="first-name">
-                       Id card activation needed (select one or more spaces from the list)
+                        Id card activation needed (select one or more spaces from the list)
                     </label>
                     <select id="js-multiple" class="block appearance-none w-full dark:!text-gray-800 bg-gray-200 border border-gray-200 text-gray-700 py-1 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="card-access[]" multiple="multiple">
                         <option value="BMS-Building">Biomolecular Sciences Building</option>
@@ -219,18 +218,17 @@
 
 
 
-                    <p class="rounded-md p-4 mx-auto mt-6 mb-2 text-sm/7 text-gray-600 text-center bg-white dark:bg-gray-400 dark:text-white"><span class="font-bold">MD Code, Criminal Law, § 7-204: </span>states in part that "a person may not use, distribute, manufacture, duplicate, or possess keys capable of being used in locks in or on real property that the State owns or leases..."[ unless authorized to do so].
+                <p class="rounded-md p-4 mx-auto mt-6 mb-2 text-sm/7 text-gray-600 text-center bg-white dark:bg-gray-400 dark:text-white"><span class="font-bold">MD Code, Criminal Law, § 7-204: </span>states in part that "a person may not use, distribute, manufacture, duplicate, or possess keys capable of being used in locks in or on real property that the State owns or leases..."[ unless authorized to do so].
                     This relates to any University key marked "U of M", "Unlawful to duplicate", or "Do Not Duplicate". Any violation of the subsection shall be a misdemeanor and punishable upon conviction by a fine not to exceed $500 for each office.</p>
                 <p class="font-bold rounded-md p-4 mx-auto my-2 text-sm/6 text-red-600 text-center bg-white dark:bg-gray-400 dark:text-orange-500">
                     All keys are to be RETURNED to the Key Monitor. A fee of $10 per key will be charged for replacing lost keys.
                 </p>
-                <div id="surveyElement" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; min-height: 100%; height:100%"></div>
 
-                </div>
+
+            </div>
 
         </form>
-
-        <!-- component -->
+        <!-- form -->
 
 
     {% endblock %}
