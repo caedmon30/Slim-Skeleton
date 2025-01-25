@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "postcss ./src/Tailwind/styles.css -o ./public/assets/css/styles.css",
-    "production": "NODE_ENV=production postcss ./src/Tailwind/styles.css -o ./public/assets/css/styles.css"
+    "production": "NODE_ENV===production postcss ./src/Tailwind/styles.css -o ./public/assets/css/styles.css"
   },
   "repository": {
     "type": "git",
