@@ -1236,9 +1236,6 @@ input[type="range"]:active::-webkit-slider-thumb {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
-.-ms-1 {
-  margin-inline-start: -0.25rem;
-}
 .mb-0 {
   margin-bottom: 0px;
 }
