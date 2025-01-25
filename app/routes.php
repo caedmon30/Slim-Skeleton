@@ -54,11 +54,11 @@ return function (App $app) {
         return $view->render($response, 'pages/reports.html.twig', []);
     })->setName('reports');
 
-    $app->group('/admin', function (Group $group) {
+    $app->group('/settings', function (Group $group) {
         $group->get('', function ($request, $response, $args) {
             $view = Twig::fromRequest($request);
             return $view->render($response, 'pages/admin.html.twig', []);
-        })->setName('admin');
+        })->setName('settings');
 
         $group->get('/users', function ($request, $response, $args) {
             $view = Twig::fromRequest($request);
