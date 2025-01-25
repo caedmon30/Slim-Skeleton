@@ -1414,9 +1414,6 @@ input[type="range"]:active::-webkit-slider-thumb {
 .w-2 {
   width: 0.5rem;
 }
-.w-28 {
-  width: 7rem;
-}
 .w-3 {
   width: 0.75rem;
 }
@@ -1446,6 +1443,9 @@ input[type="range"]:active::-webkit-slider-thumb {
 }
 .w-screen {
   width: 100vw;
+}
+.max-w-28 {
+  max-width: 7rem;
 }
 .max-w-7xl {
   max-width: 80rem;
