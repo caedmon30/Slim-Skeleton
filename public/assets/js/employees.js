@@ -2,7 +2,7 @@ $(document).ready(
     function () {
 
         $(() => {
-            const SERVICE_URL = 'http://localhost:8080/api/status';
+            const SERVICE_URL = '/api/status';
 
             var empSource = new DevExpress.data.CustomStore({
                 key: 'id',

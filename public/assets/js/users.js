@@ -2,7 +2,7 @@ $(document).ready(
     function () {
 
         $(() => {
-            const SERVICE_URL = 'http://localhost:8080/api/users';
+            const SERVICE_URL = '/api/users';
 
             var userSource = new DevExpress.data.CustomStore({
                 key: 'id',
