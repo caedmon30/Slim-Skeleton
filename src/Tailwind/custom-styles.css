@@ -5,7 +5,7 @@
     @apply rounded-b-lg shadow-md;
 }
 .select2-search {
-    @apply border border-gray-300 rounded;
+    @apply border-0 rounded;
 }
 .select2-results__group {
     @apply text-lg font-bold text-gray-900;
@@ -14,5 +14,32 @@
 .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
     @apply bg-red-500 text-white;
 }
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__display {
+    @apply dark:text-[#1b181b];
+}
+
+.page-alert {
+    @apply w-full rounded-lg dark:bg-gray-100 dark:text-gray-800 text-sm p-3 border-dashed border border-yellow-500 flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0;
+}
+.page-alert-icon {
+    @apply bg-yellow-200 flex p-2 rounded-full;
+}
+
+.dx-dialog-button:hover{
+    @apply bg-red-600 text-white;
+}
+
+.dx-datagrid .dx-link{
+    @apply text-gray-700;
+}
+.dx-texteditor .dx-texteditor-input {
+    @apply text-sm bg-blue-100;
+}
+
+.cell-left{ @apply text-left !important;}
+.cell-center{ @apply text-center !important;}
+
+
 /* ... */
 @tailwind utilities;
