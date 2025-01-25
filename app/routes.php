@@ -46,7 +46,7 @@ return function (App $app) {
 
     $app->get('/request', function ($request, $response, $args) {
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'pages/request.html.twig', []);
+        return $view->render($response, 'forms/request.html.twig', []);
     })->setName('request');
 
     $app->get('/reports', function ($request, $response, $args) {
@@ -69,7 +69,6 @@ return function (App $app) {
             $view = Twig::fromRequest($request);
             return $view->render($response, 'pages/employee-types.html.twig', []);
         })->setName('employee-status');
-
     });
 
     // api routes
