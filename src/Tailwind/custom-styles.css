@@ -34,7 +34,7 @@
     @apply text-gray-700;
 }
 .dx-texteditor .dx-texteditor-input {
-    @apply text-sm bg-blue-100;
+    @apply text-sm bg-neutral-100;
 }
 
 .cell-left{ @apply text-left !important;}
