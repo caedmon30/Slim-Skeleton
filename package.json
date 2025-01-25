@@ -7,8 +7,9 @@
     "test": "tests"
   },
   "scripts": {
-    "build": "postcss ./src/Tailwind/styles.css -o ./public/assets/css/styles.css",
-    "production": "NODE_ENV===production postcss ./src/Tailwind/styles.css -o ./public/assets/css/styles.css"
+    "build": "postcss ./src/Tailwind/custom-styles.css -o ./public/assets/css/styles.css",
+    "production": "npx tailwindcss -i ./src/Tailwind/custom-styles.css -o ./public/assets/css/styles.css --minify",
+    "prod": "NODE_ENV===production postcss ./src/Tailwind/custom-styles.css -o ./public/assets/css/styles.css --minify --verbose"
   },
   "repository": {
     "type": "git",

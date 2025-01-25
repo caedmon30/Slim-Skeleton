@@ -6,9 +6,9 @@
         <title>{% block title %}Chemistry & Biochemistry -  Key and Card Management System {% endblock %}</title>
         <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' }}" />
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+        <link rel="stylesheet" href="{{ '/../assets/css/select2.min.css' }}">
         <link rel="stylesheet" href="{{ '/../assets/css/dx.fluent.sass-light-custom-scheme.css' }}">
         <link rel="stylesheet" href="{{ '/../assets/css/styles.css' }}">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdn3.devexpress.com/jslib/23.1.12/js/dx.web.js"></script>
         <script src="https://kit.fontawesome.com/4d3dd9bdf2.js" crossorigin="anonymous"></script>
@@ -23,7 +23,7 @@
                         document.documentElement.classList.remove('dark')
                 }
         </script>
-        <style>
+{#        <style>
                 p{font-size: 0.9rem}
                 .navbar-burger{
                     color:white !important;
@@ -64,7 +64,7 @@
                 .select2-container--default .select2-selection--multiple .select2-selection__choice__display {
                         color: #1b181b;
                 }
-        </style>
+        </style>#}
         {% block styles %}
         {% endblock %}
 
