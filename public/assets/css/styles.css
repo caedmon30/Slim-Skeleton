@@ -1196,8 +1196,9 @@ input[type="range"]:active::-webkit-slider-thumb {
 .cell-center {
   text-align: center !important;
 }
-
-
+.cell-right {
+  text-align: right !important;
+}
 /* ... */
 .sr-only {
   position: absolute;
@@ -1512,9 +1513,6 @@ input[type="range"]:active::-webkit-slider-thumb {
 .w-2 {
   width: 0.5rem;
 }
-.w-28 {
-  width: 7rem;
-}
 .w-3 {
   width: 0.75rem;
 }
@@ -1530,11 +1528,14 @@ input[type="range"]:active::-webkit-slider-thumb {
 .w-64 {
   width: 16rem;
 }
-.w-9\/12 {
-  width: 75%;
+.w-\[10\%\] {
+  width: 10%;
 }
-.w-\[360px\] {
-  width: 360px;
+.w-\[30\%\] {
+  width: 30%;
+}
+.w-\[70\%\] {
+  width: 70%;
 }
 .w-auto {
   width: auto;
