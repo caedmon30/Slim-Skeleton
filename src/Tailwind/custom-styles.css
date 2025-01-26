@@ -38,7 +38,12 @@
 }
 
 .cell-left{ @apply text-left !important;}
+
 .cell-center{ @apply text-center !important;}
+
 .cell-right{ @apply text-right !important;}
+
+.main-logo{ @apply lg:h-14 h-10}
+
 /* ... */
 @tailwind utilities;
