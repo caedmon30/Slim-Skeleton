@@ -1,3 +1,4 @@
+window.jsPDF = window.jspdf.jsPDF;
 $(document).ready(
     function () {
 
