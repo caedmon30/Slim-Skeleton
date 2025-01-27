@@ -153,7 +153,7 @@ $(document).ready(
                         },
                         validationRules: [{type: 'required'},],
                 },
-                    {dataField: 'keyNumber', caption: 'Key Number', cssClass: "cell-left", allowHeaderFiltering: false, allowFiltering: false, validationRules: [{type: 'required'}],},
+                    {dataField: 'keyNumber', caption: 'Key Number', cssClass: "cell-left", allowHeaderFiltering: true, allowFiltering: true, validationRules: [{type: 'required'}],},
                     {dataField: 'keyCore', allowHeaderFiltering: false, validationRules: [{type: 'required'}],},
                     {dataField: 'hookNumber', caption: 'Hook #', cssClass: "cell-left",  allowHeaderFiltering: false, validationRules: [{type: 'required'}],},
                     {dataField: 'roomNumber', caption: 'Room #', cssClass: "cell-left", allowHeaderFiltering: false, validationRules: [{type: 'required'}],},
