@@ -46,7 +46,8 @@
 .main-logo{ @apply lg:h-14 h-10}
 
 .btn-outline{@apply bg-white hover:bg-red-100 font-normal py-2 px-4 border border-gray-200 rounded shadow}
-.btn-outline{ color: #212A3B!important; font-family: "InterVariable";}
+.btn-outline{ color: #212A3B!important;
+    font-family: "InterVariable", sans-serif;}
 
 /* ... */
 @tailwind utilities;
