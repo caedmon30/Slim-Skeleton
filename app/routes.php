@@ -50,10 +50,15 @@ return function (App $app) {
         return $view->render($response, 'pages/keys.html.twig', []);
     })->setName('keys');
 
-    $app->get('/request', function ($request, $response, $args) {
+    $app->get('/request-create', function ($request, $response, $args) {
         $view = Twig::fromRequest($request);
         return $view->render($response, 'forms/request.html.twig', []);
-    })->setName('request');
+    })->setName('request-create');
+
+    $app->get('/requests', function ($request, $response, $args) {
+        $view = Twig::fromRequest($request);
+        return $view->render($response, 'pages/requests.html.twig', []);
+    })->setName('requests');
 
     $app->get('/reports', function ($request, $response, $args) {
         $view = Twig::fromRequest($request);

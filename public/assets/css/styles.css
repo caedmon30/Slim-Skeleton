@@ -1141,10 +1141,10 @@ input[type="range"]:active::-webkit-slider-thumb {
   justify-content: space-between;
   gap: 0.5rem;
   border-radius: 0.5rem;
-  border-width: 1px;
-  border-style: dashed;
+  border-width: 2px;
+  border-style: solid;
   --tw-border-opacity: 1;
-  border-color: rgb(194 120 3 / var(--tw-border-opacity, 1));
+  border-color: rgb(255 212 59 / var(--tw-border-opacity, 1));
   padding: 0.75rem;
   font-size: 0.875rem;
   line-height: 1.25rem;
@@ -1168,7 +1168,7 @@ input[type="range"]:active::-webkit-slider-thumb {
   display: flex;
   border-radius: 9999px;
   --tw-bg-opacity: 1;
-  background-color: rgb(252 233 106 / var(--tw-bg-opacity, 1));
+  background-color: rgb(255 212 59 / var(--tw-bg-opacity, 1));
   padding: 0.5rem;
 }
 
@@ -1212,6 +1212,29 @@ input[type="range"]:active::-webkit-slider-thumb {
     height: 3.5rem;
   }
 }
+
+.btn-outline {
+  border-radius: 0.25rem;
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-weight: 400;
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.btn-outline:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(253 232 232 / var(--tw-bg-opacity, 1));
+}
+.btn-outline{ color: #212A3B!important; font-family: "InterVariable";}
 
 /* ... */
 .sr-only {
