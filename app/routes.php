@@ -2,15 +2,21 @@
 
 declare(strict_types=1);
 
+use App\Application\Actions\Employee\ListEmployeesAction;
 use App\Application\Actions\Employee\CreateEmployeeAction;
 use App\Application\Actions\Employee\DeleteEmployeeAction;
-use App\Application\Actions\Employee\ListEmployeesAction;
 use App\Application\Actions\Employee\UpdateEmployeeAction;
 use App\Application\Actions\Employee\ViewEmployeeAction;
+use App\Application\Actions\Request\ListRequestAction;
+use App\Application\Actions\Request\CreateRequestAction;
+use App\Application\Actions\Request\DeleteRequestAction;
+use App\Application\Actions\Request\UpdateRequestAction;
+use App\Application\Actions\Request\ViewRequestAction;
 use App\Application\Actions\Key\CreateKeyAction;
 use App\Application\Actions\Key\DeleteKeyAction;
 use App\Application\Actions\Key\ListKeysAction;
 use App\Application\Actions\Key\UpdateKeyAction;
+use App\Application\Actions\Key\ViewKeyAction;
 use App\Application\Actions\User\CreateUserAction;
 use App\Application\Actions\User\DeleteUserAction;
 use App\Application\Actions\User\ListUsersAction;
@@ -91,7 +97,7 @@ return function (App $app) {
     $app->group('/api/keys', callable: function (Group $group) {
         $group->get('', ListKeysAction::class);
         $group->post('', CreateKeyAction::class);
-        $group->get('/{id}', ViewEmployeeAction::class);
+        $group->get('/{id}', ViewKeyAction::class);
         $group->delete('/{id}', DeleteKeyAction::class);
         $group->put('/{id}', UpdateKeyAction::class);
     });

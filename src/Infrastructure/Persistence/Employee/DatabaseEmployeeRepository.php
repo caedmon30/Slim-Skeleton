@@ -11,9 +11,6 @@ use Nette\Database\Connection;
 
 class DatabaseEmployeeRepository implements EmployeeRepository
 {
-    /**
-     * @tmp User[]
-     */
     private array $employees;
     private Connection $connection;
 

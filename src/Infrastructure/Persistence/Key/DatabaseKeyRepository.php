@@ -11,9 +11,7 @@ use Nette\Database\Connection;
 
 class DatabaseKeyRepository implements KeyRepository
 {
-    /**
-     * @tmp User[]
-     */
+
     private array $keys;
     private Connection $connection;
 

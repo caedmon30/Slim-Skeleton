@@ -89,7 +89,7 @@ class Key implements JsonSerializable
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getAddNotes(): null|string
     {
@@ -97,7 +97,7 @@ class Key implements JsonSerializable
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getDateCheckedIn(): null|string
     {
@@ -105,7 +105,7 @@ class Key implements JsonSerializable
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getDateCheckedOut(): null|string
     {

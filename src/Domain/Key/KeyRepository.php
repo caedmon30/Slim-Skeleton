@@ -11,6 +11,12 @@ interface KeyRepository
      */
     public function findAll(): array;
 
+    /**
+     * @param int $id
+     * @return Key
+     * @throws KeyNotFoundException
+     */
+
     public function findKeyOfId(int $id): Key;
 
     public function deleteKeyOfId(int $id): array;
