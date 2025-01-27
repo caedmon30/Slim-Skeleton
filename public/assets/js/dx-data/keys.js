@@ -39,36 +39,16 @@ $(document).ready(
                     });
                 },
             });
-            const positions = [
-                {
-                    ID: 1,
-                    Name: 'Full Time Staff',
-            },
-                {
-                    ID: 2,
-                    Name: 'Part Time Staff',
-            },
 
-                {
-                    ID: 3,
-                    Name: 'Faculty',
-            },
-                {
-                    ID: 4,
-                    Name: 'Student (Non-Employee)',
-            },
-                {
-                    ID: 5,
-                    Name: 'Student (Employee)',
-            },
-                {
-                    ID: 6,
-                    Name: 'Other',
-            },
-                {
-                    ID: 7,
-                    Name: 'Post-doc',
-            },
+            // Define employee positions
+            const positions = [
+                { ID: 1, Name: 'Full Time Staff' },
+                { ID: 2, Name: 'Part Time Staff' },
+                { ID: 3, Name: 'Faculty' },
+                { ID: 4, Name: 'Student (Non-Employee)' },
+                { ID: 5, Name: 'Student (Employee)' },
+                { ID: 6, Name: 'Other' },
+                { ID: 7, Name: 'Post-doc' },
             ];
             const dataGrid = $('#dataGridKeys').dxDataGrid({
                 dataSource: keySource,
@@ -141,7 +121,12 @@ $(document).ready(
                         validationRules: [{type: 'required'}],
                 }, {dataField: 'campusUid', visible: false, allowHeaderFiltering: false, caption: 'Campus UID', allowFiltering: false,validationRules: [{type: 'required'}],},
                     {
-                        dataField: 'empStatus', visible: false, allowHeaderFiltering: false, allowFiltering: false, caption: 'Employee Type',
+                        dataField: 'empStatus', visible: false, allowHeaderFiltering: true, allowFiltering: true, caption: 'Employee Type',
+                        lookup: {
+                            dataSource: positions,
+                            displayExpr: 'Name',
+                            valueExpr: 'ID',
+                        },
                         editorType: 'dxSelectBox',
                         editorOptions: {
                             dataSource: new DevExpress.data.ArrayStore({
