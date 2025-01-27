@@ -4,7 +4,19 @@ $(document).ready(
 
         $(() => {
 
+            const STATUS_URL = '/api/status';
             const SERVICE_URL = '/api/keys';
+
+            const statusSource = new DevExpress.data.CustomStore({
+                key: 'id',
+
+                load: (loadOptions) => {
+                    return $.getJSON(STATUS_URL);
+                },
+                byKey: (key) => {
+                    return $.getJSON(STATUS_URL + "/" + encodeURIComponent(key));
+                },
+            });
             const keySource = new DevExpress.data.CustomStore({
                 key: 'id',
 
@@ -123,18 +135,15 @@ $(document).ready(
                     {
                         dataField: 'empStatus', visible: false, allowHeaderFiltering: true, allowFiltering: true, caption: 'Employee Type',
                         lookup: {
-                            dataSource: positions,
-                            displayExpr: 'Name',
-                            valueExpr: 'ID',
+                            dataSource: statusSource,
+                            displayExpr: 'empStatusName',
+                            valueExpr: 'id',
                         },
                         editorType: 'dxSelectBox',
                         editorOptions: {
-                            dataSource: new DevExpress.data.ArrayStore({
-                                data: positions,
-                                key: 'ID',
-                            }),
-                        displayExpr: 'Name',
-                        valueExpr: 'ID',
+                            dataSource: statusSource,
+                            displayExpr: 'empStatusName',
+                            valueExpr: 'id',
                         },
                         validationRules: [{type: 'required'},],
                 },
