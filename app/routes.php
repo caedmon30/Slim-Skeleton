@@ -83,6 +83,23 @@ return function (App $app) {
     });
 
     // api routes
+
+
+    $app->group('/api/keys', callable: function (Group $group) {
+        $group->get('', ListKeysAction::class);
+        $group->post('', CreateKeyAction::class);
+        $group->get('/{id}', ViewKeyAction::class);
+        $group->delete('/{id}', DeleteKeyAction::class);
+        $group->put('/{id}', UpdateKeyAction::class);
+    });
+
+    $app->group('/api/requests', callable: function (Group $group) {
+        $group->get('', ListRequestAction::class);
+        $group->post('', CreateRequestAction::class);
+        $group->get('/{id}', ViewRequestAction::class);
+        $group->delete('/{id}', DeleteRequestAction::class);
+        $group->put('/{id}', UpdateRequestAction::class);
+    });
     $app->group('/api/users', function (Group $group) {
         $group->get('', ListUsersAction::class);
         $group->post('', CreateUserAction::class);
@@ -97,13 +114,5 @@ return function (App $app) {
         $group->get('/{id}', ViewEmployeeAction::class);
         $group->delete('/{id}', DeleteEmployeeAction::class);
         $group->put('/{id}', UpdateEmployeeAction::class);
-    });
-
-    $app->group('/api/keys', callable: function (Group $group) {
-        $group->get('', ListKeysAction::class);
-        $group->post('', CreateKeyAction::class);
-        $group->get('/{id}', ViewKeyAction::class);
-        $group->delete('/{id}', DeleteKeyAction::class);
-        $group->put('/{id}', UpdateKeyAction::class);
     });
 };

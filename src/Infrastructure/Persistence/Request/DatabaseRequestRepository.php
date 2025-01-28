@@ -14,12 +14,12 @@ class DatabaseRequestRepository implements RequestRepository
     private array $requests;
     private Connection $connection;
 
-    public function __construct(Connection $connection, array|null $requests = null)
+    public function __construct(Connection $connection, array $requests = [])
     {
 
         $this->connection = $connection;
 
-        $results = $this->connection->query("SELECT * FROM tblempstatus");
+        $results = $this->connection->query("SELECT * FROM requests");
 
         foreach ($results as $row) {
             $requests[(int)$row['id']] = new Request(
