@@ -27,6 +27,7 @@
         "ext-pdo": "*",
         "monolog/monolog": "^2.9",
         "nette/database": "^3.2",
+        "odan/session": "^6.3",
         "php-di/php-di": "^6.4",
         "slim/psr7": "^1.6",
         "slim/slim": "^4.12",

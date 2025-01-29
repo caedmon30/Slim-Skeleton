@@ -7,6 +7,9 @@ use DI\ContainerBuilder;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
+use Odan\Session\PhpSession;
+use Odan\Session\SessionInterface;
+use Odan\Session\SessionManagerInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Slim\Views\Twig;
@@ -42,6 +45,17 @@ return function (ContainerBuilder $containerBuilder) {
             $user = $mdbSettings['username'];
             $pass = $mdbSettings['password'];
             return new Connection($dsn, $user, $pass);
+        },
+
+        // PHP Sessions
+        SessionManagerInterface::class => function (ContainerInterface $container) {
+            return $container->get(SessionInterface::class);
+        },
+
+        SessionInterface::class => function (ContainerInterface $container) {
+            $options = $container->get('settings')['session'];
+
+            return new PhpSession($options);
         },
     ]);
 };
