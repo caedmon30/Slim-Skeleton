@@ -11,7 +11,6 @@ use Nette\Database\Connection;
 
 class DatabaseKeyRepository implements KeyRepository
 {
-
     private array $keys;
     private Connection $connection;
 
@@ -20,7 +19,7 @@ class DatabaseKeyRepository implements KeyRepository
 
         $this->connection = $connection;
 
-        $results = $this->connection->query("SELECT * FROM tblkeys ORDER BY", ['id' => false,]);
+        $results = $this->connection->query("SELECT * FROM tblkeys ORDER BY ", ['id' => false,]);
 
         foreach ($results as $row) {
             $keys[(int)$row['id']] = new Key(
