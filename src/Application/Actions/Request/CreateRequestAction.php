@@ -14,6 +14,8 @@ class CreateRequestAction extends RequestAction
     protected function action(): Response
     {
         $data = $this->getFormData();
+        $data['submitted_by'] = 'cwalters';
+        $data['card_access'] = serialize($data['card_access']);
         $request = $this->requestRepository->createRequest($data);
         $this->logger->info("New request created!");
 

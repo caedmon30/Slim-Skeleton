@@ -24,7 +24,7 @@ class Request implements JsonSerializable
     private string $room_five;
     private string $card_access;
     private int $signed;
-    private string $justification;
+    private null|string $justification;
     private string $submitted_by;
 
 
@@ -47,7 +47,7 @@ class Request implements JsonSerializable
         string $room_five,
         string $card_access,
         int $signed,
-        string $justification,
+        null|string $justification,
         string $submitted_by,
     ) {
         $this->id = $id;
