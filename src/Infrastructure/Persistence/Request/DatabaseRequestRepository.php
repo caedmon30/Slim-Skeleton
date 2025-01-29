@@ -57,6 +57,9 @@ class DatabaseRequestRepository implements RequestRepository
         return array_values($this->requests);
     }
 
+    /**
+     * @throws RequestNotFoundException
+     */
     public function findRequestOfId(int $id): Request
     {
         if (!isset($this->requests[$id])) {
