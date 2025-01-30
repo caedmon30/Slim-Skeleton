@@ -125,7 +125,7 @@ return function (App $app) {
         $group->post(
             '/submit/{id}',
             function (Request $request, Response $response, array $args) use ($workflowService) {
-                $result = $workflowService->updateStatus((int)$args['id'], 'submitted');
+                $result = $workflowService->submitRequest((int)$args['id'], 'submitted');
                 $response->getBody()->write(json_encode($result));
                 return $response->withHeader('Content-Type', 'application/json');
             }
@@ -134,7 +134,7 @@ return function (App $app) {
         $group->post(
             '/approve/{id}',
             function (Request $request, Response $response, array $args) use ($workflowService) {
-                $result = $workflowService->updateStatus((int)$args['id'], 'approved');
+                $result = $workflowService->approveRequest((int)$args['id'], 'approved');
                 $response->getBody()->write(json_encode($result));
                 return $response->withHeader('Content-Type', 'application/json');
             }
@@ -143,7 +143,7 @@ return function (App $app) {
         $group->post(
             '/reject/{id}',
             function (Request $request, Response $response, array $args) use ($workflowService) {
-                $result = $workflowService->updateStatus((int)$args['id'], 'rejected');
+                $result = $workflowService->rejectRequest((int)$args['id'], 'rejected');
                 $response->getBody()->write(json_encode($result));
                 return $response->withHeader('Content-Type', 'application/json');
             }
@@ -152,7 +152,7 @@ return function (App $app) {
         $group->post(
             '/order/{id}',
             function (Request $request, Response $response, array $args) use ($workflowService) {
-                $result = $workflowService->updateStatus((int)$args['id'], 'ordered');
+                $result = $workflowService->orderRequest((int)$args['id'], 'ordered');
                 $response->getBody()->write(json_encode($result));
                 return $response->withHeader('Content-Type', 'application/json');
             }
@@ -161,7 +161,7 @@ return function (App $app) {
         $group->post(
             '/complete/{id}',
             function (Request $request, Response $response, array $args) use ($workflowService) {
-                $result = $workflowService->updateStatus((int)$args['id'], 'completed');
+                $result = $workflowService->completeRequest((int)$args['id'], 'completed');
                 $response->getBody()->write(json_encode($result));
                 return $response->withHeader('Content-Type', 'application/json');
             }
