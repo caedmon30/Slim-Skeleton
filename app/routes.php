@@ -122,34 +122,49 @@ return function (App $app) {
     $app->group('/workflow', function (Group $group) use ($container) {
         $workflowService = $container->get(WorkflowService::class);
 
-        $group->post('/submit/{id}', function (Request $request, Response $response, array $args) use ($workflowService) {
-            $result = $workflowService->updateStatus((int)$args['id'], 'submitted');
-            $response->getBody()->write(json_encode($result));
-            return $response->withHeader('Content-Type', 'application/json');
-        });
+        $group->post(
+            '/submit/{id}',
+            function (Request $request, Response $response, array $args) use ($workflowService) {
+                $result = $workflowService->updateStatus((int)$args['id'], 'submitted');
+                $response->getBody()->write(json_encode($result));
+                return $response->withHeader('Content-Type', 'application/json');
+            }
+        );
 
-        $group->post('/approve/{id}', function (Request $request, Response $response, array $args) use ($workflowService) {
-            $result = $workflowService->updateStatus((int)$args['id'], 'approved');
-            $response->getBody()->write(json_encode($result));
-            return $response->withHeader('Content-Type', 'application/json');
-        });
+        $group->post(
+            '/approve/{id}',
+            function (Request $request, Response $response, array $args) use ($workflowService) {
+                $result = $workflowService->updateStatus((int)$args['id'], 'approved');
+                $response->getBody()->write(json_encode($result));
+                return $response->withHeader('Content-Type', 'application/json');
+            }
+        );
 
-        $group->post('/reject/{id}', function (Request $request, Response $response, array $args) use ($workflowService) {
-            $result = $workflowService->updateStatus((int)$args['id'], 'rejected');
-            $response->getBody()->write(json_encode($result));
-            return $response->withHeader('Content-Type', 'application/json');
-        });
+        $group->post(
+            '/reject/{id}',
+            function (Request $request, Response $response, array $args) use ($workflowService) {
+                $result = $workflowService->updateStatus((int)$args['id'], 'rejected');
+                $response->getBody()->write(json_encode($result));
+                return $response->withHeader('Content-Type', 'application/json');
+            }
+        );
 
-        $group->post('/order/{id}', function (Request $request, Response $response, array $args) use ($workflowService) {
-            $result = $workflowService->updateStatus((int)$args['id'], 'ordered');
-            $response->getBody()->write(json_encode($result));
-            return $response->withHeader('Content-Type', 'application/json');
-        });
+        $group->post(
+            '/order/{id}',
+            function (Request $request, Response $response, array $args) use ($workflowService) {
+                $result = $workflowService->updateStatus((int)$args['id'], 'ordered');
+                $response->getBody()->write(json_encode($result));
+                return $response->withHeader('Content-Type', 'application/json');
+            }
+        );
 
-        $group->post('/complete/{id}', function (Request $request, Response $response, array $args) use ($workflowService) {
-            $result = $workflowService->updateStatus((int)$args['id'], 'completed');
-            $response->getBody()->write(json_encode($result));
-            return $response->withHeader('Content-Type', 'application/json');
-        });
+        $group->post(
+            '/complete/{id}',
+            function (Request $request, Response $response, array $args) use ($workflowService) {
+                $result = $workflowService->updateStatus((int)$args['id'], 'completed');
+                $response->getBody()->write(json_encode($result));
+                return $response->withHeader('Content-Type', 'application/json');
+            }
+        );
     });
 };
