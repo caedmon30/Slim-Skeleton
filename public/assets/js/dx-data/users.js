@@ -90,7 +90,7 @@ $(document).ready(
                     {dataField: 'firstName', validationRules: [{type: 'required'}],}, {
                         dataField: 'lastName',
                         validationRules: [{type: 'required'}],
-                }, {dataField: 'username', validationRules: [{type: 'required'}],}, {
+                }, {dataField: 'username', caption:'Directory ID', validationRules: [{type: 'required'}],}, {
                     dataField: 'emailAddress',
                     validationRules: [{type: 'required'}, {type: 'email', message: 'Email is not valid'},
                     ],
