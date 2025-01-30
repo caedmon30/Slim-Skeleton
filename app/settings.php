@@ -16,6 +16,8 @@ return function (ContainerBuilder $containerBuilder) {
                 'displayErrorDetails' => true, // Should be set to false in production
                 'logError'            => false,
                 'logErrorDetails'     => false,
+                'twig_cache'     => false, // Should be commented in production
+                //'twig_cache'  => __DIR__ . '/../tmp/cache',// Should be uncommented in production
                 'logger' => [
                     'name' => 'slim-app',
                     'path' => __DIR__ . '/../logs/app.log',

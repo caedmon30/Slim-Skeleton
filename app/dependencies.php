@@ -18,46 +18,50 @@ use Nette\Database\Connection;
 
 return function (ContainerBuilder $containerBuilder) {
     $containerBuilder->addDefinitions([
+        // Logger Configuration
         LoggerInterface::class => function (ContainerInterface $c) {
             $settings = $c->get(SettingsInterface::class);
-
             $loggerSettings = $settings->get('logger');
+
             $logger = new Logger($loggerSettings['name']);
+            $logger->pushProcessor(new UidProcessor());
 
-            $processor = new UidProcessor();
-            $logger->pushProcessor($processor);
-
-            $handler = new StreamHandler($loggerSettings['path'], $loggerSettings['level']);
-            $logger->pushHandler($handler);
+            // Ensure level is a Monolog constant
+            $logLevel = $loggerSettings['level'] ?? Logger::DEBUG;
+            $logger->pushHandler(new StreamHandler($loggerSettings['path'], $logLevel));
 
             return $logger;
         },
+
+        // Twig Templating Engine
         Twig::class => function (ContainerInterface $c) {
-            // remove comment in production
-            //return Twig::create(__DIR__ . '/../templates', ['cache' => __DIR__ . '/../tmp/cache']);
-            // comment out in production
-            return Twig::create(__DIR__ . '/../templates', ['cache' => false]);
+            $settings = $c->get(SettingsInterface::class);
+            return Twig::create(__DIR__ . '/../templates', ['cache' => $settings->get('twig_cache')]);
         },
-        // Database connection
+
+        // Database Connection (Using Charset)
         Connection::class => function (ContainerInterface $c) {
             $settings = $c->get(SettingsInterface::class);
-            $mdbSettings = $settings->get('db');
-            $dsn = 'mysql:host=' . $mdbSettings['host'] . '; dbname=' . $mdbSettings['database'];
-            $user = $mdbSettings['username'];
-            $pass = $mdbSettings['password'];
-            return new Connection($dsn, $user, $pass);
+            $dbSettings = $settings->get('db');
+            $dsn = sprintf(
+                'mysql:host=%s;dbname=%s;charset=utf8mb4',
+                $dbSettings['host'],
+                $dbSettings['database']
+            );
+            return new Connection($dsn, $dbSettings['username'], $dbSettings['password']);
         },
-        // WorkflowEngine
+
+        // Workflow Service
         WorkflowService::class => function (ContainerInterface $c) {
             return new WorkflowService($c->get(Connection::class));
         },
-        // PHP Sessions
-        SessionManagerInterface::class => function (ContainerInterface $container) {
-            return $container->get(SessionInterface::class);
-        },
 
-        SessionInterface::class => function (ContainerInterface $container) {
-            $options = $container->get('settings')['session'];
+        // PHP Session Manager
+        SessionManagerInterface::class => fn(ContainerInterface $c) => $c->get(SessionInterface::class),
+
+        // PHP Session
+        SessionInterface::class => function (ContainerInterface $c) {
+            $options = $c->get(SettingsInterface::class)->get('session');
             return new PhpSession($options);
         },
     ]);

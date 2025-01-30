@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Slim\App;
 use App\Application\Actions\Employee\ListEmployeesAction;
 use App\Application\Actions\Employee\CreateEmployeeAction;
 use App\Application\Actions\Employee\DeleteEmployeeAction;
@@ -25,26 +26,25 @@ use App\Application\Actions\User\ViewUserAction;
 use App\Services\WorkflowService;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Slim\App;
+use Psr\Container\ContainerInterface;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 use Slim\Views\Twig;
 
 return function (App $app) {
-    $app->options('/{routes:.*}', function (Request $request, Response $response) {
-        // CORS Pre-Flight OPTIONS Request Handler
-        return $response;
-    });
-    $container = $app->getContainer();
-    $workflowService = $container->get(WorkflowService::class);
+    $container = $app->getContainer(); // Get DI container
 
-    $app->get('/', function ($request, $response, $args) {
-        $view = Twig::fromRequest($request);
+    $app->options('/{routes:.*}', function (Request $request, Response $response) {
+        return $response; // CORS Pre-Flight OPTIONS Request Handler
+    });
+
+    $app->get('/', function (Request $request, Response $response) use ($container) {
+        $view = $container->get(Twig::class);
         return $view->render($response, 'pages/home.html.twig', []);
     })->setName('home');
 
-    // web routes
-    $app->get('/dashboard', function ($request, $response, $args) {
-        $view = Twig::fromRequest($request);
+    // Web routes
+    $app->get('/dashboard', function (Request $request, Response $response) use ($container) {
+        $view = $container->get(Twig::class);
         return $view->render($response, 'pages/dashboard.html.twig', []);
     })->setName('dashboard');
 
@@ -68,14 +68,14 @@ return function (App $app) {
         return $view->render($response, 'pages/reports.html.twig', []);
     })->setName('reports');
 
-    $app->group('/settings', function (Group $group) {
-        $group->get('', function ($request, $response, $args) {
-            $view = Twig::fromRequest($request);
+    $app->group('/settings', function (Group $group) use ($container) {
+        $view = $container->get(Twig::class);
+
+        $group->get('', function (Request $request, Response $response) use ($view) {
             return $view->render($response, 'pages/admin.html.twig', []);
         })->setName('settings');
 
-        $group->get('/users', function ($request, $response, $args) {
-            $view = Twig::fromRequest($request);
+        $group->get('/users', function (Request $request, Response $response) use ($view) {
             return $view->render($response, 'pages/users.html.twig', []);
         })->setName('users');
 
@@ -85,10 +85,8 @@ return function (App $app) {
         })->setName('employee-status');
     });
 
-    // api routes
-
-
-    $app->group('/api/keys', callable: function (Group $group) {
+    // API Routes
+    $app->group('/api/keys', function (Group $group) {
         $group->get('', ListKeysAction::class);
         $group->post('', CreateKeyAction::class);
         $group->get('/{id}', ViewKeyAction::class);
@@ -96,13 +94,14 @@ return function (App $app) {
         $group->put('/{id}', UpdateKeyAction::class);
     });
 
-    $app->group('/api/requests', callable: function (Group $group) {
+    $app->group('/api/requests', function (Group $group) {
         $group->get('', ListRequestAction::class);
         $group->post('', CreateRequestAction::class);
         $group->get('/{id}', ViewRequestAction::class);
         $group->delete('/{id}', DeleteRequestAction::class);
         $group->put('/{id}', UpdateRequestAction::class);
     });
+
     $app->group('/api/users', function (Group $group) {
         $group->get('', ListUsersAction::class);
         $group->post('', CreateUserAction::class);
@@ -119,39 +118,36 @@ return function (App $app) {
         $group->put('/{id}', UpdateEmployeeAction::class);
     });
 
-    $app->group('/workflow', callable: function (Group $group) {
-        // Submit a request
-        $group->post('/submit/{id}', function (Request $request, Response $response, $workflowService, array $args) {
-            $result = $workflowService->updateStatus((int) $args['id'], 'submitted');
+    // Workflow Routing (Uses Dependency Injection)
+    $app->group('/workflow', function (Group $group) use ($container) {
+        $workflowService = $container->get(WorkflowService::class);
+
+        $group->post('/submit/{id}', function (Request $request, Response $response, array $args) use ($workflowService) {
+            $result = $workflowService->updateStatus((int)$args['id'], 'submitted');
             $response->getBody()->write(json_encode($result));
             return $response->withHeader('Content-Type', 'application/json');
         });
 
-        // Approve a request
-        $group->post('/approve/{id}', function (Request $request, Response $response, $workflowService, array $args) {
-
-            $result = $workflowService->updateStatus((int) $args['id'], 'approved');
+        $group->post('/approve/{id}', function (Request $request, Response $response, array $args) use ($workflowService) {
+            $result = $workflowService->updateStatus((int)$args['id'], 'approved');
             $response->getBody()->write(json_encode($result));
             return $response->withHeader('Content-Type', 'application/json');
         });
 
-        // Reject a request
-        $group->post('/reject/{id}', function (Request $request, Response $response, $workflowService, array $args) {
-            $result = $workflowService->updateStatus((int) $args['id'], 'rejected');
+        $group->post('/reject/{id}', function (Request $request, Response $response, array $args) use ($workflowService) {
+            $result = $workflowService->updateStatus((int)$args['id'], 'rejected');
             $response->getBody()->write(json_encode($result));
             return $response->withHeader('Content-Type', 'application/json');
         });
 
-        // Order the request
-        $group->post('/order/{id}', function (Request $request, Response $response, $workflowService, array $args) {
-            $result = $workflowService->updateStatus((int) $args['id'], 'ordered');
+        $group->post('/order/{id}', function (Request $request, Response $response, array $args) use ($workflowService) {
+            $result = $workflowService->updateStatus((int)$args['id'], 'ordered');
             $response->getBody()->write(json_encode($result));
             return $response->withHeader('Content-Type', 'application/json');
         });
 
-        // Mark request as completed
-        $group->post('/complete/{id}', function (Request $request, Response $response, $workflowService, array $args) {
-            $result = $workflowService->updateStatus((int) $args['id'], 'completed');
+        $group->post('/complete/{id}', function (Request $request, Response $response, array $args) use ($workflowService) {
+            $result = $workflowService->updateStatus((int)$args['id'], 'completed');
             $response->getBody()->write(json_encode($result));
             return $response->withHeader('Content-Type', 'application/json');
         });
