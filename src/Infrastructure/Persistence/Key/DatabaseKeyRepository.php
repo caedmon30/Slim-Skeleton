@@ -92,7 +92,7 @@ class DatabaseKeyRepository implements KeyRepository
 
     public function createKey(array $data): array
     {
-        $this->connection->query('INSERT INTO tblkeys ?', $data);
+        $this->connection->query('INSERT INTO tblkeys  ?', $data);
         return array_values($this->keys);
     }
 }

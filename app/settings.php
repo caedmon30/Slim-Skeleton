@@ -53,6 +53,24 @@ return function (ContainerBuilder $containerBuilder) {
                     'httponly' => true,
                     'cache_limiter' => 'nocache',
                 ],
+
+                'states' => ['Draft', 'Submitted', 'Approved', 'Rejected', 'Ordered', 'Completed'],
+                'transitions' => [
+                    'Draft' => [
+                        'submit' => 'Submitted',
+                    ],
+                    'Submitted' => [
+                        'approve' => 'Approved',
+                        'reject' => 'Rejected',
+                    ],
+                    'Approved' => [
+                        'order' => 'Ordered',
+                    ],
+                    'Rejected' => [],
+                    'Ordered' => [
+                        'complete' => 'Completed',
+                    ],
+                ],
             ]);
         }
     ]);

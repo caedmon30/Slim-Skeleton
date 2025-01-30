@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Application\Settings\SettingsInterface;
+use App\Services\WorkflowService;
 use DI\ContainerBuilder;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -46,7 +47,10 @@ return function (ContainerBuilder $containerBuilder) {
             $pass = $mdbSettings['password'];
             return new Connection($dsn, $user, $pass);
         },
-
+        // WorkflowEngine
+        WorkflowService::class => function (ContainerInterface $c) {
+            return new WorkflowService($c->get(Connection::class));
+        },
         // PHP Sessions
         SessionManagerInterface::class => function (ContainerInterface $container) {
             return $container->get(SessionInterface::class);
@@ -54,7 +58,6 @@ return function (ContainerBuilder $containerBuilder) {
 
         SessionInterface::class => function (ContainerInterface $container) {
             $options = $container->get('settings')['session'];
-
             return new PhpSession($options);
         },
     ]);

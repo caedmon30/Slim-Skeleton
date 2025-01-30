@@ -22,6 +22,7 @@ use App\Application\Actions\User\DeleteUserAction;
 use App\Application\Actions\User\ListUsersAction;
 use App\Application\Actions\User\UpdateUserAction;
 use App\Application\Actions\User\ViewUserAction;
+use App\Services\WorkflowService;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App;
@@ -33,6 +34,8 @@ return function (App $app) {
         // CORS Pre-Flight OPTIONS Request Handler
         return $response;
     });
+    $container = $app->getContainer();
+    $workflowService = $container->get(WorkflowService::class);
 
     $app->get('/', function ($request, $response, $args) {
         $view = Twig::fromRequest($request);
@@ -114,5 +117,43 @@ return function (App $app) {
         $group->get('/{id}', ViewEmployeeAction::class);
         $group->delete('/{id}', DeleteEmployeeAction::class);
         $group->put('/{id}', UpdateEmployeeAction::class);
+    });
+
+    $app->group('/workflow', callable: function (Group $group) {
+        // Submit a request
+        $group->post('/submit/{id}', function (Request $request, Response $response, $workflowService, array $args) {
+            $result = $workflowService->updateStatus((int) $args['id'], 'submitted');
+            $response->getBody()->write(json_encode($result));
+            return $response->withHeader('Content-Type', 'application/json');
+        });
+
+        // Approve a request
+        $group->post('/approve/{id}', function (Request $request, Response $response, $workflowService, array $args) {
+
+            $result = $workflowService->updateStatus((int) $args['id'], 'approved');
+            $response->getBody()->write(json_encode($result));
+            return $response->withHeader('Content-Type', 'application/json');
+        });
+
+        // Reject a request
+        $group->post('/reject/{id}', function (Request $request, Response $response, $workflowService, array $args) {
+            $result = $workflowService->updateStatus((int) $args['id'], 'rejected');
+            $response->getBody()->write(json_encode($result));
+            return $response->withHeader('Content-Type', 'application/json');
+        });
+
+        // Order the request
+        $group->post('/order/{id}', function (Request $request, Response $response, $workflowService, array $args) {
+            $result = $workflowService->updateStatus((int) $args['id'], 'ordered');
+            $response->getBody()->write(json_encode($result));
+            return $response->withHeader('Content-Type', 'application/json');
+        });
+
+        // Mark request as completed
+        $group->post('/complete/{id}', function (Request $request, Response $response, $workflowService, array $args) {
+            $result = $workflowService->updateStatus((int) $args['id'], 'completed');
+            $response->getBody()->write(json_encode($result));
+            return $response->withHeader('Content-Type', 'application/json');
+        });
     });
 };
