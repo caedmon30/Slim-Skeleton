@@ -42,8 +42,8 @@ class LogController
         $csvContent = "Request ID,User,Previous State,New State,Timestamp\n";
 
         foreach ($logs as $log) {
-            $csvContent .= "{$log['request_id']},{$log['user']},
-            {$log['previous_state']},{$log['new_state']},{$log['timestamp']}\n";
+
+            $csvContent .= "{$log['request_id']},`{$log['user']},{$log['previous_state']},{$log['new_state']},{$log['timestamp']}\n";
         }
 
         $response->getBody()->write($csvContent);
