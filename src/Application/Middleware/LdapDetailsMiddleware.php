@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Middleware;
+namespace App\Application\Middleware;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -12,31 +12,31 @@ use Slim\Exception\HttpForbiddenException;
 
 class LdapDetailsMiddleware implements MiddlewareInterface
 {
-    private array $allowedRoles;
-    private string $ldapServer = "ldap://ldap.example.com";
-    private string $ldapBaseDn = "ou=users,dc=example,dc=com";
+    private string $allowedUser;
+    private string $ldapServer = "ldap://ldap.umd.edu";
+    private string $ldapBaseDn = "ou=people,dc=umd,dc=edu";
 
-    public function __construct(array $allowedRoles)
+    public function __construct(string $allowedUser)
     {
-        $this->allowedRoles = $allowedRoles;
+        $this->allowedUser = $allowedUser;
     }
 
     public function process(Request $request, RequestHandler $handler): Response
     {
-        $user = $request->getAttribute('user');
-        if (!$user) {
+        $allowedUser = $request->getAttribute('user');
+        if (! $allowedUser) {
             throw new HttpForbiddenException($request, "User not authenticated");
         }
 
-        $userRole = $this->fetchUserRoleFromLdap($user);
-        if (!in_array($userRole, $this->allowedRoles, true)) {
+        $userDetails = $this->fetchUserDetailsFromLdap($allowedUser);
+        if (!in_array($this->allowedUser,$userDetails,true)) {
             throw new HttpForbiddenException($request, "Access denied");
         }
 
         return $handler->handle($request);
     }
 
-    private function fetchUserRoleFromLdap(string $username): ?string
+    private function fetchUserDetailsFromLdap(string $username): null | array
     {
         $ldapConn = ldap_connect($this->ldapServer);
         if (!$ldapConn) {
@@ -46,6 +46,16 @@ class LdapDetailsMiddleware implements MiddlewareInterface
         ldap_set_option($ldapConn, LDAP_OPT_PROTOCOL_VERSION, 3);
         $search = ldap_search($ldapConn, $this->ldapBaseDn, "(uid=$username)");
         $entries = ldap_get_entries($ldapConn, $search);
-        return $entries[0]['role'][0] ?? null;
+
+        $user_info = $entries[0];
+        $user_info["email"] = $entries[0]["mail"][0];
+        $user_info["firstname"] = $entries[0]["givenname"][0];
+        $user_info["lastname"] = $entries[0]["sn"][0];
+        $user_info["uid"] = $entries[0]["employeenumber"][0];
+        $user_info["telephonenumber"] = $entries[0]["telephonenumber"][0];
+        $user_info["department"] = $entries[0]["ou"][0];
+
+        return $user_info;
+
     }
 }
