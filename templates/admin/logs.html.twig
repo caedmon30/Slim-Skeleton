@@ -1,0 +1,70 @@
+{% extends "./base.html.twig" %}
+
+{% block head %}
+    {{ parent() }}
+
+{% endblock %}
+    {% block styles %}
+    {% endblock %}
+    {% block top_javascript %}
+
+    {% endblock %}
+{% block content %}
+    {% include './partials/inner_navbar.html.twig' %}
+    {% set page_title = 'Administration' %}
+    <div id="GridContainer" class="container mx-auto p-2.5">
+        {% include './partials/breadcrumb.html.twig' %}
+
+        <h1 class="mb-6 font-extrabold leading-none tracking-tight text-gray-900 md:text-xl lg:text-3xl dark:text-slate-700">System <span class="text-red-600 dark:text-red-500">Administration</span></h1>
+        {% include './partials/admin_reports.html.twig' %}
+        <h2 class="text-lg font-bold mb-2 mt-4">Request Logs</h2>
+        <p>To add an administrative user to the database, click the plus button below to access the user management tool, navigate to the entry form, provide a valid username (UMD directory ID), firstname, last name and email address</p>
+        <div id="dataGridUsers" class="dark:!bg-gray-100 p-4 mb-4 mt-4 rounded-md">
+
+            <div class="actions">
+                <a href="{{ url_for('admin.logs.export.csv') }}" class="btn-light">Export as CSV</a>
+                <a href="{{ url_for('admin.logs.export.pdf') }}" class="btn-light">Export as PDF</a>
+            </div>
+
+            <div class="flex flex-col">
+                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                        <div class="overflow-hidden">
+                            <table
+                                    class="min-w-full text-left text-sm font-light text-surface dark:text-white">
+                                <thead
+                                        class="border-b border-neutral-200 font-medium dark:border-white/10">
+                                <tr>
+                                    <th scope="col" class="px-6 py-4">Request ID</th>
+                                    <th scope="col" class="px-6 py-4">User</th>
+                                    <th scope="col" class="px-6 py-4">Previous State</th>
+                                    <th scope="col" class="px-6 py-4">New State</th>
+                                    <th scope="col" class="px-6 py-4">Timestamp</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for log in logs %}
+                                <tr class="border-b border-neutral-200 dark:border-white/10">
+                                    <td class="whitespace-nowrap px-6 py-4 font-medium">{{ log.request_id }}</td>
+                                    <td class="whitespace-nowrap px-6 py-4">{{ log.user }}</td>
+                                    <td class="whitespace-nowrap px-6 py-4">{{ log.previous_state }}</td>
+                                    <td class="whitespace-nowrap px-6 py-4">{{ log.new_state }}</td>
+                                    <td class="whitespace-nowrap px-6 py-4">{{ log.timestamp }}</td>
+                                </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="5" class="text-center whitespace-nowrap px-6 py-4 font-medium text-red-400">No logs available</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}

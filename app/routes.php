@@ -87,9 +87,9 @@ return function (App $app) {
     });
 
     $app->group('/admin/logs', function (Group $group) {
-        $group->get('', [LogController::class, 'index'])->add(new LdapDetailsMiddleware(['admin']));
-        $group->get('/export/csv', [LogController::class, 'exportCsv'])->add(new LdapDetailsMiddleware(['admin']));
-        $group->get('/export/pdf', [LogController::class, 'exportPdf'])->add(new LdapDetailsMiddleware(['admin']));
+        $group->get('', [LogController::class, 'index'])->setName('logs');
+        $group->get('/export/csv', [LogController::class, 'exportCsv'])->setName('admin.logs.export.csv');
+        $group->get('/export/pdf', [LogController::class, 'exportPdf'])->setName('admin.logs.export.pdf');
     });
 
 

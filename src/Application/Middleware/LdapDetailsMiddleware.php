@@ -29,7 +29,7 @@ class LdapDetailsMiddleware implements MiddlewareInterface
         }
 
         $userDetails = $this->fetchUserDetailsFromLdap($allowedUser);
-        if (!in_array($userDetails,$this->allowedUser,true)) {
+        if (!in_array($userDetails, $this->allowedUser, true)) {
             throw new HttpForbiddenException($request, "Access denied");
         }
 
@@ -56,6 +56,5 @@ class LdapDetailsMiddleware implements MiddlewareInterface
         $user_info["department"] = $entries[0]["ou"][0];
 
         return $user_info;
-
     }
 }

@@ -42,7 +42,8 @@ class LogController
         $csvContent = "Request ID,User,Previous State,New State,Timestamp\n";
 
         foreach ($logs as $log) {
-            $csvContent .= "{$log['request_id']},{$log['user']},{$log['previous_state']},{$log['new_state']},{$log['timestamp']}\n";
+            $csvContent .= "{$log['request_id']},{$log['user']},
+            {$log['previous_state']},{$log['new_state']},{$log['timestamp']}\n";
         }
 
         $response->getBody()->write($csvContent);
@@ -56,10 +57,12 @@ class LogController
     public function exportPdf(Request $request, Response $response): Response
     {
         $logs = $this->logger->getLogs();
-        $html = "<h1>Workflow Logs</h1><table border='1'><tr><th>Request ID</th><th>User</th><th>Previous State</th><th>New State</th><th>Timestamp</th></tr>";
+        $html = "<h1>Workflow Logs</h1><table class='border-0'><tr><th>Request ID</th><th>User</th>
+                    <th>Previous State</th><th>New State</th><th>Timestamp</th></tr>";
 
         foreach ($logs as $log) {
-            $html .= "<tr><td>{$log['request_id']}</td><td>{$log['user']}</td><td>{$log['previous_state']}</td><td>{$log['new_state']}</td><td>{$log['timestamp']}</td></tr>";
+            $html .= "<tr><td>{$log['request_id']}</td><td>{$log['user']}</td>
+                        <td>{$log['previous_state']}</td><td>{$log['new_state']}</td><td>{$log['timestamp']}</td></tr>";
         }
 
         $html .= "</table>";

@@ -1,5 +1,6 @@
 @tailwind base;
 @tailwind components;
+/* ... */
 
 .select2-dropdown {
     @apply rounded-b-lg shadow-md;
@@ -10,15 +11,12 @@
 .select2-results__group {
     @apply text-lg font-bold text-gray-900;
 }
-
 .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
     @apply bg-red-500 text-white;
 }
-
 .select2-container--default .select2-selection--multiple .select2-selection__choice__display {
     @apply dark:text-[#1b181b];
 }
-
 .page-alert {
     @apply w-full rounded-lg dark:bg-gray-100 dark:text-gray-800 text-sm p-3 border-solid border-2 border-[#FFD43B] flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0;
 }
@@ -29,14 +27,12 @@
 .dx-dialog-button:hover{
     @apply bg-red-600 text-white;
 }
-
 .dx-datagrid .dx-link{
     @apply text-gray-700;
 }
 .dx-texteditor .dx-texteditor-input {
     @apply text-sm bg-gray-100;
 }
-
 .cell-left{ @apply text-left !important;}
 
 .cell-center{ @apply text-center !important;}
@@ -46,8 +42,14 @@
 .main-logo{ @apply lg:h-14 h-10}
 
 .btn-outline{@apply hover:bg-[#c81e1e] bg-red-800 font-normal py-2 px-4 border border-[#c81e1e] rounded shadow}
-.btn-outline{ color: white!important;
-    font-family: "InterVariable", sans-serif;}
+
+.btn-outline{ color: white!important; font-family: "InterVariable", sans-serif;}
+
+.btn-success{@apply focus:outline-none !text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium text-sm px-5 py-2 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-900}
+
+.btn-danger{@apply focus:outline-none !text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium text-sm px-5 py-2 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900}
+
+.btn-light{@apply !text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium text-sm px-5 py-2 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700}
 
 /* ... */
 @tailwind utilities;
