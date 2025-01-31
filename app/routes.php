@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Controllers\Admin\LogController;
+use App\Middleware\LdapDetailsMiddleware;
 use Slim\App;
 use App\Application\Actions\Employee\ListEmployeesAction;
 use App\Application\Actions\Employee\CreateEmployeeAction;
@@ -84,6 +86,13 @@ return function (App $app) {
             return $view->render($response, 'pages/employee-types.html.twig', []);
         })->setName('employee-status');
     });
+
+    $app->group('/admin/logs', function (Group $group) {
+        $group->get('', [LogController::class, 'index'])->add(new LdapDetailsMiddleware(['admin']));
+        $group->get('/export/csv', [LogController::class, 'exportCsv'])->add(new LdapDetailsMiddleware(['admin']));
+        $group->get('/export/pdf', [LogController::class, 'exportPdf'])->add(new LdapDetailsMiddleware(['admin']));
+    });
+
 
     // API Routes
     $app->group('/api/keys', function (Group $group) {
