@@ -2,6 +2,12 @@
 @tailwind components;
 /* ... */
 
+.dx-theme-fluent-typography h1 {@apply text-2xl font-bold leading-tight;}
+.dx-theme-fluent-typography h2 {@apply text-xl font-bold leading-tight;}
+.dx-theme-fluent-typography h3 {@apply text-lg font-bold leading-tight;}
+
+.dx-theme-fluent-typography h1 a{@apply text-red-600;}
+
 .select2-dropdown {
     @apply rounded-b-lg shadow-md;
 }

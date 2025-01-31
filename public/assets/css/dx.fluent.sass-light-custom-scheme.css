@@ -111,9 +111,9 @@
 .dx-theme-fluent-typography small {
     font-size: 12px;
 }
-.dx-theme-fluent-typography a {
+/*.dx-theme-fluent-typography a {
     color: #e02424;
-}
+}*/
 @font-face {
     font-family: DXIcons;
     src: local("DevExtreme Fluent Icons"),local("devextreme_fluent_icons"),url("icons/dxiconsfluent.woff2") format("woff2"),url("icons/dxiconsfluent.woff") format("woff"),url("icons/dxiconsfluent.ttf") format("truetype");
