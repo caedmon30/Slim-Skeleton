@@ -12,11 +12,11 @@ use Slim\Exception\HttpForbiddenException;
 
 class LdapDetailsMiddleware implements MiddlewareInterface
 {
-    private string $allowedUser;
+    private array $allowedUser;
     private string $ldapServer = "ldap://ldap.umd.edu";
     private string $ldapBaseDn = "ou=people,dc=umd,dc=edu";
 
-    public function __construct(string $allowedUser)
+    public function __construct(array $allowedUser)
     {
         $this->allowedUser = $allowedUser;
     }
@@ -29,7 +29,7 @@ class LdapDetailsMiddleware implements MiddlewareInterface
         }
 
         $userDetails = $this->fetchUserDetailsFromLdap($allowedUser);
-        if (!in_array($this->allowedUser,$userDetails,true)) {
+        if (!in_array($userDetails,$this->allowedUser,true)) {
             throw new HttpForbiddenException($request, "Access denied");
         }
 
