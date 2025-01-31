@@ -22,7 +22,6 @@ use App\Application\Actions\User\DeleteUserAction;
 use App\Application\Actions\User\ListUsersAction;
 use App\Application\Actions\User\UpdateUserAction;
 use App\Application\Actions\User\ViewUserAction;
-use App\Application\Middleware\LdapDetailsMiddleware;
 use App\Controllers\Admin\LogController;
 use App\Services\WorkflowService;
 use Psr\Http\Message\ResponseInterface as Response;

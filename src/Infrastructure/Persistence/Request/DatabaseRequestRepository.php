@@ -7,17 +7,20 @@ namespace App\Infrastructure\Persistence\Request;
 use App\Domain\Request\Request;
 use App\Domain\Request\RequestNotFoundException;
 use App\Domain\Request\RequestRepository;
+use App\Services\WorkflowService;
 use Nette\Database\Connection;
 
 class DatabaseRequestRepository implements RequestRepository
 {
     private array $requests;
     private Connection $connection;
+    private WorkflowService $workflowService;
 
-    public function __construct(Connection $connection, array $requests = [])
+    public function __construct(Connection $connection, WorkflowService $workflowService, array $requests = [])
     {
 
         $this->connection = $connection;
+        $this->workflowService = $workflowService;
 
         $results = $this->connection->query("SELECT * FROM requests");
 
@@ -99,6 +102,8 @@ class DatabaseRequestRepository implements RequestRepository
     public function createRequest(array $data): array
     {
         $this->connection->query('INSERT INTO requests ?', $data);
+        $taskId = $this->connection->getInsertId();
+        $this->workflowService->submitRequest((int)$taskId);
         return array_values($this->requests);
     }
 }
