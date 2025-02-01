@@ -61,5 +61,7 @@
 
 .btn-dark{@apply !text-white bg-[#374151] border border-gray-700 focus:outline-none hover:bg-gray-600 focus:ring-4 focus:ring-gray-600 font-medium text-sm px-5 py-2 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700}
 
+.page-subtitle{@apply text-red-600 dark:text-red-700}
+
 /* ... */
 @tailwind utilities;
