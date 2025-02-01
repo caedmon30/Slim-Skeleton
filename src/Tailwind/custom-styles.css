@@ -51,9 +51,7 @@
 
 .container{@apply  dark:text-gray-400}
 
-.btn-outline{@apply hover:bg-[#c81e1e] bg-red-800 font-normal py-2 px-4 border border-[#c81e1e] rounded shadow}
-
-.btn-outline{ color: white!important; font-family: "InterVariable", sans-serif;}
+.btn-outline{@apply  text-white hover:bg-[#c81e1e] bg-red-800 font-normal py-2 px-4 border border-[#c81e1e] rounded shadow}
 
 .btn-success{@apply focus:outline-none !text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium text-sm px-5 py-2 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-900}
 
