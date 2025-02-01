@@ -2,9 +2,9 @@
 @tailwind components;
 /* ... */
 
-.dx-theme-fluent-typography h1 {@apply text-2xl font-bold leading-tight;}
-.dx-theme-fluent-typography h2 {@apply text-xl font-bold leading-tight;}
-.dx-theme-fluent-typography h3 {@apply text-lg font-bold leading-tight;}
+.dx-theme-fluent-typography h1 {@apply !text-2xl font-bold leading-tight;}
+.dx-theme-fluent-typography h2 {@apply !text-xl font-bold leading-tight;}
+.dx-theme-fluent-typography h3 {@apply !text-lg font-bold leading-tight;}
 
 .dx-theme-fluent-typography h1 a{@apply text-red-600;}
 
@@ -48,6 +48,8 @@
 .main-logo{ @apply lg:h-14 h-10}
 
 .top_menu{@apply block lg:inline-block font-bold sm:text-gray-800 sm:hover:border-red-400  lg:hover:text-red-500 mx-6 focus:text-orange-500  p-1 hover:bg-gray-400 sm:hover:bg-transparent}
+
+.container{@apply  dark:text-gray-400}
 
 .btn-outline{@apply hover:bg-[#c81e1e] bg-red-800 font-normal py-2 px-4 border border-[#c81e1e] rounded shadow}
 
