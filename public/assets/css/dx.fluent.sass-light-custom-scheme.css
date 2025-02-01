@@ -63,12 +63,12 @@
     color: #21293b;
     font-weight: 400;
     font-size: 14px;
-    font-family: "Inter, Segoe UI",-apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica neue,helvetica,Cantarell,Ubuntu,roboto,noto,arial,sans-serif;
+    font-family: "InterVal, Segoe UI",-apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica neue,helvetica,Cantarell,Ubuntu,roboto,noto,arial,sans-serif;
     line-height: 1.428571;
 }
 .dx-theme-fluent-typography input,
 .dx-theme-fluent-typography textarea {
-    font-family: "Inter, Segoe UI",-apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica neue,helvetica,Cantarell,Ubuntu,roboto,noto,arial,sans-serif;
+    font-family: "InterVal, Segoe UI",-apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica neue,helvetica,Cantarell,Ubuntu,roboto,noto,arial,sans-serif;
     line-height: 1.428571;
 }
 /*.dx-theme-fluent-typography h1 {
