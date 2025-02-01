@@ -23,10 +23,14 @@ themeToggleBtn.addEventListener('click', function () {
         if (localStorage.getItem('color-theme') === 'light') {
             document.documentElement.classList.add('dark');
             localStorage.setItem('color-theme', 'dark');
+            localStorage.setItem("dx-theme", 'material.orange.dark');
+            window.location.reload();
         } else {
             document.documentElement.classList.remove('dark');
             localStorage.setItem('color-theme', 'light');
+            localStorage.setItem("dx-theme", 'material.orange.light');
             localStorage.setItem('prefers-color-scheme', 'light');
+            window.location.reload();
         }
 
         // if NOT set via local storage previously
@@ -34,10 +38,14 @@ themeToggleBtn.addEventListener('click', function () {
         if (document.documentElement.classList.contains('dark')) {
             document.documentElement.classList.remove('dark');
             localStorage.setItem('color-theme', 'light');
+            localStorage.setItem("dx-theme", 'material.orange.light');
             localStorage.setItem('prefers-color-scheme', 'light');
+            window.location.reload();
         } else {
             document.documentElement.classList.add('dark');
             localStorage.setItem('color-theme', 'dark');
+            localStorage.setItem("dx-theme", 'material.orange.dark');
+            window.location.reload();
         }
     }
 

@@ -19,7 +19,7 @@
         {% include './partials/admin_reports.html.twig' %}
         <h2 class="text-lg font-bold mb-2 mt-4 dark:text-white">Request Logs</h2>
         <p>To add an administrative user to the database, click the plus button below to access the user management tool, navigate to the entry form, provide a valid username (UMD directory ID), firstname, last name and email address</p>
-        <div id="dataGridUsers" class=" dark:bg-slate-700 p-4 mb-4 mt-4 rounded-md">
+        <div id="dataGridUsers" class="dark:bg-slate-700 p-4 mb-4 mt-4 rounded-md">
 
             <div class="actions">
                 <a href="{{ url_for('admin.logs.export.csv') }}" class="btn-light">Export as CSV</a>
@@ -28,10 +28,10 @@
 
             <div class="flex flex-col">
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8 shadow-xs rounded-lg">
                         <div class="overflow-hidden">
                             <table
-                                    class="min-w-full text-left text-sm font-light text-surface dark:text-gray-400 rounded-md mt-2">
+                                    class="min-w-full text-left text-sm font-light text-surface dark:text-gray-400 rounded-lg mt-2">
                                 <thead
                                         class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
