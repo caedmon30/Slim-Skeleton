@@ -20,7 +20,7 @@
 
 }
 .dx-datagrid .dx-link {
-    @apply text-red-600 dark:text-red-500
+    @apply text-red-600 dark:text-gray-400
 }
 .dx-pager, .dx-pagination {
     @apply dark:!text-white dark:!bg-black
