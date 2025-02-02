@@ -1133,6 +1133,11 @@ input[type="range"]:active::-webkit-slider-thumb {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity, 1));
 }
+
+.dx-texteditor.dx-editor-filled .dx-lookup-field:is(.dark *), .dx-texteditor.dx-editor-filled .dx-placeholder:is(.dark *)::before, .dx-texteditor.dx-editor-filled .dx-texteditor-input:is(.dark *), .dx-texteditor.dx-editor-outlined .dx-lookup-field:is(.dark *), .dx-texteditor.dx-editor-outlined .dx-placeholder:is(.dark *)::before, .dx-texteditor.dx-editor-outlined .dx-texteditor-input:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
 /*remove search icon from datagrid*/
 .dx-searchbox .dx-icon-search {
   display: none;

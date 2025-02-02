@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
     {% include 'partials/head.html.twig' %}
-<body class="dx-viewport dark:bg-[#111827] dark:text-gray-400 bg-[#FAFAFA]">
+<body id="main-app" class="dx-viewport dark:bg-[#111827] dark:text-gray-400 bg-[#FAFAFA] dx-swatch-umd-fluent-scheme-light">
 {% include 'partials/navbar.html.twig' %}
 <div id="content" class="mx-auto pt-0 h-lvh min-[375px]">
     {% block content %}
@@ -19,10 +19,5 @@
 {% block javascript %}
 {% endblock %}
 <script src="https://umd-header.umd.edu/build/bundle.js?search=0&amp;events=0&amp;news=0&amp;schools=0&amp;admissions=0&amp;support=0&amp;support_url=&amp;wrapper=1100&amp;sticky=0"></script>
-<script>
-    $(() => {
-    DevExpress.ui.themes.current(window.localStorage.getItem("dx-theme") || "material.orange.light");
-    });
-</script>
 </body>
 </html>
