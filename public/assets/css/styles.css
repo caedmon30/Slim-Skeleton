@@ -1479,8 +1479,6 @@ input[type="range"]:active::-webkit-slider-thumb {
   --tw-ring-color: rgb(55 65 81 / var(--tw-ring-opacity, 1));
 }
 
-
-
 .btn-dark {
   margin-inline-end: 0.5rem;
   margin-bottom: 0.5rem;
@@ -1500,14 +1498,10 @@ input[type="range"]:active::-webkit-slider-thumb {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1)) !important;
 }
 
-
-
 .btn-dark:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(75 85 99 / var(--tw-bg-opacity, 1));
 }
-
-
 
 .btn-dark:focus {
   outline: 2px solid transparent;
@@ -1519,8 +1513,6 @@ input[type="range"]:active::-webkit-slider-thumb {
   --tw-ring-color: rgb(75 85 99 / var(--tw-ring-opacity, 1));
 }
 
-
-
 .btn-dark:is(.dark *) {
   --tw-border-opacity: 1;
   border-color: rgb(75 85 99 / var(--tw-border-opacity, 1));
@@ -1530,16 +1522,12 @@ input[type="range"]:active::-webkit-slider-thumb {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
-
-
 .btn-dark:hover:is(.dark *) {
   --tw-border-opacity: 1;
   border-color: rgb(75 85 99 / var(--tw-border-opacity, 1));
   --tw-bg-opacity: 1;
   background-color: rgb(55 65 81 / var(--tw-bg-opacity, 1));
 }
-
-
 
 .btn-dark:focus:is(.dark *) {
   --tw-ring-opacity: 1;
@@ -1554,6 +1542,29 @@ input[type="range"]:active::-webkit-slider-thumb {
 .page-subtitle:is(.dark *) {
   --tw-text-opacity: 1;
   color: rgb(200 30 30 / var(--tw-text-opacity, 1));
+}
+
+.page-title {
+  margin-bottom: 1.5rem;
+  margin-right: 0.5rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity, 1));
+}
+
+.page-title:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+@media (min-width: 768px) {
+
+  .page-title {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
 }
 
 /* ... */
@@ -3020,6 +3031,10 @@ input[type="range"]:active::-webkit-slider-thumb {
 }
 .dark\:bg-gray-800\/50:is(.dark *) {
   background-color: rgb(31 41 55 / 0.5);
+}
+.dark\:bg-gray-900:is(.dark *) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
 }
 .dark\:bg-gray-900\/80:is(.dark *) {
   background-color: rgb(17 24 39 / 0.8);
