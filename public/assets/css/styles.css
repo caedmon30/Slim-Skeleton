@@ -2368,6 +2368,9 @@ input[type="range"]:active::-webkit-slider-thumb {
   padding-top: 0.4rem;
   padding-bottom: 0.4rem;
 }
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
 .pr-2 {
   padding-right: 0.5rem;
 }
@@ -3325,6 +3328,10 @@ input[type="range"]:active::-webkit-slider-thumb {
   .lg\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
+  }
+
+  .lg\:pl-0 {
+    padding-left: 0px;
   }
 
   .lg\:text-3xl {

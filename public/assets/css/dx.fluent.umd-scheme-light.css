@@ -70,7 +70,7 @@
   color: #242424;
   font-weight: 400;
   font-size: 14px;
-  font-family: "Segoe UI",-apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica neue,helvetica,Cantarell,Ubuntu,roboto,noto,arial,sans-serif;
+  font-family: InterVariable, "Segoe UI",-apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica neue,helvetica,Cantarell,Ubuntu,roboto,noto,arial,sans-serif;
   line-height: 1.428571;
 }
 .dx-theme-fluent-typography .dx-swatch-umd-fluent-scheme-light input,
