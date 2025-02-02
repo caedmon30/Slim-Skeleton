@@ -2,21 +2,28 @@
 @tailwind components;
 /* ... */
 
-.dx-theme-material-typography h1 {@apply !text-2xl font-bold leading-tight;}
-.dx-theme-material-typography h2 {@apply !text-xl font-bold leading-tight;}
-.dx-theme-material-typography h3 {@apply !text-lg font-bold leading-tight;}
-.dx-theme-material-typography h1 a{@apply text-red-600;}
+.dx-theme-material-typography h1 {@apply !text-2xl font-bold leading-tight}
+.dx-theme-material-typography h2 {@apply !text-xl font-bold leading-tight}
+.dx-theme-material-typography h3 {@apply !text-lg font-bold leading-tight}
 
 .dx-texteditor.dx-editor-filled .dx-lookup-field, .dx-texteditor.dx-editor-filled .dx-placeholder::before, .dx-texteditor.dx-editor-filled .dx-texteditor-input, .dx-texteditor.dx-editor-outlined .dx-lookup-field, .dx-texteditor.dx-editor-outlined .dx-placeholder::before, .dx-texteditor.dx-editor-outlined .dx-texteditor-input {
-    @apply px-4 py-2 leading-tight text-black leading-tight text-sm;
+    @apply px-4 py-2 leading-tight text-black text-sm;
 }
-
+/*remove search icon from datagrid*/
 .dx-searchbox .dx-icon-search {
    @apply hidden;
 }
+.dx-datagrid > .dx-datagrid-headers tr{
+    @apply  uppercase dark:bg-gray-700 even:dark:bg-gray-800
+}
+.dx-row .dx-data-row .dx-row-lines .dx-row-alt{
 
+}
+.dx-datagrid .dx-link {
+    @apply text-red-600 dark:text-red-500
+}
 .dx-pager, .dx-pagination {
-    @apply dark:!text-white dark:!bg-gray-900
+    @apply dark:!text-white dark:!bg-black
 }
 
 .select2-dropdown {
