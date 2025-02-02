@@ -1206,8 +1206,7 @@ input[type="range"]:active::-webkit-slider-thumb {
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
-  border-radius: 0.5rem;
-  border-width: 2px;
+  border-width: 1px;
   border-style: solid;
   --tw-border-opacity: 1;
   border-color: rgb(255 212 59 / var(--tw-border-opacity, 1));
@@ -1546,7 +1545,6 @@ input[type="range"]:active::-webkit-slider-thumb {
 
 .page-title {
   margin-bottom: 1.5rem;
-  margin-right: 0.5rem;
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.025em;

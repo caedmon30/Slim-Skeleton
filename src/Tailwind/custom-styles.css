@@ -42,7 +42,7 @@
     @apply dark:text-[#1b181b];
 }
 .page-alert {
-    @apply w-full rounded-lg dark:bg-gray-100 dark:text-gray-800 text-sm p-3 border-solid border-2 border-[#FFD43B] flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0;
+    @apply w-full dark:bg-gray-100 dark:text-gray-800 text-sm p-3 border-solid border border-[#FFD43B] flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0;
 }
 .page-alert-icon {
     @apply bg-[#FFD43B] flex p-2 rounded-full;
@@ -72,7 +72,7 @@
 
 .page-subtitle{@apply text-red-600 dark:text-red-700}
 
-.page-title{@apply mb-6 mr-2 font-extrabold leading-none tracking-tight text-gray-900 md:text-xl dark:text-white}
+.page-title{@apply mb-6 font-extrabold leading-none tracking-tight text-gray-900 md:text-xl dark:text-white}
 
 /* ... */
 @tailwind utilities;
