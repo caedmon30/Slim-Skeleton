@@ -14,7 +14,7 @@
    @apply hidden;
 }
 .dx-datagrid > .dx-datagrid-headers tr{
-    @apply  uppercase dark:bg-gray-700 even:dark:bg-gray-800
+    @apply  uppercase dark:bg-gray-700 even:dark:bg-gray-800 text-sm
 }
 .dx-row .dx-data-row .dx-row-lines .dx-row-alt{
 
