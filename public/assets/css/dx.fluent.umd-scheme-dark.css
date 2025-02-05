@@ -9369,7 +9369,6 @@
 .dx-swatch-umd-fluent-scheme-dark .dx-toast-stack {
   position: fixed;
   display: flex;
-  gap: 3px;
   align-items: center;
   z-index: 9500;
   gap: 12px;
@@ -10351,7 +10350,6 @@
   }
 }
 .dx-swatch-umd-fluent-scheme-dark .dx-loadpanel-content {
-  border: 1px solid #ccc;
   text-align: center;
   -webkit-user-select: none;
   -moz-user-select: none;
