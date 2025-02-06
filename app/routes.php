@@ -12,10 +12,10 @@ use App\Application\Actions\Key\DeleteKeyAction;
 use App\Application\Actions\Key\ListKeysAction;
 use App\Application\Actions\Key\UpdateKeyAction;
 use App\Application\Actions\Key\ViewKeyAction;
-use App\Application\Actions\Request\CreateRequestAction;
+use App\Application\Actions\Request\CreateApprovalsAction;
 use App\Application\Actions\Request\DeleteRequestAction;
-use App\Application\Actions\Request\ListRequestAction;
-use App\Application\Actions\Request\UpdateRequestAction;
+use App\Application\Actions\Request\ListApprovalAction;
+use App\Application\Actions\Request\UpdateApprovalAction;
 use App\Application\Actions\Request\ViewRequestAction;
 use App\Application\Actions\User\CreateUserAction;
 use App\Application\Actions\User\DeleteUserAction;
@@ -102,11 +102,11 @@ return function (App $app) {
     });
 
     $app->group('/api/requests', function (Group $group) {
-        $group->get('', ListRequestAction::class);
-        $group->post('', CreateRequestAction::class);
+        $group->get('', ListApprovalAction::class);
+        $group->post('', CreateApprovalsAction::class);
         $group->get('/{id}', ViewRequestAction::class);
         $group->delete('/{id}', DeleteRequestAction::class);
-        $group->put('/{id}', UpdateRequestAction::class);
+        $group->put('/{id}', UpdateApprovalAction::class);
     });
 
     $app->group('/api/users', function (Group $group) {
