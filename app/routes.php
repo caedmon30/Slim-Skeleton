@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Application\Actions\Approvals\CreateApprovalAction;
+use App\Application\Actions\Approvals\ListApprovalAction;
+use App\Application\Actions\Approvals\UpdateApprovalAction;
 use App\Application\Actions\Employee\CreateEmployeeAction;
 use App\Application\Actions\Employee\DeleteEmployeeAction;
 use App\Application\Actions\Employee\ListEmployeesAction;
@@ -12,10 +15,10 @@ use App\Application\Actions\Key\DeleteKeyAction;
 use App\Application\Actions\Key\ListKeysAction;
 use App\Application\Actions\Key\UpdateKeyAction;
 use App\Application\Actions\Key\ViewKeyAction;
-use App\Application\Actions\Request\CreateApprovalsAction;
+use App\Application\Actions\Request\CreateRequestAction;
 use App\Application\Actions\Request\DeleteRequestAction;
-use App\Application\Actions\Request\ListApprovalAction;
-use App\Application\Actions\Request\UpdateApprovalAction;
+use App\Application\Actions\Request\ListRequestAction;
+use App\Application\Actions\Request\UpdateRequestAction;
 use App\Application\Actions\Request\ViewRequestAction;
 use App\Application\Actions\User\CreateUserAction;
 use App\Application\Actions\User\DeleteUserAction;
@@ -102,8 +105,16 @@ return function (App $app) {
     });
 
     $app->group('/api/requests', function (Group $group) {
+        $group->get('', ListRequestAction::class);
+        $group->post('', CreateRequestAction::class);
+        $group->get('/{id}', ViewRequestAction::class);
+        $group->delete('/{id}', DeleteRequestAction::class);
+        $group->put('/{id}', UpdateRequestAction::class);
+    });
+
+    $app->group('/api/approval', function (Group $group) {
         $group->get('', ListApprovalAction::class);
-        $group->post('', CreateApprovalsAction::class);
+        $group->post('', CreateApprovalAction::class);
         $group->get('/{id}', ViewRequestAction::class);
         $group->delete('/{id}', DeleteRequestAction::class);
         $group->put('/{id}', UpdateApprovalAction::class);
