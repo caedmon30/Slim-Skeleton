@@ -25,6 +25,7 @@
 .dx-pager, .dx-pagination {
     @apply dark:!text-white dark:!bg-black
 }
+.dx-button-content:hover{@apply bg-red-600 text-white}
 
 .select2-dropdown {
     @apply rounded-b-lg shadow-md dark:bg-gray-800;

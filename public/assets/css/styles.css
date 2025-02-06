@@ -1172,6 +1172,12 @@ input[type="range"]:active::-webkit-slider-thumb {
   --tw-text-opacity: 1 !important;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1)) !important;
 }
+.dx-button-content:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(224 36 36 / var(--tw-bg-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
 
 .select2-dropdown {
   border-bottom-right-radius: 0.5rem;
