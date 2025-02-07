@@ -110,12 +110,11 @@ $(document).ready(
                     {dataField: 'email',},
                     {dataField: 'uid', caption: 'Directory ID', cssClass: "cell-left", allowHeaderFiltering: true, allowFiltering: true,},
                     {dataField: 'pi_supervisor',caption: 'PI/Supervisor',},
-                    {dataField: 'pi_email',caption: 'PI/Supervisor',},
-                    {dataField: 'request_reason', cssClass: "cell-left",},
+                    {dataField: 'request_reason', caption: 'Reason',cssClass: "cell-left",},
                     {dataField: 'status',dataType: "enum",},
                     {dataField: 'date_submitted', allowHeaderFiltering: false, dataType: "datetime",},
                     { cellTemplate: function (container, options) {
-                            $('<a>' + '<i class="fa-light fa-pen"></i>' + '</a>')
+                            $('<a>' + '<i class="fa-light fa-pen dark:text-white"></i>' + '</a>')
                                 .attr('href', 'request-create/' + options.data.id)
                                 .attr('target', '_blank')
                                 .attr("class", 'text-red-800')
