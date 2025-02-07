@@ -46,6 +46,18 @@ return function (ContainerBuilder $containerBuilder) {
                     ],
                 ],
 
+                'cas'=> [
+                    'cas_host' => '192.168.0.102',
+                    'cas_port' => 443,
+                    'cas_context' => 'http://192.168.0.102/cas',
+                    'client_service_name' => 'http://localhost:8000',
+                ],
+                'ldap'=>[
+                    'host' => 'ldap.example.com', // Replace with your LDAP server hostname/IP
+                    'port' => 389,                // Typically 389 (LDAP) or 636 (LDAPS)
+                    'base_dn' => 'dc=example,dc=com', // Replace with your base DN
+                    'username_attribute' => 'uid',   // Attribute to use for username (e.g., uid, samaccountname)
+                ],
                 'session' => [
                     'name' => 'keys_app',
                     'lifetime' => 7200,

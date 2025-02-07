@@ -7,7 +7,6 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as Handler;
 use Psr\Http\Message\ResponseInterface as Response;
 use Exception; // For general exceptions
-use RuntimeException;
 
 // For configuration related exceptions
 
@@ -16,24 +15,16 @@ class LdapAuthorizationMiddleware
     /**
      * LDAP Configuration (Ideally, fetch from config service/container)
      */
-
     /**
      * Invoke middleware callable.
      *
      * @param Request $request PSR-7 request
      * @param Handler $handler PSR-15 request handler
      * @param Response $response PSR-7 response handler
-     *
      * @return Response
      */
-    private array $ldapConfig = [
-        'host' => 'ldap.example.com', // Replace with your LDAP server hostname/IP
-        'port' => 389,                // Typically 389 (LDAP) or 636 (LDAPS)
-        'base_dn' => 'dc=example,dc=com', // Replace with your base DN
-        'username_attribute' => 'uid',   // Attribute to use for username (e.g., uid, samaccountname)
-        // 'authorized_group_dn' => 'cn=MyAppUsers,ou=Groups,dc=example,dc=com', // Example: DN of an authorized LDAP group (optional)
-        // 'require_group_membership' => false, // Set to true if group membership is required for authorization
-    ];
+
+    private array $ldapConfig = [];
 
 
     public function __invoke(Request $request, Handler $handler): Response
