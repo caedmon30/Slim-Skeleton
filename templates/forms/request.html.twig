@@ -18,7 +18,10 @@
     {% include './partials/breadcrumb.html.twig' %}
     <div id="container" class="container mx-auto p-2.5">
         <h1 class="mb-6 font-extrabold leading-none tracking-tight text-gray-900 md:text-xl lg:text-3xl dark:text-slate-700">Create <span class="text-red-600 dark:text-red-500">Request</span></h1>
-
+        <div class="text-right mb-4">   <a href="{{ url_for('requests') }}" class="btn-light mb-2">
+                <i class="fa-sharp-duotone fa-solid fa-key-skeleton-left-right mr-3"></i> Show Requests
+            </a>
+        </div>
         <hr class="h-px my-4 border-0">
         <!-- component -->
         {% include './includes/bar_1.html.twig' %}
@@ -52,7 +55,7 @@
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="uid">
                         UID
                     </label>
-                    <input required class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 dark:text-white dark:bg-gray-800" id="uid" name="uid" type="number">
+                    <input required class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 dark:text-white dark:bg-gray-800" id="uid" name="uid" type="number" min="111111111" max="999999999" maxlength=9>
                 </div>
             </div>
             <div class="flex flex-wrap -mx-3 mb-8">

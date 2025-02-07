@@ -16,15 +16,15 @@
     <div id="GridContainer" class="container mx-auto p-2.5">
         {% include './partials/breadcrumb.html.twig' %}
         <h1 class="page-title">Key <span class="page-subtitle">Requests</span></h1>
-       <div class="text-right mb-4">   <a href="{{ url_for('request-create') }}" class="btn-dark mb-2">
+       <div class="text-right mb-4">   <a href="{{ url_for('request-create') }}" class="btn-light mb-2">
                <i class="fa-sharp-duotone fa-solid fa-key-skeleton-left-right mr-3"></i> Create Request
            </a>
        </div>
         {% include './partials/title-panel.html.twig' %}
-
+        <div id="dataGridRequests" class=" dark:bg-slate-700 p-4 mb-4 mt-8 rounded-md dx-swatch-custom-scheme"></div>
 
 
     </div>
 {% endblock %}
 
-    {% block javascript %} {% endblock %}
+    {% block javascript %}   <script src="{{ '../assets/js/dx-data/requests.js' }}"></script>{% endblock %}

@@ -42,10 +42,14 @@ class DatabaseRequestRepository implements RequestRepository
                 $row->room_three,
                 $row->room_four,
                 $row->room_five,
-                $row->card_access,
+                $row->card_access = unserialize($row->card_access),
                 $row->signed,
                 $row->justification,
-                $row->submitted_by
+                $row->status,
+                $row->submitted_by,
+                $row->date_submitted,
+
+
             );
         }
         $this->requests = $requests;
@@ -82,7 +86,7 @@ class DatabaseRequestRepository implements RequestRepository
         }
 
         $this->connection->query('DELETE FROM requests WHERE id = ?', $id);
-        return array_values($this->requests);
+        return array_values((array)$this->connection->query("SELECT * FROM requests")->fetchAll());
     }
 
 
@@ -96,7 +100,7 @@ class DatabaseRequestRepository implements RequestRepository
             throw new RequestNotFoundException();
         }
         $this->connection->query('UPDATE requests SET ? WHERE id = ?', $data, $id);
-        return array_values($this->requests);
+        return array_values((array)$this->connection->query("SELECT * FROM requests")->fetchAll());
     }
 
     public function createRequest(array $data): array

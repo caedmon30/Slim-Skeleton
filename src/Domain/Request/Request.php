@@ -3,6 +3,7 @@
 namespace App\Domain\Request;
 
 use JsonSerializable;
+use Nette\Utils\DateTime;
 
 class Request implements JsonSerializable
 {
@@ -22,10 +23,12 @@ class Request implements JsonSerializable
     private string $room_three;
     private string $room_four;
     private string $room_five;
-    private string $card_access;
+    private array $card_access;
     private int $signed;
     private null|string $justification;
+    private string $status;
     private string $submitted_by;
+    private DateTime $date_submitted;
 
 
     public function __construct(
@@ -45,10 +48,12 @@ class Request implements JsonSerializable
         string $room_three,
         string $room_four,
         string $room_five,
-        string $card_access,
+        array $card_access,
         int $signed,
         null|string $justification,
+        string $status,
         string $submitted_by,
+        DateTime $date_submitted
     ) {
         $this->id = $id;
         $this->first_name = $first_name;
@@ -69,7 +74,9 @@ class Request implements JsonSerializable
         $this->card_access = $card_access;
         $this->signed = $signed;
         $this->justification = $justification;
+        $this->status = $status;
         $this->submitted_by = $submitted_by;
+        $this->date_submitted = $date_submitted;
     }
 
     public function getId(): ?int
@@ -179,7 +186,7 @@ class Request implements JsonSerializable
         return $this->room_five;
     }
 
-    public function getCardAccess(): string
+    public function getCardAccess(): array
     {
         return $this->card_access;
     }
@@ -197,6 +204,11 @@ class Request implements JsonSerializable
     public function getSubmittedBy(): string
     {
         return $this->submitted_by;
+    }
+
+    public function getDateSubmitted(): DateTime
+    {
+        return $this->date_submitted;
     }
     public function jsonSerialize(): array
     {
@@ -220,7 +232,9 @@ class Request implements JsonSerializable
             'card_access' => $this->card_access,
             'signed' => $this->signed,
             'justification' => $this->justification,
+            'status' => $this->status,
             'submitted_by' => $this->submitted_by,
+            'date_submitted' => $this->date_submitted,
 
         ];
     }
