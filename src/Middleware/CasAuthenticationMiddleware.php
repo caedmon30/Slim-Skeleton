@@ -2,6 +2,7 @@
 
 namespace App\Middleware;
 
+use App\Application\Settings\SettingsInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as Handler;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -13,33 +14,31 @@ class CasAuthenticationMiddleware
      *
      * @param Request $request PSR-7 request
      * @param Handler $handler PSR-15 request handler
-     * @return Response
+     * @param SettingsInterface $casConfig
      */
-    public function __invoke(Request $request, Handler $handler): Response
+
+    private SettingsInterface $casConfig;
+
+    public function __invoke(Request $request, Handler $handler, SettingsInterface $casConfig): Response
     {
-        $username = ''; // Initialize username
+        $this->casConfig = $casConfig['cas'];
         // Enable debugging
         phpCAS::setLogger();
         // Enable verbose error messages. Disable in production!
         phpCAS::setVerbose(true);
-
         // Initialize phpCAS
-        $cas_host = '';
-        $cas_port = '';
-        $cas_context = '';
-        $client_service_name = '';
-        phpCAS::client(CAS_VERSION_2_0, $cas_host, $cas_port, $cas_context, $client_service_name);
+        phpCAS::client(CAS_VERSION_2_0, $this->casConfig['cas_host'], $this->casConfig['cas_port'], $this->casConfig['cas_context'], $this->casConfig['service_base_url']);
 
         // For production use set the CA certificate that is the issuer of the cert
         // on the CAS server and uncomment the line below
-        // phpCAS::setCasServerCACert($cas_server_ca_cert_path);
+        // phpCAS::setCasServerCACert($this->casConfig['cas_server_ca_cert_path']);
 
         // For quick testing you can disable SSL validation of the CAS server.
         // THIS SETTING IS NOT RECOMMENDED FOR PRODUCTION.
         // VALIDATING THE CAS SERVER IS CRUCIAL TO THE SECURITY OF THE CAS PROTOCOL!
         phpCAS::setNoCasServerValidation();
 
-// force CAS authentication
+        // force CAS authentication
         phpCAS::forceAuthentication();
 
         // Check if phpCAS is authenticated
@@ -59,7 +58,7 @@ class CasAuthenticationMiddleware
             // phpCAS is NOT authenticated.
             $_SESSION['isAuthenticatedByCAS'] = false;
             // For optional forced CAS authentication for all routes protected by this middleware:
-            // \phpCAS::forceAuthentication(); // Uncomment to force CAS login
+            phpCAS::forceAuthentication(); // Uncomment to force CAS login
         }
 
         // Process the request further down the middleware stack

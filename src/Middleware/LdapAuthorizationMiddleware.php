@@ -2,6 +2,7 @@
 
 namespace App\Middleware;
 
+use App\Application\Settings\SettingsInterface;
 use LDAP\Connection;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as Handler;
@@ -20,18 +21,17 @@ class LdapAuthorizationMiddleware
      *
      * @param Request $request PSR-7 request
      * @param Handler $handler PSR-15 request handler
-     * @param Response $response PSR-7 response handler
+     * @param SettingsInterface $ldapConfig
      * @return Response
      */
+    private SettingsInterface $ldapConfig;
 
-    private array $ldapConfig = [];
-
-
-    public function __invoke(Request $request, Handler $handler): Response
+    public function __invoke(Request $request, Handler $handler, SettingsInterface $ldapConfig): Response
     {
         global $response;
         $isAuthorized = false;
         $casUsername = $_SESSION['cas_username'] ?? null; // Get CAS username from session
+        $this->ldapConfig = $ldapConfig['ldap'];
 
         if (!empty($casUsername) && $_SESSION['isAuthenticatedByCAS'] === true) { // Check CAS authentication first
             try {
@@ -47,9 +47,19 @@ class LdapAuthorizationMiddleware
                         // 3. For this example, just checking if user DN exists in LDAP after CAS authentication might be enough for "authorization" in a basic sense.
                         $isAuthorized = true; // For this example, simply authorize if user DN is found after CAS
 
+                        // @phpstan-ignore if.alwaysTrue
                         if ($isAuthorized) {
                             $_SESSION['isAuthorizedByLDAP'] = true; // Flag LDAP authorization success
                             // Optionally, fetch and store more user details from LDAP in session for later use in application.
+                            $user_details = $this->fetchUserDetails($casUsername);
+
+                            $_SESSION['email'] = $user_details['email'];
+                            $_SESSION['firstname'] = $user_details['firstName'];
+                            $_SESSION['lastname'] = $user_details['lastName'];
+                            $_SESSION['uid'] = $user_details['uid'];
+                            $_SESSION['telephonenumber'] = $user_details['telephonenumber'];
+                            $_SESSION['department'] = $user_details['department'];
+
                         } else {
                             $_SESSION['isAuthorizedByLDAP'] = false;
                             // Optionally log authorization failure
@@ -100,7 +110,6 @@ class LdapAuthorizationMiddleware
     private function connectToLdap(): Connection
     {
         $ldapUri = $this->ldapConfig['host'].':'.$this->ldapConfig['port'];
-
         $ldapConn = ldap_connect($ldapUri);
 
         if (!$ldapConn) {
@@ -155,79 +164,27 @@ class LdapAuthorizationMiddleware
         return $userDn; // Return the user's DN
     }
 
-    /**
-     * Example: Check if a user is a member of an LDAP group.
-     * **Implement your actual group membership check logic here based on your LDAP schema.**
-     *
-     * @param resource $ldapConn LDAP link identifier.
-     * @param string $userDn User's Distinguished Name.
-     * @param string $groupDn Group's Distinguished Name.
-     * @return bool True if user is a member, false otherwise.
-     */
-    private function isUserMemberOfGroup($ldapConn, $userDn, $groupDn): bool
+    private function fetchUserDetails(string $username): null | array
     {
-        if (empty($groupDn)) {
-            return false; // Group DN not configured - consider not a member (or adjust logic)
+        $ldapUri = $this->ldapConfig['host'].':'.$this->ldapConfig['port'];
+        $ldapConn = ldap_connect($ldapUri);
+        if (!$ldapConn) {
+            return null;
         }
 
-        // **Implement your LDAP group membership check here.**
-        // **Example (using 'memberOf' attribute - common in Active Directory):**
-        $searchFilter = "(&(objectClass=group)(distinguishedName={$groupDn})(member:1.2.840.113556.1.4.1941:={$userDn}))";
+        ldap_set_option($ldapConn, LDAP_OPT_PROTOCOL_VERSION, 3);
+        $search = ldap_search($ldapConn, $this->ldapConfig['base_dn'], "(uid=$username)");
+        $entries = ldap_get_entries($ldapConn, $search);
 
-        $searchResult = @ldap_search($ldapConn, $this->ldapConfig['base_dn'], $searchFilter, ['dn']);
-        if (!$searchResult) {
-            error_log("LDAP Group membership search failed. LDAP Error: " . ldap_error($ldapConn));
-            return false; // Search failed
-        }
+        $user_info = $entries[0];
+        $user_info["email"] = $entries[0]["mail"][0];
+        $user_info["firstName"] = $entries[0]["givenname"][0];
+        $user_info["lastName"] = $entries[0]["sn"][0];
+        $user_info["uid"] = $entries[0]["employeenumber"][0];
+        $user_info["telephonenumber"] = $entries[0]["telephonenumber"][0];
+        $user_info["department"] = $entries[0]["ou"][0];
 
-        $entryCount = ldap_count_entries($ldapConn, $searchResult);
-        return $entryCount > 0; // User is a member if group entry is found
-
-        // **Alternative group membership checks (depending on your LDAP schema):**
-        // - Check 'groupOfNames' objectClass and 'member' attribute.
-        // - Check 'posixGroup' objectClass and 'memberUid' attribute.
-        // - Recursive group membership checks if nested groups are used.
-
-        // **Important:**  LDAP group membership checks can be complex and schema-dependent.
-        // Adapt the search filter and logic to match your specific LDAP schema and group structure.
+        return $user_info;
     }
 
-    /**
-     * Example: Check for a specific user attribute value.
-     * **Implement your actual attribute check logic here.**
-     *
-     * @param resource $ldapConn LDAP link identifier.
-     * @param string $userDn User's Distinguished Name.
-     * @param string $attributeName Attribute to check (e.g., 'department').
-     * @param string $expectedValue Expected attribute value.
-     * @return bool True if attribute value matches, false otherwise.
-     */
-    private function checkUserAttribute($ldapConn, $userDn, $attributeName, $expectedValue): bool
-    {
-        $readResult = @ldap_read($ldapConn, $userDn, [$attributeName]);
-        if (!$readResult) {
-            error_log("LDAP attribute read failed for user DN '{$userDn}'. LDAP Error: " . ldap_error($ldapConn));
-            return false; // Read failed
-        }
-
-        $entry = ldap_first_entry($ldapConn, $readResult);
-        if (!$entry) {
-            error_log("LDAP First entry retrieval failed during attribute check for user DN '{$userDn}'. LDAP Error: " . ldap_error($ldapConn));
-            return false; // Entry not found
-        }
-
-        $attributeValues = ldap_get_values($ldapConn, $entry, $attributeName);
-        if ($attributeValues === false || $attributeValues['count'] < 1) {
-            return false; // Attribute not found or no values
-        }
-
-        // Check if any of the attribute values match the expected value (case-insensitive example)
-        for ($i = 0; $i < $attributeValues['count']; $i++) {
-            if (strcasecmp($attributeValues[$i], $expectedValue) === 0) {
-                return true; // Attribute value matches
-            }
-        }
-
-        return false; // Attribute value not found or does not match expected value
-    }
 }

@@ -49,8 +49,9 @@ return function (ContainerBuilder $containerBuilder) {
                 'cas'=> [
                     'cas_host' => '192.168.0.102',
                     'cas_port' => 443,
-                    'cas_context' => 'http://192.168.0.102/cas',
-                    'client_service_name' => 'http://localhost:8000',
+                    'cas_context' => '/cas',
+                    'service_base_url' => 'http://localhost:8000',
+                    'cas_server_ca_cert_path' => __DIR__ . '/../certs/USERTrust_RSA_Certification_Authority.pem',
                 ],
                 'ldap'=>[
                     'host' => 'ldap.example.com', // Replace with your LDAP server hostname/IP

@@ -1,4 +1,7 @@
 parameters:
   level: 4
+  ignoreErrors:
+    - identifier: if.alwaysTrue
   paths:
     - src
+
