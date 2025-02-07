@@ -35,8 +35,8 @@ class LdapAuthorizationMiddleware
 
         if (!empty($casUsername) && $_SESSION['isAuthenticatedByCAS'] === true) { // Check CAS authentication first
             try {
-                $ldapConn = $this->connectToLdap();
-                if ($ldapConn) {
+                if ($this->connectToLdap()) {
+                    $ldapConn = $this->connectToLdap();
                     $ldapUserDn = $this->getUserDn($ldapConn, $casUsername);
                     if ($ldapUserDn) {
                         // **Authorization Logic based on LDAP - Example: Just check if user DN is found**
@@ -45,9 +45,9 @@ class LdapAuthorizationMiddleware
                         // 1. Check for group membership:  $isAuthorized = $this->isUserMemberOfGroup($ldapConn, $ldapUserDn, $this->ldapConfig['authorized_group_dn']);
                         // 2. Check for specific user attributes: $isAuthorized = $this->checkUserAttribute($ldapConn, $ldapUserDn, 'department', 'IT');
                         // 3. For this example, just checking if user DN exists in LDAP after CAS authentication might be enough for "authorization" in a basic sense.
-                        $isAuthorized = true; // For this example, simply authorize if user DN is found after CAS
+                        //$isAuthorized = true; // For this example, simply authorize if user DN is found after CAS
+                        $isAuthorized = ($ldapUserDn != false);
 
-                        // @phpstan-ignore if.alwaysTrue
                         if ($isAuthorized) {
                             $_SESSION['isAuthorizedByLDAP'] = true; // Flag LDAP authorization success
                             // Optionally, fetch and store more user details from LDAP in session for later use in application.
