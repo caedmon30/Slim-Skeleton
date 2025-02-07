@@ -104,6 +104,6 @@ class DatabaseRequestRepository implements RequestRepository
         $this->connection->query('INSERT INTO requests ?', $data);
         $taskId = $this->connection->getInsertId();
         $this->workflowService->submitRequest((int)$taskId);
-        return array_values($this->requests);
+        return array_values((array)$this->connection->query("SELECT * FROM requests")->fetchAll());
     }
 }
