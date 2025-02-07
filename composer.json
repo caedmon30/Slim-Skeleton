@@ -26,7 +26,6 @@
         "ext-json": "*",
         "ext-ldap": "*",
         "ext-pdo": "*",
-        "zeuxisoo/slim-whoops": "0.7.*",
         "apereo/phpcas": "^1.6",
         "monolog/monolog": "^2.9",
         "mpdf/mpdf": "^8.2",
