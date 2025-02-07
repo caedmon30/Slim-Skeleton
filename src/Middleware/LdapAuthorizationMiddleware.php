@@ -134,7 +134,6 @@ class LdapAuthorizationMiddleware
         return $ldapConn;
     }
 
-
     /**
      * Retrieves the Distinguished Name (DN) of a user based on the username. (Same as before)
      *
