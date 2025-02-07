@@ -7,7 +7,10 @@ use LDAP\Connection;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as Handler;
 use Psr\Http\Message\ResponseInterface as Response;
-use Exception; // For general exceptions
+use Exception;
+use Slim\Routing\RouteContext;
+
+// For general exceptions
 
 // For configuration related exceptions
 
@@ -39,12 +42,14 @@ class LdapAuthorizationMiddleware
                     $ldapConn = $this->connectToLdap();
                     $ldapUserDn = $this->getUserDn($ldapConn, $casUsername);
                     if ($ldapUserDn) {
+
                         // **Authorization Logic based on LDAP - Check if user DN is found**
                         $isAuthorized = ($ldapUserDn != false);
 
                         if ($isAuthorized) {
                             $_SESSION['isAuthorizedByLDAP'] = true; // Flag LDAP authorization success
-                            // Optionally, fetch and store more user details from LDAP in session for later use in application.
+
+                            // Fetch and store user details from LDAP in session for later use in application.
                             $user_details = $this->fetchUserDetails($casUsername);
 
                             $_SESSION['email'] = $user_details['email'];
@@ -56,13 +61,19 @@ class LdapAuthorizationMiddleware
 
                         } else {
                             $_SESSION['isAuthorizedByLDAP'] = false;
-                            // Optionally log authorization failure
-                            // error_log("LDAP Authorization failed for CAS user: " . $casUsername . ". User not authorized based on LDAP rules.");
+                            // Log authorization failure
+                            error_log("LDAP Authorization failed for CAS user: " . $casUsername . ". User not authorized based on LDAP rules.");
                         }
                     } else {
-                        // User DN not found in LDAP - consider unauthorized
+                        // User DN not found in LDAP - consider unauthorized and redirect to homepage
                         $_SESSION['isAuthorizedByLDAP'] = false;
-                        // error_log("LDAP User DN not found for CAS user (LDAP Authorization failed): " . $casUsername);
+                        error_log("LDAP User DN not found for CAS user (LDAP Authorization failed): " . $casUsername);
+                        $routeParser = RouteContext::fromRequest($request)->getRouteParser();
+                        $url = $routeParser->urlFor('home');
+
+                        return $response
+                            ->withHeader('Location', $url)
+                            ->withStatus(302);
                     }
                     ldap_close($ldapConn);
                 } else {
@@ -79,9 +90,15 @@ class LdapAuthorizationMiddleware
             $_SESSION['isAuthorizedByLDAP'] = false;
             // If CAS authentication is required for authorization, you might want to handle unauthenticated users here
             // e.g., redirect to CAS login or return a 403/401 response.
+            $routeParser = RouteContext::fromRequest($request)->getRouteParser();
+            $url = $routeParser->urlFor('404');
+
+            return $response
+                ->withHeader('Location', $url)
+                ->withStatus(302);
         }
 
-        // Set a general 'loggedIn' flag based on both CAS authentication and LDAP authorization (you can adjust this logic)
+        // Set a general 'loggedIn' flag based on both CAS authentication and LDAP authorization
         $_SESSION['loggedIn'] = ($_SESSION['isAuthenticatedByCAS'] ?? false) && ($_SESSION['isAuthorizedByLDAP'] ?? false);
 
         if (!$isAuthorized && ($_SESSION['loggedIn'] !== true)) { // If *not* authorized by LDAP and not ultimately 'loggedIn'
