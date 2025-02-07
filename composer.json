@@ -30,6 +30,7 @@
         "monolog/monolog": "^2.9",
         "mpdf/mpdf": "^8.2",
         "nette/database": "^3.2",
+        "nette/utils": "^4.0",
         "odan/session": "^6.3",
         "php-di/php-di": "^6.4",
         "slim/psr7": "^1.6",
