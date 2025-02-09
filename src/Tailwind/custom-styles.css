@@ -11,12 +11,39 @@
 .dx-theme-material-typography h3 {
     @apply !text-lg font-bold leading-tight
 }
+.page-title{
+    @apply mb-6 font-extrabold leading-none tracking-tight text-gray-900 md:text-xl dark:text-white
+}
+.page-subtitle{
+    @apply text-red-600 dark:text-red-700
+}
+
+/*Page UI Elements*/
+
+.main-logo{
+    @apply lg:h-14 h-10
+}
+.top_menu{
+    @apply block lg:inline-block font-bold sm:text-gray-800 sm:hover:border-red-400 lg:hover:text-red-500 mx-6 focus:text-orange-500 p-1 hover:bg-gray-400 sm:hover:bg-transparent
+}
+.container{
+    @apply dark:text-gray-400
+}
+.page-alert {
+    @apply w-full dark:bg-gray-100 dark:text-gray-800 text-sm p-3 border-solid border border-[#FFD43B] flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0;
+}
+.page-alert-icon {
+    @apply bg-[#FFD43B] flex p-2 rounded-full;
+}
 .dx-texteditor.dx-editor-filled .dx-lookup-field, .dx-texteditor.dx-editor-filled .dx-placeholder::before, .dx-texteditor.dx-editor-filled .dx-texteditor-input, .dx-texteditor.dx-editor-outlined .dx-lookup-field, .dx-texteditor.dx-editor-outlined .dx-placeholder::before, .dx-texteditor.dx-editor-outlined .dx-texteditor-input {
     @apply px-4 py-2 leading-tight text-black dark:text-white text-sm;
 }
 .dx-searchbox .dx-icon-search {
     @apply hidden;
 }
+
+/*Page Datagrid Elements*/
+
 .dx-datagrid > .dx-datagrid-headers tr{
     @apply uppercase dark:bg-gray-700 even:dark:bg-gray-800 text-sm
 }
@@ -25,7 +52,7 @@
 .dx-datagrid .dx-link {
     @apply text-red-600 dark:text-gray-400
 }
-.dx-datagrid-nodata{@apply text-red-600}
+.dx-datagrid-nodata{@apply !text-red-600 !text-sm}
 
 .dx-pager, .dx-pagination {
     @apply dark:!text-white dark:!bg-black
@@ -55,13 +82,7 @@
 .select2-container--default .select2-selection--multiple .select2-selection__choice__display {
     @apply dark:text-[#1b181b];
 }
-/*Page UI Elements*/
-.page-alert {
-    @apply w-full dark:bg-gray-100 dark:text-gray-800 text-sm p-3 border-solid border border-[#FFD43B] flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0;
-}
-.page-alert-icon {
-    @apply bg-[#FFD43B] flex p-2 rounded-full;
-}
+
 /*Table Elements*/
 .cell-left{
     @apply text-left !important;
@@ -72,21 +93,8 @@
 .cell-right{
     @apply text-right !important;
 }
-.main-logo{
-    @apply lg:h-14 h-10
-}
-.top_menu{
-    @apply block lg:inline-block font-bold sm:text-gray-800 sm:hover:border-red-400 lg:hover:text-red-500 mx-6 focus:text-orange-500 p-1 hover:bg-gray-400 sm:hover:bg-transparent
-}
-.container{
-    @apply dark:text-gray-400
-}
-.page-subtitle{
-    @apply text-red-600 dark:text-red-700
-}
-.page-title{
-    @apply mb-6 font-extrabold leading-none tracking-tight text-gray-900 md:text-xl dark:text-white
-}
+
+
 /*Button Elements*/
 .btn-outline{
     @apply text-white hover:bg-[#c81e1e] bg-red-800 font-normal py-2 px-4 border border-[#c81e1e] rounded shadow
