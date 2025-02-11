@@ -82,10 +82,10 @@ return function (App $app) {
             return $view->render($response, 'pages/users.html.twig', []);
         })->setName('users');
 
-        $group->get('/employee-status', function ($request, $response, $args) {
+        $group->get('/employee-types', function ($request, $response, $args) {
             $view = Twig::fromRequest($request);
             return $view->render($response, 'pages/employee-types.html.twig', []);
-        })->setName('employee-status');
+        })->setName('employee-types');
     });
 
     $app->group('/admin/logs', function (Group $group) {
