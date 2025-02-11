@@ -11,26 +11,13 @@ use Nette\Database\Connection;
 
 class DatabaseApprovalRepository implements ApprovalRepository
 {
-    private array $approvals;
     private Connection $connection;
 
-    public function __construct(Connection $connection, array|null $approvals = null)
+    public function __construct(Connection $connection)
     {
 
         $this->connection = $connection;
 
-        $results = $this->connection->query("SELECT * FROM approvals");
-
-        foreach ($results as $row) {
-            $approvals[(int)$row['id']] = new Approval(
-                (int)$row->id,
-                $row->request_id,
-                $row->approver_id,
-                $row->status,
-                $row->create_at,
-            );
-        }
-        $this->approvals = $approvals;
     }
 
     /**
@@ -39,21 +26,24 @@ class DatabaseApprovalRepository implements ApprovalRepository
     public function findAll(): array
     {
 
-        return array_values($this->approvals);
+        return array_values($this->connection->query("SELECT * FROM approvals")->fetchAll());
     }
 
     /**
      * @throws ApprovalNotFoundException
      */
-    public function findApprovalOfId(int $id): Approval
+    public function findApprovalOfId(int $id): array
     {
         if (!isset($this->approvals[$id])) {
             throw new ApprovalNotFoundException();
         }
-
-        return $this->approvals[$id];
+        $this->connection->query('SELECT FROM approvals WHERE id = ?', $id);
+        return array_values($this->connection->query("SELECT * FROM approvals")->fetchAll());
     }
 
+    /**
+     * @throws ApprovalNotFoundException
+     */
     public function deleteApprovalOfId(int $id): array
     {
         if (!isset($this->approvals[$id])) {
@@ -61,7 +51,7 @@ class DatabaseApprovalRepository implements ApprovalRepository
         }
 
         $this->connection->query('DELETE FROM approvals WHERE id = ?', $id);
-        return array_values($this->approvals);
+        return array_values($this->connection->query("SELECT * FROM approvals")->fetchAll());
     }
 
 
@@ -75,12 +65,12 @@ class DatabaseApprovalRepository implements ApprovalRepository
             throw new ApprovalNotFoundException();
         }
         $this->connection->query('UPDATE approvals SET ? WHERE id = ?', $data, $id);
-        return array_values($this->approvals);
+        return array_values($this->connection->query("SELECT * FROM approvals")->fetchAll());
     }
 
     public function createApproval(array $data): array
     {
         $this->connection->query('INSERT INTO approvals ?', $data);
-        return array_values($this->approvals);
+        return array_values($this->connection->query("SELECT * FROM approvals")->fetchAll());
     }
 }

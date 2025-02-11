@@ -67,13 +67,14 @@ class DatabaseRequestRepository implements RequestRepository
     /**
      * @throws RequestNotFoundException
      */
-    public function findRequestOfId(int $id): Request
+    public function findRequestOfId(int $id): array
     {
-        if (!isset($this->requests[$id])) {
+        if (!isset($id)) {
             throw new RequestNotFoundException();
         }
 
-        return $this->requests[$id];
+        $this->connection->query('SELECT FROM requests WHERE id = ?', $id);
+        return array_values((array)$this->connection->query("SELECT * FROM requests")->fetchAll());
     }
 
     /**
@@ -93,21 +94,20 @@ class DatabaseRequestRepository implements RequestRepository
     /**
      * @throws RequestNotFoundException
      */
-    public function updateRequestOfId(int $id, array $data): array
+    public function updateRequestOfId(int $id, array $data): int
     {
 
         if (!isset($this->requests[$id])) {
             throw new RequestNotFoundException();
         }
         $this->connection->query('UPDATE requests SET ? WHERE id = ?', $data, $id);
-        return array_values((array)$this->connection->query("SELECT * FROM requests")->fetchAll());
+        return (int)$this->connection->getInsertId();
     }
 
-    public function createRequest(array $data): array
+    public function createRequest(array $data): int
     {
+        $data['status'] = 'Submitted';
         $this->connection->query('INSERT INTO requests ?', $data);
-        $taskId = $this->connection->getInsertId();
-        $this->workflowService->submitRequest((int)$taskId);
-        return array_values((array)$this->connection->query("SELECT * FROM requests")->fetchAll());
+        return (int)$this->connection->getInsertId();
     }
 }

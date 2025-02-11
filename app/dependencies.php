@@ -16,6 +16,7 @@ use Psr\Log\LoggerInterface;
 use Slim\Views\Twig;
 use Nette\Database\Connection;
 
+
 return function (ContainerBuilder $containerBuilder) {
     $containerBuilder->addDefinitions([
         // Logger Configuration

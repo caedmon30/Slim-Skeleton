@@ -11,7 +11,7 @@ interface ApprovalRepository
      */
     public function findAll(): array;
 
-    public function findApprovalOfId(int $id): Approval;
+    public function findApprovalOfId(int $id): array;
 
     public function deleteApprovalOfId(int $id): array;
 
