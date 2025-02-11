@@ -3,6 +3,7 @@
 namespace App\Domain\Approval;
 
 use JsonSerializable;
+use Nette\Utils\DateTime;
 
 class Approval implements JsonSerializable
 {
@@ -10,7 +11,7 @@ class Approval implements JsonSerializable
     private int $request_id;
     private string $approver_id;
     private string $status;
-    private string $created_at;
+    private DateTime $created_at;
 
 
     public function __construct(
@@ -18,7 +19,7 @@ class Approval implements JsonSerializable
         int $request_id,
         string $approver_id,
         string $status,
-        string $created_at,
+        DateTime $created_at,
     ) {
         $this->id = $id;
         $this->request_id = $request_id;
@@ -52,7 +53,7 @@ class Approval implements JsonSerializable
         return $this->status;
     }
 
-    public function getCreatedAt(): string
+    public function getCreatedAt(): DateTime
     {
         return $this->created_at;
     }
