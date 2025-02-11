@@ -27,7 +27,7 @@ class DatabaseApprovalRepository implements ApprovalRepository
                 $row->request_id,
                 $row->approver_id,
                 $row->status,
-                $row->create_at,
+                $row->created_at,
             );
         }
         $this->approvals = $approvals;
