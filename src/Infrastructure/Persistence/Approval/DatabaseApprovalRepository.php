@@ -14,7 +14,7 @@ class DatabaseApprovalRepository implements ApprovalRepository
     private array $approvals;
     private Connection $connection;
 
-    public function __construct(Connection $connection, array|null $approvals = null)
+    public function __construct(Connection $connection, array $approvals=[])
     {
 
         $this->connection = $connection;
