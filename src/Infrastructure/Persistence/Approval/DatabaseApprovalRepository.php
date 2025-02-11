@@ -22,7 +22,7 @@ class DatabaseApprovalRepository implements ApprovalRepository
         $results = $this->connection->query("SELECT * FROM approvals");
 
         foreach ($results as $row) {
-            $approvals[(int)$row['id']] = new Approval(
+            $this->approvals[(int)$row['id']] = new Approval(
                 (int)$row->id,
                 $row->request_id,
                 $row->approver_id,
@@ -30,7 +30,7 @@ class DatabaseApprovalRepository implements ApprovalRepository
                 $row->created_at,
             );
         }
-        $this->approvals = $approvals;
+
     }
 
     /**
@@ -54,6 +54,9 @@ class DatabaseApprovalRepository implements ApprovalRepository
         return $this->approvals[$id];
     }
 
+    /**
+     * @throws ApprovalNotFoundException
+     */
     public function deleteApprovalOfId(int $id): array
     {
         if (!isset($this->approvals[$id])) {
@@ -75,12 +78,12 @@ class DatabaseApprovalRepository implements ApprovalRepository
             throw new ApprovalNotFoundException();
         }
         $this->connection->query('UPDATE approvals SET ? WHERE id = ?', $data, $id);
-        return array_values($this->approvals);
+        return array_values($this->connection->query("SELECT * FROM approvals")->fetchAll());
     }
 
     public function createApproval(array $data): array
     {
         $this->connection->query('INSERT INTO approvals ?', $data);
-        return array_values($this->approvals);
+        return array_values($this->connection->query("SELECT * FROM approvals")->fetchAll());
     }
 }
