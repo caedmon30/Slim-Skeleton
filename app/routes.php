@@ -112,7 +112,7 @@ return function (App $app) {
         $group->put('/{id}', UpdateRequestAction::class);
     });
 
-    $app->group('/api/approval', function (Group $group) {
+    $app->group('/api/approvals', function (Group $group) {
         $group->get('', ListApprovalAction::class);
         $group->post('', CreateApprovalAction::class);
         $group->get('/{id}', ViewRequestAction::class);
