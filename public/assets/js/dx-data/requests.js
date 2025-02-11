@@ -114,7 +114,7 @@ $(document).ready(
                     {dataField: 'status',dataType: "enum",},
                     {dataField: 'date_submitted', allowHeaderFiltering: false, dataType: "datetime",},
                     { cellTemplate: function (container, options) {
-                            $('<a>' + '<i class="fa-light fa-pen dark:text-white"></i>' + '</a>')
+                            $('<a>' + '<i class="fa-light fa-pen dark:text-white text-lg"></i>' + '</a>')
                                 .attr('href', 'request-create/' + options.data.id)
                                 .attr('target', '_blank')
                                 .attr("class", 'text-red-800')
@@ -122,7 +122,7 @@ $(document).ready(
                         },    tooltip: {
                             enabled: true,
                             text: 'Edit request',
-                        },},
+                        },columnWidth: 24},
                 ],
             }).dxDataGrid('instance');
 
