@@ -16,27 +16,27 @@ class WorkflowService
 
     public function submitRequest(int $id): array
     {
-        return $this->updateStatus($id, 'submitted');
+        return $this->updateStatus($id, 'Submitted');
     }
 
     public function approveRequest(int $id): array
     {
-        return $this->updateStatus($id, 'approved');
+        return $this->updateStatus($id, 'Approved');
     }
 
     public function rejectRequest(int $id): array
     {
-        return $this->updateStatus($id, 'rejected');
+        return $this->updateStatus($id, 'Rejected');
     }
 
     public function orderRequest(int $id): array
     {
-        return $this->updateStatus($id, 'ordered');
+        return $this->updateStatus($id, 'Ordered');
     }
 
     public function completeRequest(int $id): array
     {
-        return $this->updateStatus($id, 'completed');
+        return $this->updateStatus($id, 'Completed');
     }
 
     private function updateStatus(int $id, string $status): array

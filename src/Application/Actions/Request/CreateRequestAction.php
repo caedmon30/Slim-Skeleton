@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Application\Actions\Request;
 
 use Psr\Log\LoggerInterface;
+use App\Services\WorkflowLogger;
 use App\Domain\Approval\ApprovalRepository;
 use App\Domain\Request\RequestRepository;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -13,9 +14,11 @@ class CreateRequestAction extends RequestAction
 {
     protected ApprovalRepository $approvalRepository;
     protected LoggerInterface $logger;
+    protected WorkflowLogger $workflowLogger;
     protected RequestRepository $requestRepository;
-    public function __construct(LoggerInterface $logger, RequestRepository $requestRepository, ApprovalRepository $approvalRepository) {
+    public function __construct(LoggerInterface $logger, RequestRepository $requestRepository, ApprovalRepository $approvalRepository, WorkflowLogger $workflowLogger) {
         $this->logger = $logger;
+        $this->workflowLogger = $workflowLogger;
         $this->requestRepository = $requestRepository;
         $this->approvalRepository = $approvalRepository;
         parent::__construct($this->logger, $this->requestRepository);
@@ -33,9 +36,9 @@ class CreateRequestAction extends RequestAction
         ];
 
         $this->approvalRepository->createApproval($approver);
-        $payload = $this->requestRepository->findAll();
+        $this->workflowLogger->logAction($request,$approver['approver_id'], 'Draft','Submitted');
         $this->logger->info("New request created!");
 
-        return $this->respondWithData($payload );
+        return $this->respondWithData($this->requestRepository->findAll());
     }
 }
