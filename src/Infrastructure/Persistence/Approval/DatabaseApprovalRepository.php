@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Persistence\Approval;
 
-use App\Domain\Approval\Approval;
 use App\Domain\Approval\ApprovalNotFoundException;
 use App\Domain\Approval\ApprovalRepository;
 use Nette\Database\Connection;
@@ -25,24 +24,20 @@ class DatabaseApprovalRepository implements ApprovalRepository
         return array_values($this->connection->query("SELECT * FROM approvals")->fetchAll());
     }
 
-    /**
-     * @throws ApprovalNotFoundException
-     */
+
+
     public function findApprovalOfId(int $id): array
     {
-        if (!isset($this->approvals[$id])) {
+        if (!isset($id)) {
             throw new ApprovalNotFoundException();
         }
-        $this->connection->query('SELECT FROM approvals WHERE id = ?', $id);
-        return array_values($this->connection->query("SELECT * FROM approvals")->fetchAll());
+        return array_values($this->connection->query("SELECT * FROM approvals WHERE id = ?", $id)->fetchAll());
     }
 
-    /**
-     * @throws ApprovalNotFoundException
-     */
+
     public function deleteApprovalOfId(int $id): array
     {
-        if (!isset($this->approvals[$id])) {
+        if (!isset($id)) {
             throw new ApprovalNotFoundException();
         }
 
@@ -51,13 +46,11 @@ class DatabaseApprovalRepository implements ApprovalRepository
     }
 
 
-    /**
-     * @throws ApprovalNotFoundException
-     */
+
     public function updateApprovalOfId(int $id, array $data): array
     {
 
-        if (!isset($this->approvals[$id])) {
+        if (!isset($id)) {
             throw new ApprovalNotFoundException();
         }
         $this->connection->query('UPDATE approvals SET ? WHERE id = ?', $data, $id);
