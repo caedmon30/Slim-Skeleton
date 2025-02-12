@@ -15,6 +15,7 @@ use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Slim\Views\Twig;
 use Nette\Database\Connection;
+use Predis\Client;
 
 
 return function (ContainerBuilder $containerBuilder) {
@@ -64,6 +65,14 @@ return function (ContainerBuilder $containerBuilder) {
         SessionInterface::class => function (ContainerInterface $c) {
             $options = $c->get(SettingsInterface::class)->get('session');
             return new PhpSession($options);
+        },
+
+        'redis' => function (ContainerInterface $c) {
+            return new Client([
+                'scheme' => 'tcp',
+                'host'   => '127.0.0.1',
+                'port'   => 6379,
+            ]);
         },
     ]);
 };

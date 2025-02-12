@@ -34,6 +34,7 @@
         "nette/utils": "^4.0",
         "odan/session": "^6.3",
         "php-di/php-di": "^6.4",
+        "predis/predis": "^2.3",
         "slim/psr7": "^1.6",
         "slim/slim": "^4.12",
         "slim/twig-view": "^3.4",
