@@ -115,7 +115,7 @@ $(document).ready(
                     {dataField: 'date_submitted', allowHeaderFiltering: false, dataType: "datetime",},
                     { cellTemplate: function (container, options) {
                             $('<a>' + '<i class="fa-light fa-pen dark:text-white text-lg"></i>' + '</a>')
-                                .attr('href', 'request-create/' + options.data.id)
+                                .attr('href', 'request-approve/' + options.data.id)
                                 .attr('target', '_blank')
                                 .attr("class", 'text-red-800')
                                 .appendTo(container);
