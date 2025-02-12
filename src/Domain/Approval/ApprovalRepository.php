@@ -6,9 +6,7 @@ namespace App\Domain\Approval;
 
 interface ApprovalRepository
 {
-    /**
-     * @return Approval[]
-     */
+
     public function findAll(): array;
 
     public function findApprovalOfId(int $id): array;

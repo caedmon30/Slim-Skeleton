@@ -6,9 +6,6 @@ namespace App\Domain\Request;
 
 interface RequestRepository
 {
-    /**
-     * @return Request[]
-     */
     public function findAll(): array;
 
     public function findRequestOfId(int $id): array;

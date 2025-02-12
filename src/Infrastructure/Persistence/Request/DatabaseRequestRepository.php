@@ -14,13 +14,11 @@ class DatabaseRequestRepository implements RequestRepository
 {
     private array $requests;
     private Connection $connection;
-    private WorkflowService $workflowService;
 
-    public function __construct(Connection $connection, WorkflowService $workflowService, array $requests = [])
+    public function __construct(Connection $connection, array $requests = [])
     {
 
         $this->connection = $connection;
-        $this->workflowService = $workflowService;
 
         $results = $this->connection->query("SELECT * FROM requests");
 
@@ -73,7 +71,7 @@ class DatabaseRequestRepository implements RequestRepository
             throw new RequestNotFoundException();
         }
 
-        $this->connection->query('SELECT FROM requests WHERE id = ?', $id);
+        $this->connection->query('SELECT * FROM requests WHERE id = ?', $id);
         return array_values((array)$this->connection->query("SELECT * FROM requests")->fetchAll());
     }
 

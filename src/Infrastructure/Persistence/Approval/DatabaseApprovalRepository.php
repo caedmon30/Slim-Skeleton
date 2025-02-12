@@ -20,12 +20,8 @@ class DatabaseApprovalRepository implements ApprovalRepository
 
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function findAll(): array
     {
-
         return array_values($this->connection->query("SELECT * FROM approvals")->fetchAll());
     }
 

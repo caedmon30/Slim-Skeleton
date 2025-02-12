@@ -31,6 +31,7 @@ class CreateRequestAction extends RequestAction
             'approver_id' => strtok($data['pi_email'], '@'),
             'status' => 'Submitted'
         ];
+
         $this->approvalRepository->createApproval($approver);
         $payload = $this->requestRepository->findAll();
         $this->logger->info("New request created!");

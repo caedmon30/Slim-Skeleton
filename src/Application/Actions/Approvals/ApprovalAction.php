@@ -8,6 +8,7 @@ use App\Application\Actions\Action;
 use App\Domain\Approval\ApprovalRepository;
 use Psr\Log\LoggerInterface;
 
+
 abstract class ApprovalAction extends Action
 {
     protected ApprovalRepository $approvalRepository;
