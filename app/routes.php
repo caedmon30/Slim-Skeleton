@@ -61,10 +61,10 @@ return function (App $app) {
         return $view->render($response, 'forms/request.html.twig', []);
     })->setName('request-create');
 
-    $app->get('/request-approve', function ($request, $response, $args) {
+    $app->get('/thank-you', function ($request, $response) {
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'forms/request-approve.html.twig', $args);
-    })->setName('request-approve');
+        return $view->render($response, 'pages/thank-you.html.twig', []);
+    })->setName('thank-you');
 
     $app->get('/requests', function ($request, $response, $args) {
         $view = Twig::fromRequest($request);
