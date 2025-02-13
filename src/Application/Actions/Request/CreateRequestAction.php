@@ -38,7 +38,6 @@ class CreateRequestAction extends RequestAction
         $this->approvalRepository->createApproval($approver);
         $this->workflowLogger->logAction($request,$approver['approver_id'], 'Draft','Submitted');
         $this->logger->info("New request created!");
-        return $this->response->withHeader('Location', '/thank-you')
-            ->withStatus(302);
+        return $this->response->withHeader('HX-Redirect', '/thank-you');
     }
 }
