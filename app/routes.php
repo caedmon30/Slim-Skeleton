@@ -26,6 +26,7 @@ use App\Application\Actions\User\ListUsersAction;
 use App\Application\Actions\User\UpdateUserAction;
 use App\Application\Actions\User\ViewUserAction;
 use App\Controllers\Admin\LogController;
+use App\Domain\Request\RequestRepository;
 use App\Services\WorkflowService;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -61,9 +62,13 @@ return function (App $app) {
         return $view->render($response, 'forms/request.html.twig', []);
     })->setName('request-create');
 
-    $app->get('/request-approve/{id}', function ($request, $response, $args) {
+    $app->get('/request-approve/{id}', function ($request, $response, $args) use ($container) {
+
+        $items = $container->get(RequestRepository::class);
+        $items->findRequestOfId((int)$args['id']);
+
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'forms/request-approve.html.twig', []);
+        return $view->render($response, 'forms/request-approve.html.twig', array($items));
     })->setName('request-approve');
 
     $app->get('/thank-you', function ($request, $response) {

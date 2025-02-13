@@ -15,7 +15,7 @@ class UpdateRequestAction extends RequestAction
     {
         $userId = (int) $this->resolveArg('id');
         $data = $this->getFormData();
-        $request = $this->requestRepository->updateRequestOfId($userId, $data);
+        $request = (array)$this->requestRepository->updateRequestOfId($userId, $data);
         $this->logger->info("Request id `{$userId}` was updated.");
 
         return $this->respondWithData($request);
