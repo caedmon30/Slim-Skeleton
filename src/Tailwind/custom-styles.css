@@ -67,22 +67,22 @@
 }
 /*Select2 dropdown*/
 .select2-dropdown {
-    @apply rounded-b-lg shadow-md dark:bg-gray-800;
+    @apply rounded-b-lg shadow-md dark:bg-gray-800 text-sm;
 }
 .select2-container--default .select2-selection--multiple {
-    @apply dark:bg-gray-800
+    @apply dark:bg-gray-800  text-sm
 }
 .select2-search {
     @apply border-0 rounded;
 }
 .select2-results__group {
-    @apply font-bold text-gray-900;
+    @apply font-bold text-gray-900  text-sm;
 }
 .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
-    @apply bg-red-500 text-white;
+    @apply bg-red-500 text-white  text-sm;
 }
 .select2-container--default .select2-selection--multiple .select2-selection__choice__display {
-    @apply dark:text-[#1b181b];
+    @apply dark:text-[#1b181b]  text-sm;
 }
 
 /*Table Elements*/

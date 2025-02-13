@@ -1325,6 +1325,8 @@ input[type="range"]:active::-webkit-slider-thumb {
 .select2-dropdown {
   border-bottom-right-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
@@ -1332,6 +1334,10 @@ input[type="range"]:active::-webkit-slider-thumb {
 .select2-dropdown:is(.dark *) {
   --tw-bg-opacity: 1;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity, 1));
+}
+.select2-container--default .select2-selection--multiple {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 .select2-container--default .select2-selection--multiple:is(.dark *) {
   --tw-bg-opacity: 1;
@@ -1342,6 +1348,8 @@ input[type="range"]:active::-webkit-slider-thumb {
   border-width: 0px;
 }
 .select2-results__group {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   font-weight: 700;
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity, 1));
@@ -1349,8 +1357,14 @@ input[type="range"]:active::-webkit-slider-thumb {
 .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
   --tw-bg-opacity: 1;
   background-color: rgb(240 82 82 / var(--tw-bg-opacity, 1));
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice__display {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 .select2-container--default .select2-selection--multiple .select2-selection__choice__display:is(.dark *) {
   --tw-text-opacity: 1;
@@ -2431,6 +2445,10 @@ input[type="range"]:active::-webkit-slider-thumb {
 }
 .font-sans {
   font-family: InterVariable, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+.\!text-xs {
+  font-size: 0.75rem !important;
+  line-height: 1rem !important;
 }
 .text-2xl {
   font-size: 1.5rem;

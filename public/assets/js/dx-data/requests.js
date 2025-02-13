@@ -116,7 +116,7 @@ $(document).ready(
                     { cellTemplate: function (container, options) {
                             $('<a>' + '<i class="fa-light fa-pen dark:text-white text-lg"></i>' + '</a>')
                                 .attr('href', 'request-approve/' + options.data.id)
-                                .attr('target', '_blank')
+                                .attr('target', '_self')
                                 .attr("class", 'text-red-800')
                                 .appendTo(container);
                         },    tooltip: {
