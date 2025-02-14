@@ -70,11 +70,13 @@ class DatabaseRequestRepository implements RequestRepository
         if (!isset($id)) {
             throw new RequestNotFoundException();
         }
-        $data = (array)$this->connection->query('SELECT * FROM requests WHERE id = ?', $id)->fetchAll();
+        $data = (array)$this->connection->query('SELECT * FROM requests WHERE id = ?', $id)->fetch();
         if (!(empty($data['card_access']))) {
             $data['card_access'] = unserialize($data['card_access']);
         }
-        return array_values((array)$data);
+        $list = [$data['room_one'], $data['room_two'], $data['room_three'], $data['room_four'], $data['room_five']];
+        $data['rooms'] = array_filter($list);
+        return $data;
     }
 
     /**

@@ -64,11 +64,12 @@ return function (App $app) {
 
     $app->get('/request-approve/{id}', function ($request, $response, $args) use ($container) {
 
-        $items = $container->get(RequestRepository::class);
-        $items->findRequestOfId((int)$args['id']);
-
+        $r = $container->get(RequestRepository::class);
+        $single_request = $r->findRequestOfId((int)$args['id']);
+        // print_r($single_request);
+        // die();
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'forms/request-approve.html.twig', array($items));
+       return $view->render($response, 'forms/request-approve.html.twig', $single_request);
     })->setName('request-approve');
 
     $app->get('/thank-you', function ($request, $response) {
