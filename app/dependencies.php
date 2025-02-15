@@ -39,7 +39,6 @@ return function (ContainerBuilder $containerBuilder) {
         Twig::class => function (ContainerInterface $c) {
             $settings = $c->get(SettingsInterface::class);
             $twig = Twig::create(__DIR__ . '/../templates', ['cache' => $settings->get('twig_cache')]);
-
             // Ensure session is started
             if (session_status() === PHP_SESSION_NONE) {
                 session_start();
