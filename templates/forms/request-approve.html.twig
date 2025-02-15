@@ -48,7 +48,18 @@
                         <dt class="text-sm mb-1 sm:mb-0 text-gray-500 dark:text-gray-400">Employee type</dt>
                         <dd class="text-sm text-gray-900 dark:text-white sm:text-end">
 
-                            {{  employment_status }}
+                            {% set status = employment_status %}
+                            {% if status == 1 %}
+                               Staff
+                            {% elseif status == 2 %}
+                                Faculty
+                            {% elseif status == 3 %}
+                                Grad Student
+                            {% elseif status == 4 %}
+                                Undergraduate
+                            {% elseif status == 5 %}
+                                Post-Doc/Other
+                            {% endif %}
                         </dd>
                     </dl>
                     <dl class="sm:flex items-center justify-between gap-4">
