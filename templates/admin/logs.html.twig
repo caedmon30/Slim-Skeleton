@@ -22,8 +22,8 @@
         <div id="dataGridUsers" class="dark:bg-slate-700 p-4 mb-4 mt-4 rounded-md">
 
             <div class="actions">
-                <a href="{{ url_for('admin.logs.export.csv') }}" class="btn-light mr-2">Export as CSV <i class="fa-sharp-duotone fa-solid fa-file-csv"></i></a>
-                <a href="{{ url_for('admin.logs.export.pdf') }}" class="btn-light">Export as PDF <i class="fa-sharp-duotone fa-solid fa-file-pdf"></i></a>
+                <a href="{{ url_for('admin.logs.export.csv') }}" class="btn-light mr-2">Export as CSV </a>
+                <a href="{{ url_for('admin.logs.export.pdf') }}" class="btn-light">Export as PDF </a>
             </div>
 
             <div class="flex flex-col">
@@ -31,9 +31,9 @@
                     <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8 shadow-xs rounded-lg">
                         <div class="overflow-hidden">
                             <table
-                                    class="min-w-full text-left text-sm font-light text-surface dark:text-gray-400 rounded-lg mt-2 border dark:border-gray-600">
+                                    class="min-w-full text-left text-gray-900 text-sm dark:text-gray-400 rounded-lg mt-2 border dark:border-gray-600">
                                 <thead
-                                        class="font-normal text-sm text-gray-700 uppercase bg-white dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 border-b">
+                                        class="font-normal text-sm text-gray-900 uppercase bg-white dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 border-b">
                                 <tr>
                                     <th scope="col" class="px-6 py-4">Request ID</th>
                                     <th scope="col" class="px-6 py-4">User</th>
