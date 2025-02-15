@@ -26,7 +26,7 @@ class CreateRequestAction extends RequestAction
     protected function action(): Response
     {
         $data = $this->getFormData();
-        $data['submitted_by'] = 'cwalters';
+        $data['submitted_by'] = $_SESSION['username'];
         $data['card_access'] = serialize($data['card_access']);
         $request = $this->requestRepository->createRequest($data);
         $approver = [
@@ -36,7 +36,7 @@ class CreateRequestAction extends RequestAction
         ];
 
         $this->approvalRepository->createApproval($approver);
-        $this->workflowLogger->logAction($request,$approver['approver_id'], 'Draft','Submitted');
+        $this->workflowLogger->logAction($request,$data['submitted_by'], 'Draft','Submitted');
         $this->logger->info("New request created!");
         return $this->response->withHeader('HX-Redirect', '/thank-you');
     }
