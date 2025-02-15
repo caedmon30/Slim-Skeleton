@@ -1,6 +1,7 @@
 {% extends "./base.html.twig" %}
+{% set full_name = 'Welcome to The Chemistry and Biochemistry KeyKeeper System' %}
 {% set lead = 'Welcome to The Chemistry and Biochemistry KeyKeeper System' %}
-{% set paragraph = 'You are logged in as Caedmon Walters' %}
+{% set paragraph = 'You are logged in as ' ~ session.full_name ~ '' %}
 {% block head %}
     {{ parent() }}
 

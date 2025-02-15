@@ -38,7 +38,16 @@ return function (ContainerBuilder $containerBuilder) {
         // Twig Templating Engine
         Twig::class => function (ContainerInterface $c) {
             $settings = $c->get(SettingsInterface::class);
-            return Twig::create(__DIR__ . '/../templates', ['cache' => $settings->get('twig_cache')]);
+            $twig = Twig::create(__DIR__ . '/../templates', ['cache' => $settings->get('twig_cache')]);
+
+            // Ensure session is started
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+
+            // Add session as a global variable
+            $twig->getEnvironment()->addGlobal('session', $_SESSION);
+            return $twig;
         },
 
         // Database Connection (Using Charset)
