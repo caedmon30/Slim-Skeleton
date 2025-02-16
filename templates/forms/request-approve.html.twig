@@ -84,7 +84,7 @@
                         </dd>
                     </dl>
                 </div>
-
+                {% if session.username is same as (approver_id) %}
                 <form class="px-4">
 
                     <h3 class="mb-4 font-semibold text-gray-700 dark:text-white">Has requester completed all safety training - including lab specific training? </h3>
@@ -135,7 +135,7 @@
                         </div>
                     </div>
                 </form>
-
+                {% endif %}
             </div>
             {% include './includes/stepper_2.html.twig' %}
         </section>

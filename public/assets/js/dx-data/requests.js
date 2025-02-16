@@ -58,7 +58,7 @@ $(document).ready(
                 editing: {
                     refreshMode: 'reload',
                     mode: 'form',
-                    allowDeleting: true,
+                    allowDeleting: false,
                     useIcons: true,
                     newRowPosition: 'viewportTop',
                 },

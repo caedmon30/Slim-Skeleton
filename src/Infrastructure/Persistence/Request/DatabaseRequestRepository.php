@@ -74,6 +74,7 @@ class DatabaseRequestRepository implements RequestRepository
         if (!(empty($data['card_access']))) {
             $data['card_access'] = unserialize($data['card_access']);
         }
+        $data['approver_id'] = strtok($data['pi_email'], '@');
         $list = [$data['room_one'], $data['room_two'], $data['room_three'], $data['room_four'], $data['room_five']];
         $data['rooms'] = array_filter($list);
         return $data;
