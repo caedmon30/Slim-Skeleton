@@ -53,9 +53,7 @@ class DatabaseRequestRepository implements RequestRepository
         $this->requests = $requests;
     }
 
-    /**
-     * {@inheritdoc}
-     */
+
     public function findAll(): array
     {
 
