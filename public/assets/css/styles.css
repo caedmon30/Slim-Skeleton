@@ -1775,6 +1775,9 @@ body{
 .mb-4 {
   margin-bottom: 1rem;
 }
+.mb-5 {
+  margin-bottom: 1.25rem;
+}
 .mb-6 {
   margin-bottom: 1.5rem;
 }
@@ -1783,6 +1786,9 @@ body{
 }
 .me-2\.5 {
   margin-inline-end: 0.625rem;
+}
+.ml-16 {
+  margin-left: 4rem;
 }
 .ml-2 {
   margin-left: 0.5rem;
@@ -2499,6 +2505,9 @@ body{
 .pt-2 {
   padding-top: 0.5rem;
 }
+.pt-4 {
+  padding-top: 1rem;
+}
 .text-left {
   text-align: left;
 }
@@ -2851,6 +2860,10 @@ body{
   content: var(--tw-content);
   inset-inline-start: 2px;
 }
+.after\:top-0\.5::after {
+  content: var(--tw-content);
+  top: 0.125rem;
+}
 .after\:top-\[2px\]::after {
   content: var(--tw-content);
   top: 2px;
@@ -3003,6 +3016,10 @@ body{
 .peer:checked ~ .peer-checked\:bg-green-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(5 122 85 / var(--tw-bg-opacity, 1));
+}
+.peer:checked ~ .peer-checked\:bg-red-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(224 36 36 / var(--tw-bg-opacity, 1));
 }
 .peer:checked ~ .peer-checked\:after\:translate-x-full::after {
   content: var(--tw-content);
@@ -3297,6 +3314,10 @@ body{
 }
 .dark\:focus\:ring-offset-gray-700:focus:is(.dark *) {
   --tw-ring-offset-color: #374151;
+}
+.peer:checked ~ .dark\:peer-checked\:bg-blue-600:is(.dark *) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(28 100 242 / var(--tw-bg-opacity, 1));
 }
 .peer:checked ~ .dark\:peer-checked\:bg-green-600:is(.dark *) {
   --tw-bg-opacity: 1;

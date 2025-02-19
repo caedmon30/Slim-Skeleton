@@ -125,7 +125,7 @@ return function (App $app) {
         $group->post('', CreateRequestAction::class);
         $group->get('/{id}', ViewRequestAction::class);
         $group->delete('/{id}', DeleteRequestAction::class);
-        $group->patch('/{decision}/{id}', UpdateRequestAction::class);
+        $group->patch('/{id}', UpdateRequestAction::class);
     });
 
     $app->group('/api/approvals', function (Group $group) {
