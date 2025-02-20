@@ -12,16 +12,26 @@ use Slim\Views\TwigMiddleware;
 return function (App $app) {
 
     global $container;
-    // Add Session Middleware (MUST be first)
+    // 1. Session Middleware (Manages user sessions) (MUST be first)
     $app->add(SessionMiddleware::class);
 
-    // Add CAS Authentication Middleware (runs after SessionMiddleware)
+    // 2. Error Handling Middleware (Handles uncaught exceptions)
+    $app->addErrorMiddleware(true, true, true);
+
+    // 3. Body Parsing Middleware (Parses JSON, form data, etc.)
+    $app->addBodyParsingMiddleware();
+
+    // 4. CAS Authentication Middleware (Handles CAS-based authentication)
     //$app->add(CasAuthenticationMiddleware::class);
 
-    // Add LDAP Authorization Middleware (runs after Session and CAS Auth Middleware)
+    // 5. LDAP Authorization Middleware (Checks user roles/permissions) (runs after Session and CAS Auth Middleware)
     //$app->add(LdapAuthorizationMiddleware::class);
 
-    $app->add(TwigMiddleware::create($app, $container->get(Twig::class)));
+    // 6. Routing Middleware (Processes route matching)
     $app->addRoutingMiddleware();
-    $app->addErrorMiddleware(true, true, true);
+
+    // 7. Twig Middleware (Handles rendering views)
+    $app->add(TwigMiddleware::create($app, $container->get(Twig::class)));
+
+
 };

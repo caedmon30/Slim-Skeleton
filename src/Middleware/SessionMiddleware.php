@@ -17,6 +17,7 @@ class SessionMiddleware
         $_SESSION['id'] = $request->getAttribute('id');
         $_SESSION['username'] = 'cwalters';
         $_SESSION['full_name'] = 'Caedmon Walters';
+        $_SESSION['role'] = 'admin';
         // Process the request further down the middleware stack
         return $handler->handle($request);
     }

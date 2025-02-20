@@ -83,32 +83,36 @@
                         </dd>
                     </dl>
                 </div>
-                {% if session.username is same as (approver_id) %}
+                {% if session.username is not same as (submitted_by) and status == 'Submitted' or session.role == 'admin' and status in ['Approved','Ordered'] %}
                 <form class="px-4" hx-patch="/api/requests/{{ id }}" hx-validate="true" >
 
                     <h3 class="mb-4 font-semibold text-gray-700 dark:text-white">Has requester completed all safety training - including lab specific training? </h3>
                     <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                         <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                             <div class="flex items-center ps-3">
-                                <input required id="horizontal-safety_training-st" type="radio" value="Safety training only" name="safety_training" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <input required id="horizontal-safety_training-st" type="radio" value="Safety training only" name="safety_training" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" {% if safety_training == 'Safety training only' %}checked{% endif %}
+                                        disabled>
                                 <label for="horizontal-safety_training-st" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Safety training only </label>
                             </div>
                         </li>
                         <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                             <div class="flex items-center ps-3">
-                                <input id="horizontal-safety_training-ls" type="radio" value="Safety + lab specific training" name="safety_training" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <input id="horizontal-safety_training-ls" type="radio" value="Safety + lab specific training" name="safety_training" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"{% if safety_training == 'Safety + lab specific training' %}checked{% endif %}
+                                       disabled>
                                 <label for="horizontal-safety_training-ls" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Safety + lab specific training </label>
                             </div>
                         </li>
                         <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                             <div class="flex items-center ps-3">
-                                <input id="horizontal-safety_training-none" type="radio" value="Training incomplete" name="safety_training" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <input id="horizontal-safety_training-none" type="radio" value="Training incomplete" name="safety_training" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"{% if safety_training == 'Training incomplete' %}checked{% endif %}
+                                       disabled>
                                 <label for="horizontal-safety_training-none" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Training incomplete</label>
                             </div>
                         </li>
                         <li class="w-full dark:border-gray-600">
                             <div class="flex items-center ps-3">
-                                <input id="horizontal-safety_training-na" type="radio" value="Not applicable" name="safety_training" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                <input id="horizontal-safety_training-na" type="radio" value="Not applicable" name="safety_training" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"{% if safety_training == 'Not applicable' %}checked{% endif %}
+                                       disabled>
                                 <label for="horizontal-safety_training-na" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Not applicable</label>
                             </div>
                         </li>
@@ -116,14 +120,16 @@
 
                     <div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
 
-                        {% if status == 4 %}
+                        {% if employment_status == 4 or session.role == 'admin' and status in ['Approved','Ordered'] %}
                             <h3 class="my-4 mx-4 py-2 font-semibold text-gray-700 dark:text-white">In the space provided below, provide (1) an explanation of the need for this undergraduate student to have key access to the laboratory, and (2) how will you ensure the student is not working along with hazardous materials?</h3>
                         <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
                             <label for="justification" class="sr-only">Required for undergraduate students</label>
-                            <textarea id="justification" name="justification" rows="4" class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="To proceed, write a justification for this request or explain why this request was not approved ..." required></textarea>
+                            <textarea id="justification" name="justification" rows="4" class="text-left w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="To proceed, write a justification for this request or explain why this request was not approved ..." required    {% if justification != '' %} disabled {%endif %}>
+                                {% if justification != '' %} {{ justification }} {%endif %}
+                            </textarea>
                         </div>
                         {% endif %}
-
+                        {% if session.username is same as (approver_id) and status == 'Submitted' %}
                         <label class="inline-flex items-center mb-5 pt-4 ml-2 cursor-pointer">
                             <input required name="status" type="radio" value="approved" class="sr-only peer">
                             <div class="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-600 dark:peer-checked:bg-blue-600"></div>
@@ -144,6 +150,49 @@
                             </button>
 
                         </div>
+                        {% elseif session.role == 'admin' and status == 'Approved' %}
+                            <label class="inline-flex items-center mb-5 pt-4 ml-2 cursor-pointer">
+                                <input required name="status" type="radio" value="ordered" class="sr-only peer">
+                                <div class="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-600 dark:peer-checked:bg-blue-600"></div>
+                                <span class="ms-3 text-sm font-medium text-gray-700 dark:text-gray-500">Process order</span>
+                            </label>
+
+                            <label class="inline-flex items-center pt-4 ml-16 cursor-pointer">
+                                <input name="status" type="radio" value="rejected" class="sr-only peer">
+                                <div class="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-blue-600"></div>
+                                <span class="ms-3 text-sm font-medium text-gray-700 dark:text-gray-500">Reject request</span>
+                            </label>
+
+
+                            <div class="flex items-center justify-between px-3 py-4 border-t dark:border-gray-600 border-gray-200">
+
+                                <button type="submit" class="inline-flex items-center py-2.5 px-4 float-right mr-2 text-sm btn-dark">
+                                    Submit Decision
+                                </button>
+
+                            </div>
+                        {% elseif session.role == 'admin' and status == 'Ordered' %}
+                            <label class="inline-flex items-center mb-5 pt-4 ml-2 cursor-pointer">
+                                <input required name="status" type="radio" value="completed" class="sr-only peer">
+                                <div class="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-600 dark:peer-checked:bg-blue-600"></div>
+                                <span class="ms-3 text-sm font-medium text-gray-700 dark:text-gray-500">Close out order</span>
+                            </label>
+
+                            <label class="inline-flex items-center pt-4 ml-16 cursor-pointer">
+                                <input name="status" type="radio" value="rejected" class="sr-only peer">
+                                <div class="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600 dark:peer-checked:bg-blue-600"></div>
+                                <span class="ms-3 text-sm font-medium text-gray-700 dark:text-gray-500">Reject request</span>
+                            </label>
+
+
+                            <div class="flex items-center justify-between px-3 py-4 border-t dark:border-gray-600 border-gray-200">
+
+                                <button type="submit" class="inline-flex items-center py-2.5 px-4 float-right mr-2 text-sm btn-dark">
+                                    Submit Decision
+                                </button>
+
+                            </div>
+                            {% endif %}
                     </div>
                 </form>
                 {% endif %}

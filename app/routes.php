@@ -77,6 +77,11 @@ return function (App $app) {
         return $view->render($response, 'pages/thank-you.html.twig', []);
     })->setName('thank-you');
 
+    $app->get('/confirmation', function ($request, $response) {
+        $view = Twig::fromRequest($request);
+        return $view->render($response, 'pages/confirmation.html.twig', []);
+    })->setName('confirmation');
+
     $app->get('/requests', function ($request, $response, $args) {
         $view = Twig::fromRequest($request);
         return $view->render($response, 'pages/requests.html.twig', []);
