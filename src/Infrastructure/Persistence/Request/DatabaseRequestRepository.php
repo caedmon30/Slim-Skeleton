@@ -107,7 +107,6 @@ class DatabaseRequestRepository implements RequestRepository
 
     public function createRequest(array $data): int
     {
-        $data['status'] = 'Submitted';
         $this->connection->query('INSERT INTO requests ?', $data);
         return (int)$this->connection->getInsertId();
     }

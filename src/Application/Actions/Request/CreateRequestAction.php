@@ -28,15 +28,18 @@ class CreateRequestAction extends RequestAction
         $data = $this->getFormData();
         $data['submitted_by'] = $_SESSION['username'];
         $data['card_access'] = serialize($data['card_access']);
+        $approver_id = strtok($data['pi_email'], '@');
+        $data['status'] = ($approver_id == $data['submitted_by']) ? 'Approved' : 'Submitted';
         $request = $this->requestRepository->createRequest($data);
+
         $approver = [
             'request_id' => $request,
-            'approver_id' => strtok($data['pi_email'], '@'),
-            'status' => 'Submitted'
+            'approver_id' => $approver_id,
+            'status' => $data['status']
         ];
 
         $this->approvalRepository->createApproval($approver);
-        $this->workflowLogger->logAction($request,$data['submitted_by'], 'Draft','Submitted');
+        $this->workflowLogger->logAction($request,$data['submitted_by'], 'Draft',$data['status']);
         $this->logger->info("New request created!");
         return $this->response->withHeader('HX-Redirect', '/thank-you');
     }
