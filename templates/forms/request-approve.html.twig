@@ -48,16 +48,15 @@
                         <dt class="text-sm mb-1 sm:mb-0 text-gray-500 dark:text-gray-400">Employee type</dt>
                         <dd class="text-sm text-gray-900 dark:text-white sm:text-end">
 
-                            {% set status = employment_status %}
-                            {% if status == 1 %}
+                            {% if employment_status == 1 %}
                                Staff
-                            {% elseif status == 2 %}
+                            {% elseif employment_status == 2 %}
                                 Faculty
-                            {% elseif status == 3 %}
+                            {% elseif employment_status == 3 %}
                                 Grad Student
-                            {% elseif status == 4 %}
+                            {% elseif employment_status == 4 %}
                                 Undergraduate
-                            {% elseif status == 5 %}
+                            {% elseif employment_status == 5 %}
                                 Post-Doc/Other
                             {% endif %}
                         </dd>
@@ -140,7 +139,7 @@
 
                         <div class="flex items-center justify-between px-3 py-4 border-t dark:border-gray-600 border-gray-200">
 
-                            <button type="submit" class="inline-flex items-center py-2.5 px-4 mr-4 text-sm btn-dark">
+                            <button type="submit" class="inline-flex items-center py-2.5 px-4 float-right mr-2 text-sm btn-dark">
                                 Submit Decision
                             </button>
 
@@ -149,7 +148,17 @@
                 </form>
                 {% endif %}
             </div>
-            {% include './includes/stepper_2.html.twig' %}
+
+            {% if status == 'Submitted' %}
+                    {% include './includes/stepper_submitted.html.twig' %}
+            {% elseif status == 'Rejected' %}
+                    {% include './includes/stepper_rejected.html.twig' %}
+            {% elseif status == 'Approved' %}
+                    {% include './includes/stepper_approved.html.twig' %}
+            {% else %}
+                {% include './includes/stepper_request.html.twig' %}
+            {% endif %}>
+
         </section>
 
 

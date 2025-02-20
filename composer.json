@@ -27,6 +27,7 @@
         "ext-ldap": "*",
         "ext-pdo": "*",
         "apereo/phpcas": "^1.6",
+        "buzzingpixel/twig-switch": "^1.0",
         "guzzlehttp/guzzle": "^7.0",
         "monolog/monolog": "^2.9",
         "mpdf/mpdf": "^8.2",

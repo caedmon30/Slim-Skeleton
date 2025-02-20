@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Application\Settings\SettingsInterface;
 use App\Services\WorkflowService;
+use buzzingpixel\twigswitch\SwitchTwigExtension;
 use DI\ContainerBuilder;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -46,6 +47,7 @@ return function (ContainerBuilder $containerBuilder) {
 
             // Add session as a global variable
             $twig->getEnvironment()->addGlobal('session', $_SESSION);
+            $twig->addExtension(new SwitchTwigExtension());
             return $twig;
         },
 
