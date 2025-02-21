@@ -87,7 +87,7 @@ return function (ContainerBuilder $containerBuilder) {
             // Configure PHPMailer
             $mail->isSMTP();
             $mail->Host = $mailSettings['host']; // Replace with your SMTP host
-            $mail->SMTPAuth = true;
+            $mail->SMTPAuth = false;
             $mail->Username = $mailSettings['username']; // SMTP username
             $mail->Password = $mailSettings['password']; // SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Encryption type
