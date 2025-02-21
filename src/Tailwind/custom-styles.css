@@ -20,7 +20,7 @@ body{
     @apply !text-lg font-bold leading-tight
 }
 .page-title{
-    @apply mb-6 font-extrabold leading-none tracking-tight text-gray-900 md:text-xl dark:text-white
+    @apply mb-6 font-extrabold leading-none tracking-tight text-gray-900 md:text-xl dark:!text-white
 }
 .page-subtitle{
     @apply text-red-600 dark:text-red-700

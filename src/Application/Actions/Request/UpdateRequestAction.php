@@ -67,7 +67,8 @@ class UpdateRequestAction extends RequestAction
         $this->workflowLogger->logAction($requestId,$_SESSION['username'], $currentState, $targetState);
         $this->logger->info("Request ID: `{$requestId}` updated!");
 
-        return $this->response->withHeader('HX-Redirect', '/confirmation');
+        return $targetState == "Completed" ? $this->response->withHeader('HX-Redirect', '/request-approve/'.$requestId) : $this->response->withHeader('HX-Redirect', '/confirmation');
+
     }
     protected function getPreviousStates($transitions, $currentState): array
     {
