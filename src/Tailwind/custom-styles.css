@@ -32,7 +32,7 @@ body{
     @apply lg:h-14 h-10
 }
 .top_menu{
-    @apply block lg:inline-block font-bold sm:text-gray-800 sm:hover:border-red-400 lg:hover:text-red-500 mx-6 focus:text-orange-500 p-1 hover:bg-gray-400 sm:hover:bg-transparent
+    @apply block lg:inline-block sm:text-gray-800 sm:hover:border-red-400 lg:hover:text-red-500 mx-6 focus:text-orange-500 p-1 hover:bg-gray-400 sm:hover:bg-transparent
 }
 .container{
     @apply dark:text-gray-400
