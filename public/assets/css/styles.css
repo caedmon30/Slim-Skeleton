@@ -1097,7 +1097,7 @@ input[type="range"]:active::-webkit-slider-thumb {
 body{
     font-size: 14px;
     line-height: 20.3px;
-    font-family: "scandia-web", sans-serif;
+    font-family: "scandia-web", "Helvetica Neue",Helvetica,Arial, sans-serif;
     font-weight: 400;
     font-style: normal;
     color: #0d1116;
@@ -2375,6 +2375,10 @@ body{
 .bg-gray-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(75 85 99 / var(--tw-bg-opacity, 1));
+}
+.bg-gray-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity, 1));
 }
 .bg-gray-800 {
   --tw-bg-opacity: 1;
