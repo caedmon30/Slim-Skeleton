@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Application\Settings\SettingsInterface;
+use App\Services\MailerService;
 use App\Services\WorkflowService;
 use buzzingpixel\twigswitch\SwitchTwigExtension;
 use DI\ContainerBuilder;
@@ -12,11 +13,12 @@ use Monolog\Processor\UidProcessor;
 use Odan\Session\PhpSession;
 use Odan\Session\SessionInterface;
 use Odan\Session\SessionManagerInterface;
+use PHPMailer\PHPMailer\PHPMailer;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Slim\Views\Twig;
 use Nette\Database\Connection;
-use Predis\Client;
+
 
 
 return function (ContainerBuilder $containerBuilder) {
@@ -77,12 +79,28 @@ return function (ContainerBuilder $containerBuilder) {
             return new PhpSession($options);
         },
 
-        'redis' => function (ContainerInterface $c) {
-            return new Client([
-                'scheme' => 'tcp',
-                'host'   => '127.0.0.1',
-                'port'   => 6379,
-            ]);
+        PHPMailer::class => function (ContainerInterface $c) {
+            $settings = $c->get(SettingsInterface::class);
+            $mailSettings = $settings->get('logger');
+            $mail = new PHPMailer(true);
+
+            // Configure PHPMailer
+            $mail->isSMTP();
+            $mail->Host = $mailSettings['host']; // Replace with your SMTP host
+            $mail->SMTPAuth = true;
+            $mail->Username = $mailSettings['username']; // SMTP username
+            $mail->Password = $mailSettings['password']; // SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Encryption type
+            $mail->Port = $mailSettings['port']; // SMTP port
+
+            // Default sender details
+            $mail->setFrom($mailSettings['email'], $mailSettings['name']);
+
+            return $mail;
+        },
+
+        MailerService::class => function (ContainerInterface $c) {
+            return new MailerService($c->get(PHPMailer::class));
         },
     ]);
 };

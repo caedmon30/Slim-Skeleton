@@ -69,23 +69,17 @@ return function (ContainerBuilder $containerBuilder) {
                     'cache_limiter' => 'nocache',
                 ],
 
-                'states' => ['Draft', 'Submitted', 'Approved', 'Rejected', 'Ordered', 'Completed'],
-                'transitions' => [
-                    'Draft' => [
-                        'submit' => 'Submitted',
-                    ],
-                    'Submitted' => [
-                        'approve' => 'Approved',
-                        'reject' => 'Rejected',
-                    ],
-                    'Approved' => [
-                        'order' => 'Ordered',
-                    ],
-                    'Rejected' => [],
-                    'Ordered' => [
-                        'complete' => 'Completed',
-                    ],
+                'email' => [
+                    'host' => 'smtp.freesmtpservers.com',
+                    'username' => '',
+                    'password' => '',
+                    'port' => 25,
+                    'address' => 'chem-keykeeper@umd.edu',
+                    'name' => 'Chemistry KeyManager',
                 ],
+
+                'states' => ['Draft', 'Submitted', 'Approved', 'Rejected', 'Ordered', 'Completed'],
+                'states_colors' => ['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#0000FF', '#8B008B'],
             ]);
         }
     ]);
