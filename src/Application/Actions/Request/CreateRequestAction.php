@@ -62,9 +62,11 @@ class CreateRequestAction extends RequestAction
             'status' => $data['status']
         ];
 
+        date_default_timezone_set('America/New_York'); // Set the default timezone to New York/GMT+4');
+
         /** Set up email message  */
         $data['email'] = $data['email'] ?? $_SESSION['email'];
-        $data['subject'] = "Order Confirmation # $request";
+        $data['subject'] = "Key/Card Request Confirmation # $request";
         $data['body'] = "<img src='https://chem.umd.edu/sites/default/files/UMD_CMNS_ChemBio_S1_Color_Padded.png' alt='Chemistry Key-keeper' width='300px'  style='text-align: center; margin-bottom: 10px;'>";
         $data['body'] .= "<h3>New Key/Card Activation Request: #". $request. "</h3>";
         $data['body'] .= "<p>This message is to notify you that a new card activation/key request form was submitted by ".$submitter." on ".date("F j, Y, g:i a")."</p>";
