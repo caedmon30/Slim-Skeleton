@@ -3139,6 +3139,9 @@ body{
     transition-property: none;
   }
 }
+.dark\:border-0:is(.dark *) {
+  border-width: 0px;
+}
 .dark\:border-blue-500:is(.dark *) {
   --tw-border-opacity: 1;
   border-color: rgb(63 131 248 / var(--tw-border-opacity, 1));
