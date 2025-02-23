@@ -21,7 +21,7 @@ class SessionMiddleware
         $_SESSION['full_name'] = 'Will Griffin';
         $_SESSION['email'] = 'cwalt2166@pm.me';
         $_SESSION['uid'] = '000675433';
-        $_SESSION['role'] = 'admin';
+        $_SESSION['role'] = 'Admin';
         // Process the request further down the middleware stack
         return $handler->handle($request);
     }

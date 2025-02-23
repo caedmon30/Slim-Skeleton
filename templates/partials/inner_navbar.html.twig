@@ -22,14 +22,17 @@
                                    class="top_menu !text-white">
                                     HOME
                                 </a>
+                                {% if session.role == 'admin' %}
                                 <a href="{{ url_for('keys') }}"
                                    class="top_menu !text-white">
                                     KEYS
                                 </a>
+                                {% endif %}
                                 <a href="/requests"
                                    class="top_menu !text-white">
                                     REQUESTS
                                 </a>
+                                {% if session.role == 'admin' %}
                                 <a href="{{ url_for('reports') }}"
                                    class="top_menu !text-white">
                                     REPORTS
@@ -38,7 +41,7 @@
                                    class="top_menu !text-white">
                                    SYSTEM
                                 </a>
-
+                                {% endif %}
                             </div>
 
                             <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 pt-2">
