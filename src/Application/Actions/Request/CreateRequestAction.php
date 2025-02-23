@@ -33,7 +33,9 @@ class CreateRequestAction extends RequestAction
     {
 
         $data = $this->getFormData();
+        $justification = $data['justification'];
         $data['submitted_by'] = $_SESSION['username'];
+        $submitter= $_SESSION['full_name'];
         $data['card_access'] = serialize($data['card_access']);
         $approver_id = strtok($data['pi_email'], '@');
         $data['status'] = ($approver_id == $data['submitted_by']) ? 'Approved' : 'Submitted';
@@ -47,8 +49,11 @@ class CreateRequestAction extends RequestAction
 
         $data['email'] = $data['email'] ?? $_SESSION['email'];
         $data['subject'] = "Order Confirmation # $request";
-        $data['body'] = "<p>Thank you for your order! Your order ID is <b>$request</b>.</p>";
-
+        $data['body'] = "<h3>New Key/Card Activation Request: #". $request. "</h3>";
+        $data['body'] .= "<p>This message is to notify you that a new card activation/key request form was submitted by ".$submitter." on ".date("F j, Y, g:i a")."</p>";
+        $data['body'] .= "<p>$justification</p>";
+        $data['body'] .= "<p>In progress requests will be reviewed within 48 hours during working days</p>";
+        $data['body'] .= "<p>Chemistry and Biochemistry,<br> KeyKeeper Application</p>";
         $this->approvalRepository->createApproval($approver);
         $this->workflowLogger->logAction($request,$data['submitted_by'], 'Draft',$data['status']);
 

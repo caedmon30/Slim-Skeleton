@@ -43,10 +43,10 @@
 
         <hr class="h-px my-4 border-0">
         <!-- form -->
-        <section class="bg-white py-2 antialiased dark:bg-gray-900 md:py-8 grid grid-cols-12">
+        <section class="py-2 antialiased bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-gray-100  dark:border-gray-700 dark:bg-gray-700 md:py-8 grid grid-cols-12">
             <div class="px-2 col-span-12 md:col-span-9 lg:col-span-9 justify-start mx-2">
 
-                <p class="alert text-sm text-gray-600 dark:text-gray-400 mb-6 md:mb-8 font-semibold">In progress requests will be reviewed within 48 hours during working days. You will be notified by email once the order is processed.</p>
+                <p class="alert text-normal text-gray-600 dark:text-gray-400 mb-6 md:mb-8 font-semibold pl-4"><i class="fa-regular fa-circle-exclamation"></i> In progress requests will be reviewed within 48 hours during working days. You will be notified by email once the order is processed.</p>
                 <div class="space-y-4 sm:space-y-2 rounded-lg border border-gray-100 bg-gray-50 p-6 dark:border-gray-700 dark:bg-gray-800 mb-6 md:mb-8">
                     <dl class="sm:flex items-center justify-between gap-4">
                         <dt class="text-sm mb-1 sm:mb-0 text-gray-500 dark:text-gray-400">Date submitted</dt>
@@ -102,7 +102,7 @@
                     </dl>
                 </div>
                 {% if session.email == pi_email and status in ['Submitted'] or session.role == 'admin' and status in ['Approved','Ordered','Completed'] %}
-                <form class="px-4" hx-patch="/api/requests/{{ id }}" hx-validate="true">
+                <form class="px-4 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" hx-patch="/api/requests/{{ id }}" hx-validate="true">
 
                     <div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
 
