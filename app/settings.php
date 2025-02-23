@@ -70,10 +70,10 @@ return function (ContainerBuilder $containerBuilder) {
                 ],
 
                 'email' => [
-                    'host' => 'smtp.freesmtpservers.com',
-                    'username' => '',
-                    'password' => '',
-                    'port' => 25,
+                    'host' => 'sandbox.smtp.mailtrap.io',
+                    'username' => '304e0a5ab5357b',
+                    'password' => '00b077a0530a0f',
+                    'port' => 2525,
                     'address' => 'chem-keykeeper@umd.edu',
                     'name' => 'Chemistry KeyManager',
                 ],

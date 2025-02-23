@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Application\Settings\SettingsInterface;
+use App\Controllers\EmailController;
 use App\Services\MailerService;
 use App\Services\WorkflowService;
 use buzzingpixel\twigswitch\SwitchTwigExtension;
@@ -81,26 +82,29 @@ return function (ContainerBuilder $containerBuilder) {
 
         PHPMailer::class => function (ContainerInterface $c) {
             $settings = $c->get(SettingsInterface::class);
-            $mailSettings = $settings->get('logger');
+            $mailSettings = $settings->get('email');
             $mail = new PHPMailer(true);
 
             // Configure PHPMailer
             $mail->isSMTP();
             $mail->Host = $mailSettings['host']; // Replace with your SMTP host
-            $mail->SMTPAuth = false;
+            $mail->SMTPAuth = true;
             $mail->Username = $mailSettings['username']; // SMTP username
             $mail->Password = $mailSettings['password']; // SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Encryption type
             $mail->Port = $mailSettings['port']; // SMTP port
 
             // Default sender details
-            $mail->setFrom($mailSettings['email'], $mailSettings['name']);
+            $mail->setFrom($mailSettings['address'], $mailSettings['name']);
 
             return $mail;
         },
 
         MailerService::class => function (ContainerInterface $c) {
             return new MailerService($c->get(PHPMailer::class));
+        },
+        EmailController::class => function (ContainerInterface $c) {
+            return new EmailController($c->get(MailerService::class));
         },
     ]);
 };
