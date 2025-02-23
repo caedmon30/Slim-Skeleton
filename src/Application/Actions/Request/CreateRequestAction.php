@@ -65,7 +65,8 @@ class CreateRequestAction extends RequestAction
         /** Set up email message  */
         $data['email'] = $data['email'] ?? $_SESSION['email'];
         $data['subject'] = "Order Confirmation # $request";
-        $data['body'] = "<h3>New Key/Card Activation Request: #". $request. "</h3>";
+        $data['body'] = "<img src='https://localhost:8000/assets/img/chem_keykeeper.png' alt='Chemistry Key-keeper' width='320px'>";
+        $data['body'] .= "<h3>New Key/Card Activation Request: #". $request. "</h3>";
         $data['body'] .= "<p>This message is to notify you that a new card activation/key request form was submitted by ".$submitter." on ".date("F j, Y, g:i a")."</p>";
         if (isset($data['justification']))  {
         $data['body'] .= "<p>{$data['justification']}</p>";
