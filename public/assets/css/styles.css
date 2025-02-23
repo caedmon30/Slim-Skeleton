@@ -1991,9 +1991,6 @@ body{
 .max-w-full {
   max-width: 100%;
 }
-.max-w-sm {
-  max-width: 24rem;
-}
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -2614,17 +2611,11 @@ body{
 .leading-\[1\.6\] {
   line-height: 1.6;
 }
-.leading-none {
-  line-height: 1;
-}
 .leading-tight {
   line-height: 1.25;
 }
 .tracking-normal {
   letter-spacing: 0em;
-}
-.tracking-tight {
-  letter-spacing: -0.025em;
 }
 .tracking-wide {
   letter-spacing: 0.025em;
@@ -3252,10 +3243,6 @@ body{
   --tw-text-opacity: 1;
   color: rgb(14 159 110 / var(--tw-text-opacity, 1));
 }
-.dark\:text-red-500:is(.dark *) {
-  --tw-text-opacity: 1;
-  color: rgb(240 82 82 / var(--tw-text-opacity, 1));
-}
 .dark\:text-red-700:is(.dark *) {
   --tw-text-opacity: 1;
   color: rgb(200 30 30 / var(--tw-text-opacity, 1));
@@ -3487,11 +3474,6 @@ body{
     padding-top: 2rem;
     padding-bottom: 2rem;
   }
-
-  .md\:text-xl {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-  }
 }
 @media (min-width: 1024px) {
 
@@ -3553,11 +3535,6 @@ body{
 
   .lg\:pl-0 {
     padding-left: 0px;
-  }
-
-  .lg\:text-3xl {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
   }
 }
 @media (min-width: 1280px) {

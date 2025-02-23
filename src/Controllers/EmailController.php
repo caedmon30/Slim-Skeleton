@@ -18,10 +18,11 @@ class EmailController
     public function sendEmail(array $data): bool
     {
         $to      = $data['email'] ?? 'cwalters@umd.edu';
+        $cc      = $data['cc'];
         $subject = $data['subject'] ?? 'Test Email';
         $body    = $data['body'] ?? '<p>This is a test email.</p>';
 
-        if ($this->emailService->sendMail($to, $subject, $body)) {
+        if ($this->emailService->sendMail($to, $cc, $subject, $body)) {
             return true;
         }
         return false;

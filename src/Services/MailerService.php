@@ -16,9 +16,13 @@ class MailerService
         $this->mail = $mail;
     }
 
-    public function sendMail(string $to, string $subject, string $body): bool
+    public function sendMail(string $to, array $cc, string $subject, string $body): bool
     {
         try {
+
+            foreach ($cc as $cc_email) {
+                $this->mail->addCC($cc_email);
+            }
             $this->mail->clearAddresses(); // Clear previous recipients
             $this->mail->addAddress($to);
             $this->mail->Subject = $subject;
