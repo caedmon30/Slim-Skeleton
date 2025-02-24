@@ -99,7 +99,7 @@ class LdapAuthorizationMiddleware
         }
 
         // Set a general 'loggedIn' flag based on both CAS authentication and LDAP authorization
-        $_SESSION['loggedIn'] = ($_SESSION['isAuthenticatedByCAS'] ?? false) && ($_SESSION['isAuthorizedByLDAP'] ?? false);
+        $_SESSION['loggedIn'] = ($_SESSION['isAuthorizedByLDAP'] === true);
 
         if (!$isAuthorized && ($_SESSION['loggedIn'] !== true)) { // If *not* authorized by LDAP and not ultimately 'loggedIn'
             // **Example: Return a 403 Forbidden response if not authorized**

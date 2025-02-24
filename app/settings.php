@@ -54,9 +54,9 @@ return function (ContainerBuilder $containerBuilder) {
                     'cas_server_ca_cert_path' => __DIR__ . '/../certs/USERTrust_RSA_Certification_Authority.pem',
                 ],
                 'ldap'=>[
-                    'host' => 'ldap.example.com', // Replace with your LDAP server hostname/IP
+                    'host' => 'ldap.forumsys.com', // Replace with your LDAP server hostname/IP
                     'port' => 389,                // Typically 389 (LDAP) or 636 (LDAPS)
-                    'base_dn' => 'dc=example,dc=com', // Replace with your base DN
+                    'base_dn' => 'cn=read-only-admin,dc=example,dc=com', // Replace with your base DN
                     'username_attribute' => 'uid',   // Attribute to use for username (e.g., uid, samaccountname)
                 ],
                 'session' => [
