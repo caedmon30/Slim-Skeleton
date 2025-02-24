@@ -20,7 +20,29 @@ class DatabaseRequestRepository implements RequestRepository
 
         $this->connection = $connection;
 
-        $results = $this->connection->query("SELECT * FROM requests");
+        $isAdmin = $_SESSION['role'] === 'admin'; // Check if the user is an admin
+        $loggedInUserId = $_SESSION['username']; // Get the currently logged-in user ID
+        $piEmail = $_SESSION['email']; // Get the PI email address
+
+        if (!$isAdmin) {
+            // If the user is NOT an admin
+            if ($loggedInUserId) {
+                // Filter by 'submitted_by' or 'pi_email' (the user submitted the request or is the PI)
+                $results = $this->connection->query('SELECT * FROM requests WHERE', [
+                    $this->connection::literal('?or', [
+                        'submitted_by' => $loggedInUserId,
+                        'pi_email' => $piEmail,
+                    ]),
+                ]);
+            } else {
+                // If the user is not the one who submitted the request and is not the PI
+                $results = [];
+            }
+        } else {
+            // Admin can see all records
+            $results = $this->connection->query("SELECT * FROM requests");
+        }
+
 
         foreach ($results as $row) {
             $requests[(int)$row['id']] = new Request(
@@ -65,7 +87,7 @@ class DatabaseRequestRepository implements RequestRepository
      */
     public function findRequestOfId(int $id): array
     {
-        if (!isset($id)) {
+        if (!empty($id)) {
             throw new RequestNotFoundException();
         }
         $data = (array)$this->connection->query('SELECT * FROM requests WHERE id = ?', $id)->fetch();
