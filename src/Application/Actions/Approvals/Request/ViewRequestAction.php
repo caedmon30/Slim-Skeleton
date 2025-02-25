@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Application\Actions\Request;
+namespace App\Application\Actions\Approvals\Request;
 
 use Psr\Http\Message\ResponseInterface as Response;
 
-class DeleteRequestAction extends RequestAction
+class ViewRequestAction extends RequestAction
 {
     /**
      * {@inheritdoc}
@@ -14,8 +14,8 @@ class DeleteRequestAction extends RequestAction
     protected function action(): Response
     {
         $requestId = (int) $this->resolveArg('id');
-        $request = $this->requestRepository->deleteRequestOfId($requestId);
-        $this->logger->info("Request of id `{$requestId}` was deleted.");
+        $request = $this->requestRepository->findRequestOfId($requestId);
+        $this->logger->info("Request of id `{$requestId}` was viewed.");
 
         return $this->respondWithData($request);
     }

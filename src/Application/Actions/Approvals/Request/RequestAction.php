@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Application\Actions\Request;
+namespace App\Application\Actions\Approvals\Request;
 
 use App\Application\Actions\Action;
 use App\Domain\Request\RequestRepository;

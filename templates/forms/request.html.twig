@@ -32,7 +32,7 @@
             <div class="px-2 col-span-12 md:col-span-9 lg:col-span-9 justify-start mx-2">
                 <p class="alert text-normal text-gray-800 dark:text-gray-400 mb-6 md:mb-8 pl-4"><i class="fa-duotone fa-solid fa-keyboard-brightness text-red-800 mr-2"></i> In progress requests will be reviewed within 48 hours during working days. You will be notified by email once the order is processed.</p>
 
-                <form hx-post="/api/requests" hx-validate="true" class="p-5 mt-5 w-full block text-left text-surface">
+                <form hx-post="{{ base_path() }}/api/requests" hx-validate="true" class="p-5 mt-5 w-full block text-left text-surface">
             <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
                     <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-semibold mb-2" for="first_name">

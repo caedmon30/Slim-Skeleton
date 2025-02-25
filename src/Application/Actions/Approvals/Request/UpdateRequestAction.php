@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Application\Actions\Request;
+namespace App\Application\Actions\Approvals\Request;
 
 use App\Controllers\EmailController;
-use Psr\Http\Message\ServerRequestInterface;
-use Psr\Log\LoggerInterface;
-use App\Services\WorkflowLogger;
 use App\Domain\Approval\ApprovalRepository;
 use App\Domain\Request\RequestRepository;
+use App\Services\WorkflowLogger;
 use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Log\LoggerInterface;
 
 
 class UpdateRequestAction extends RequestAction

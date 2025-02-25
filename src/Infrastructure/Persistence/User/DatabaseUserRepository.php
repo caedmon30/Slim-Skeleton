@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Persistence\User;
 
+use App\Domain\DomainException\DomainRecordNotFoundException;
 use App\Domain\User\User;
 use App\Domain\User\UserNotFoundException;
 use App\Domain\User\UserRepository;
@@ -33,7 +34,8 @@ class DatabaseUserRepository implements UserRepository
                 $row['emailAddress']
             );
         }
-        $this->users = $users;
+        if (isset( $users )) { $this->users = $users; } else { $this->users = []; }
+
     }
 
     /**
@@ -58,7 +60,7 @@ class DatabaseUserRepository implements UserRepository
     }
 
     /**
-     * @throws \MeekroDBException
+     *
      * @throws UserNotFoundException
      */
     public function deleteUserOfId(int $id): array
@@ -71,7 +73,7 @@ class DatabaseUserRepository implements UserRepository
     }
 
     /**
-     * @throws \MeekroDBException
+     * @throws DomainRecordNotFoundException
      * @throws UserNotFoundException
      */
 

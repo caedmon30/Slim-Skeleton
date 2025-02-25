@@ -29,8 +29,8 @@
 
     {% block javascript %}
     {% if session.role == 'admin' %}
-        <script src="{{ '../assets/js/dx-data/admin-requests.js' }}"></script>
+        <script src="{{ base_path() }}/assets/js/dx-data/admin-requests.js"></script>
    {% else %}
-        <script src="{{ '../assets/js/dx-data/requests.js' }}"></script>
+        <script src="{{ base_path() }}/assets/js/dx-data/requests.js"></script>
    {% endif %}
    {% endblock %}
