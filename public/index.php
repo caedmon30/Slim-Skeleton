@@ -40,8 +40,8 @@ $app = AppFactory::create();
 $callableResolver = $app->getCallableResolver();
 
 // Ensure base path is set correctly
-$app->setBasePath('/webapps/KeyKeeper');
-
+//$app->setBasePath('/webapps/KeyKeeper');
+$app->setBasePath('');
 // Register middleware
 $middleware = require __DIR__ . '/../app/middleware.php';
 $middleware($app);
