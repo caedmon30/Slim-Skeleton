@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Middleware\CasAuthenticationMiddleware;
-use App\Middleware\LdapAuthorizationMiddleware;
 use App\Middleware\SessionMiddleware;
 use Slim\App;
 use Slim\Views\Twig;

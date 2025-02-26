@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 use App\Application\Settings\SettingsInterface;
 use App\Controllers\EmailController;
+use App\Middleware\CasAuthenticationMiddleware;
+use App\Middleware\LdapAuthorizationMiddleware;
+use App\Middleware\SessionMiddleware;
+use App\Services\CasService;
+use App\Services\LdapService;
 use App\Services\MailerService;
 use App\Services\WorkflowService;
 use buzzingpixel\twigswitch\SwitchTwigExtension;
@@ -11,9 +16,6 @@ use DI\ContainerBuilder;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
-use Odan\Session\PhpSession;
-use Odan\Session\SessionInterface;
-use Odan\Session\SessionManagerInterface;
 use PHPMailer\PHPMailer\PHPMailer;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
@@ -71,15 +73,6 @@ return function (ContainerBuilder $containerBuilder) {
             return new WorkflowService($c->get(Connection::class));
         },
 
-        // PHP Session Manager
-        SessionManagerInterface::class => fn(ContainerInterface $c) => $c->get(SessionInterface::class),
-
-        // PHP Session
-        SessionInterface::class => function (ContainerInterface $c) {
-            $options = $c->get(SettingsInterface::class)->get('session');
-            return new PhpSession($options);
-        },
-
         PHPMailer::class => function (ContainerInterface $c) {
             $settings = $c->get(SettingsInterface::class);
             $mailSettings = $settings->get('email');
@@ -106,5 +99,26 @@ return function (ContainerBuilder $containerBuilder) {
         EmailController::class => function (ContainerInterface $c) {
             return new EmailController($c->get(MailerService::class));
         },
+
+        CasService::class => function (ContainerInterface $c) {
+            return new CasService($c->get(SettingsInterface::class)->get('cas'));
+        },
+        LdapService::class => function (ContainerInterface $c) {
+            return new LdapService($c->get(SettingsInterface::class)->get('ldap'));
+        },
+        CASAuthenticationMiddleware::class => function (ContainerInterface $c) {
+            return new CASAuthenticationMiddleware($c->get(CasService::class));
+        },
+        LdapAuthorizationMiddleware::class => function (ContainerInterface $c) {
+            return new LdapAuthorizationMiddleware($c->get(LdapService::class));
+        },
+        SessionMiddleware::class => function (ContainerInterface $c) {
+            return new SessionMiddleware(
+                $c->get(SettingsInterface::class),
+                $c->get(CasService::class),
+                $c->get(LdapService::class),
+            );
+        },
+
     ]);
 };
